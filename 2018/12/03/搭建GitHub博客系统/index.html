@@ -1,0 +1,472 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>搭建GitHub博客</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="clancy">
+    <meta name="keywords" content="security,safe">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-1" style="background-image: url( /img/poem1.png );">	
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《搭建GitHub博客》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		12/4/2018 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://XXX-youname-XXX.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="标签">标签</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/12/03/搭建GitHub博客系统/" itemprop="url">		
+			搭建GitHub博客		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/12/03/搭建GitHub博客系统/" itemprop="url">
+	<time datetime="2018-12-03T13:45:41.000Z" itemprop="datePublished">
+  		2018-12-03
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#GitHub,博客,搭建" title="GitHub,博客,搭建" rel="1">GitHub,博客,搭建</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<p>注：本文操作系统环境为windows</p>
+<h1 id="安装前提"><a href="#安装前提" class="headerlink" title="安装前提"></a>安装前提</h1><p>Nodejs : 官网下载就完事儿了，默认安装<br>Git : 官网下载，安装的时候勾选上可以在cmd中运行即可  </p>
+<h1 id="文本解释器"><a href="#文本解释器" class="headerlink" title="文本解释器"></a>文本解释器</h1><p>Visual Studio Code(推荐)或者Sublime Text  </p>
+<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><p><img src="/img/hexo01.png" alt="hexo简介"><br><code>win+R</code>打开输入<code>cmd</code>，执行命令:  </p>
+<pre><code>npm install -g hexo-cli  
+</code></pre><p>目的：安装hexo<br><img src="/img/hexo02.png" alt="hexo安装">  </p>
+<h1 id="新建文件夹存储此项目"><a href="#新建文件夹存储此项目" class="headerlink" title="新建文件夹存储此项目"></a>新建文件夹存储此项目</h1><p>我的文件夹命名为<code>myblog</code>，在文件夹内打开cmd窗口，执行命令： </p>
+<pre><code>hexo init .
+</code></pre><p>目的：初始化</p>
+<h1 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h1><p>把<code>myblog</code>文件夹用visual studio code打开，打开<code>_config.yml</code>配置文件<br><img src="/img/config01.png" alt="config文件"><br>修改红框中的内容，注意：属性与值之间有空格，例：</p>
+<pre><code>language: ZH-CN
+</code></pre><blockquote>
+<p>url后续再做更改  </p>
+</blockquote>
+<h1 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h1><p>创建并登录GitHub，之后点击右上角<code>+</code>号，新建一个存储库<code>New repository</code><br><img src="/img/github01.png" alt="创建存储库"><br><img src="/img/github02.png" alt="创建存储库02"><br>之后点击<code>Create repository</code>就完事儿了<br>初始界面大致长这个样子：<br><img src="/img/github03.png" alt="初始界面"><br>选择<code>create new file</code>新建一个文件<br><img src="/img/github04.png" alt="新建文件">  </p>
+<h1 id="下载静态文件并且完成本地访问"><a href="#下载静态文件并且完成本地访问" class="headerlink" title="下载静态文件并且完成本地访问"></a>下载静态文件并且完成本地访问</h1><p>由于在github中直接新建文件存在各种局限性，所以通过本地写会更方便一些<br>在<code>myblog</code>文件夹中打开cmd命令行窗口，执行命令：  </p>
+<pre><code>hexo generate  
+</code></pre><p>目的：更新静态文件，hexo程序直接帮你写好初始化静态网页<br><img src="/img/hexo03.png" alt="更新网页源代码"><br>本地访问：  </p>
+<blockquote>
+<p>本地访问可以方便的看到文件在浏览器中的具体样子，便于修改  </p>
+</blockquote>
+<p><img src="/img/hexoserver.png" alt="本地开启服务器">  </p>
+<h1 id="同步本地文件至github"><a href="#同步本地文件至github" class="headerlink" title="同步本地文件至github"></a>同步本地文件至github</h1><p>打开<code>github desktop</code>并登录<br>选择<code>clone a repository</code><br><img src="/img/clone01.png" alt="克隆项目"><br>选择存储库，设置本地路径，点击<code>clone</code><br><img src="/img/clone02.png" alt="克隆项目02"><br>把写好的文件放入上一步设置的路径中,打开<code>github desktop</code><br><img src="/img/upload01.png" alt="上传同步"><br>选择要上传的文件，点击<code>commit to master</code>进行上传<br>同步：<br><img src="/img/upload02.png" alt="同步">  </p>
+<h1 id="主题更改"><a href="#主题更改" class="headerlink" title="主题更改"></a>主题更改</h1><p>找主题：<a href="https://hexo.io/themes" target="_blank" rel="noopener">themes</a><br>下载主题：  </p>
+<pre><code>1.  复制文件路径：  
+</code></pre><p><img src="/img/copy01.png" alt="复制路径"><br>在<code>myblog/themes</code>文件夹中打开cmd窗口,执行命令：  </p>
+<pre><code>git clone 主题路径
+</code></pre><p>在<code>myblog</code>文件夹中用编辑器打开<code>_config.yml</code>，修改<code>theme</code>值为你的主题名<br><img src="/img/themes01.png" alt="themes"></p>
+<h1 id="清空旧网站文件，生成新网站文件"><a href="#清空旧网站文件，生成新网站文件" class="headerlink" title="清空旧网站文件，生成新网站文件"></a>清空旧网站文件，生成新网站文件</h1><p>在<code>myblog</code>文件中打开cmd命令行窗口，执行命令：  </p>
+<pre><code>hexo clean  
+</code></pre><p><img src="/img/clean01.png" alt="clean"><br>目的：清除旧网站文件（public文件夹）  </p>
+<pre><code>hexo generate
+</code></pre><p><img src="/img/hexo03.png" alt="generate"><br>目的：生成新网站文件（public文件夹）<br>如果想在本地访问，可执行命令：  </p>
+<pre><code>hexo server  
+</code></pre><p><img src="/img/server01.png" alt="server"><br>目的：开启本地服务器<br>然后在浏览器地址栏输入<code>localhost:4000</code>即可  </p>
+<h1 id="上传主题"><a href="#上传主题" class="headerlink" title="上传主题"></a>上传主题</h1><p>在github存储库的文件夹中删除所有文件（.gt隐藏文件不要删），把<code>myblog</code>文件夹中的<code>public</code>文件夹中的所有内容复制到github存储库文件夹中<br>在<code>github desktop</code>中添加摘要和描述，点击<code>commit to master</code>即可<br>同步：<br><img src="/img/upload02.png" alt="同步"></p>
+<h1 id="如何在博客里面写文章"><a href="#如何在博客里面写文章" class="headerlink" title="如何在博客里面写文章"></a>如何在博客里面写文章</h1><p>在<code>myblog</code>文件夹中打开cmd命令行窗口，执行命令：  </p>
+<pre><code>hexo new &quot;filename&quot;  
+</code></pre><p>屏幕会输出文件保存路径<br><img src="/img/hexonew01.png" alt="新建文件"><br>在<code>myblog</code>文件夹中打开vscode，打开上述图片位置，写入内容，保存即可<br>更新网站文件：<br>在<code>myblog</code>文件夹中打开cmd，执行命令：</p>
+<pre><code>hexo generate
+</code></pre><p>目的：更新本地public文件夹<br><img src="/img/hexo03.png" alt="generate"><br>把<code>myblog/public</code>文件夹中的内容复制到github存储库的本地文件夹中，通过<code>github desktop</code>上传并同步即可  </p>
+<h1 id="错误说明"><a href="#错误说明" class="headerlink" title="错误说明"></a>错误说明</h1><p><img src="/img/error01.png" alt="error01"><br>原因：<code>github desktop</code>的本地存储库文件夹中的.gt隐藏文件不能删除</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment valine -->
+			<!-- show valine comment -->
+<div id="valineComment" class="comment"></div>
+
+<!-- valine`s js & css -->
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/js/valine.min.js"></script>
+<link rel="stylesheet" href="/css/comment.css">
+
+<script>
+	var checkExistComment = setInterval(function() {
+		if( $('#valineComment').length ) {
+			new Valine({
+				// AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+				av: AV,
+				//使用id寻找div元素（使用class可能找不到）
+				el: '#valineComment',
+				emoticon_url: 'https://cloud.panjunwen.com/alu',
+				emoticon_list: ["吐.png", "期待.png", "高兴.png", "吐血倒地.png", "哭泣.png", "欢呼.png"],
+				app_id: "3333....", //获取APP ID
+				app_key: "3333......", //获取APP KEY
+				placeholder: "no any!", //评论框占位提示文字        			
+			});
+			clearInterval(checkExistComment);
+		}
+	}, 100);
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装前提"><span class="post-toc-text">安装前提</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#文本解释器"><span class="post-toc-text">文本解释器</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装hexo"><span class="post-toc-text">安装hexo</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#新建文件夹存储此项目"><span class="post-toc-text">新建文件夹存储此项目</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#修改配置文件"><span class="post-toc-text">修改配置文件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#GitHub"><span class="post-toc-text">GitHub</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#下载静态文件并且完成本地访问"><span class="post-toc-text">下载静态文件并且完成本地访问</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#同步本地文件至github"><span class="post-toc-text">同步本地文件至github</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#主题更改"><span class="post-toc-text">主题更改</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#清空旧网站文件，生成新网站文件"><span class="post-toc-text">清空旧网站文件，生成新网站文件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#上传主题"><span class="post-toc-text">上传主题</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何在博客里面写文章"><span class="post-toc-text">如何在博客里面写文章</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#错误说明"><span class="post-toc-text">错误说明</span></a></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="http://github.com/" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Weibo" target="_blank"><i class="fa fa-weibo"></i>&nbsp;</a>
+				
+				
+					<a href="http://github.com/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="QQ" target="_blank"><i class="fa fa-qq"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Twitter" target="_blank"><i class="fa fa-twitter"></i>&nbsp;</a>
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2017 - 2018, content by clancy. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://XXX-youname-XXX.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

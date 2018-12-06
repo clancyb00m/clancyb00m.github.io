@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>学习总结</title>
+	<title>LAMP环境搭建与配置</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -54,7 +54,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《学习总结》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《LAMP环境搭建与配置》</p>
 			
 		
 	
@@ -160,8 +160,8 @@
 					
 					
 	
-		<a href="/2018/12/05/学习总结/" itemprop="url">		
-			学习总结		
+		<a href="/2018/12/05/LAMP环境搭建与配置/" itemprop="url">		
+			LAMP环境搭建与配置		
 		</a>
 	
 
@@ -170,7 +170,7 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2018/12/05/学习总结/" itemprop="url">
+						<a href="/2018/12/05/LAMP环境搭建与配置/" itemprop="url">
 	<time datetime="2018-12-05T04:30:00.000Z" itemprop="datePublished">
   		2018-12-05
   </time>
@@ -182,7 +182,7 @@
 						
 							<i class="fa fa-tags"></i>
 							
-								<a href="#笔记,总结" title="笔记,总结" rel="1">笔记,总结</a>&nbsp;
+								<a href="#lamp,搭建" title="lamp,搭建" rel="1">lamp,搭建</a>&nbsp;
 													 											
 						
 					</span>
@@ -192,25 +192,93 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h1 id="2018-12-03-周一"><a href="#2018-12-03-周一" class="headerlink" title="2018/12/03 周一"></a>2018/12/03 周一</h1><p>搭建博客系统，链接到我的博客文章：</p>
-<blockquote>
-<p><a href="https://clancyb00m.github.io/2018/12/03/%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/" target="_blank" rel="noopener">搭建GitHub博客</a><br>里面讲到了hexo使用与安装，github使用，git使用，更改主题以及如何上传博客文章  </p>
-</blockquote>
-<h1 id="2018-12-04-周二"><a href="#2018-12-04-周二" class="headerlink" title="2018/12/04 周二"></a>2018/12/04 周二</h1><p>上午：linux命令拓展  </p>
-<blockquote>
-<p><a href="#">Linux命令拓展（待定）</a>   </p>
-</blockquote>
-<p>下午：linux(centos)中安装软件的三种方法：  </p>
+						<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>本次搭建用的是<code>centos6</code>的虚拟机，是<a href="https://www.cleverbao.blog" target="_blank" rel="noopener">大佬</a>直接传给我的虚拟机，所有就存在了一个问题，克隆的虚拟机会出现网卡找不到的情况<br><img src="/img/181205/noeth001.png" alt="网卡找不到"><br>解决方法就是:  </p>
 <ol>
-<li>yum安装</li>
-<li>rpm安装</li>
-<li><a href="https://clancyb00m.github.io/2018/12/04/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85httpd/" target="_blank" rel="noopener">源码安装</a><br>：里面讲到了ssh连接，虚拟机与真实机之间拖拽文件，源码怎么安装软件，错误解决办法  </li>
+<li><p>执行命令：  </p>
+<pre><code>cat /etc/udev/rules.d/70-persistent-net.rules  
+</code></pre><p>查看里面最下面的网卡名称和MAC地址<br><img src="/img/181205/udev70net01.png" alt="udev70">  </p>
+</li>
+<li><p>然后打开网卡配置信息并修改  </p>
+<pre><code>vi /etc/sysconfig/network-scripts/ifcfg-eth0 
+</code></pre><p><img src="/img/181205/eth101.png" alt="eth1"><br>然后重启网卡就可以了，执行命令：  </p>
+<pre><code>service network restart  
+</code></pre><p>现在我们开始安装LAMP！</p>
+<h1 id="搭建LAMP"><a href="#搭建LAMP" class="headerlink" title="搭建LAMP"></a>搭建LAMP</h1><p>LAMP=LINUX+APACHE+MYSQL+PHP  </p>
+</li>
 </ol>
-<p>在源码安装中并不是全都是用源码安装的，所以之后延伸到这篇博客：<a href="#">纯源码安装httpd（待定）</a>  </p>
-<h1 id="2018-12-05-周三"><a href="#2018-12-05-周三" class="headerlink" title="2018/12/05 周三"></a>2018/12/05 周三</h1><p>LAMP环境搭建与应用</p>
 <ul>
-<li>安装Apache服务，遇到防火墙拦截问题，添加防火墙规则</li>
+<li>这是在Linux下最常见的提供web服务的组合之一  </li>
+<li>Linux 是免费开源软件，这意味着源代码可用的操作系统  </li>
+<li>Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件  </li>
+<li>MySQL 是多线程、多用户的SQL数据库管理系统  </li>
+<li>PHP 是一种编程语言最初设计生产动态网站。PHP 是主要用于服务器端的应用程序软件  </li>
 </ul>
+<p>接下来我们开始安装，为了方便，我们直接使用<code>yum</code>来安装</p>
+<h3 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h3><ol>
+<li><p>执行命令：  </p>
+<pre><code>yum install httpd httpd-devel httpd-manual mod_ssl mod_perl mod_auth_mysql  
+</code></pre><p><img src="/img/181205/httpd01.png" alt="安装httpd"></p>
+</li>
+<li>装完之后，在启动前，需要解决一个错误：<br><img src="/img/181205/error01.png" alt="servername"><br>首先验证你有没有这个错误，直接执行命令<code>httpd</code>看是否和上面错误一样，如果一样，那我们就来解决它  </li>
+<li><p>我们先停止<code>httpd</code>服务，执行命令<code>service httpd stop</code>,打开<code>httpd.conf</code>配置文件，修改<code>ServcerName</code>，使域名生效，所以我们来执行命令：  </p>
+<pre><code>vi /etc/httpd/conf/httpd.conf  
+/exam   :为了更快速的找到servername
+</code></pre><p>把<code>#</code>去掉，完事儿  </p>
+</li>
+<li><p>启动<code>httpd</code>：  </p>
+<pre><code>service httpd start  
+</code></pre><p>这个时候去使用ip访问时访问不了的，因为防火墙有拦截，防火墙这么做，是为了防止网站受到攻击，之前我们直接关闭了防火墙去做访问，但是这样很不安全，所以我们就需要修改防火墙的规则来在防火墙开启的状态下又能正常访问  </p>
+</li>
+<li><p>修改防火墙规则<br>在<code>centos6</code>中，防火墙规则是放在一个文件中的，<code>centos7</code>中是通过命令修改的，这是不一样的地方<br>打开防火墙规则文件，修改就完事儿了  </p>
+<pre><code>vi /etc/sysconfig/iptables  
+</code></pre><p>在里面我们需要加入一条规则：  </p>
+<pre><code>-A INPUT -p tcp -m tcp --dport 80 -j ACCEPT  
+</code></pre><p>这里要说明两点：  </p>
+<blockquote>
+<ol>
+<li>这条命令要加在这条命令：<img src="/img/181205/reject01.png" alt="拒绝所有数据访问">之前，因为这条命令拒绝所有数据包访问，而防火墙规则是从上到下执行的，我们需要写在这条命令前面才能生效  </li>
+<li>解释一下这条命令：<code>-A</code>：追加规则，<code>-INPUT</code>：别人请求你，<code>-p</code>：指定协议类型，<code>-m</code>：启用扩展功能，<code>--dport</code>：<code>-p</code>的扩展，指定端口，<code>-j</code>：指定这条规则如何进行处理，<code>ACCEPT</code>表示通过  </li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<p>之后重启防火墙即可  </p>
+<pre><code>service iptables restart  
+</code></pre><p><img src="/img/181205/iptables01.png" alt="重启防火墙"><br>成功访问：<br><img src="/img/181205/apache01.png" alt="访问Apache"><br>设置开机自启：  </p>
+<pre><code>chkconfig httpd on  
+</code></pre><h3 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h3><ol>
+<li><p>执行命令：</p>
+<pre><code>yum install mysql mysql-server mysql-devel  
+</code></pre><p><img src="/img/181205/mysql01.png" alt="安装MySQL"><br>至此MySQL就安装完成  </p>
+</li>
+<li><p>启动<code>MySQL</code>  </p>
+<pre><code>service mysqld start  
+</code></pre><p><img src="/img/181205/mysql02.png" alt="启动MySQL"><br><img src="/img/181205/mysql03.png" alt="启动MySQL02">  </p>
+</li>
+<li><p>初始化<code>MySQL</code>  </p>
+<pre><code>mysql_secure_installation  
+</code></pre><p>在这里需要设置<code>MySQL</code>数据库密码：<br><img src="/img/181205/mysql04.png" alt="设置MySQL密码"><br>之后一路回车就完事儿了<br><img src="/img/181205/mysql05.png" alt="完成安装MySQL"><br>设置开机自启：  </p>
+<pre><code>chkconfig mysqld on  
+</code></pre><p>至此<code>MySQL</code>就安装完成了！  </p>
+<h3 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h3><pre><code>yum install php php-mysql php-common php-gd php-mbstring php-mcrypt php-devel php-xml  
+</code></pre><p><img src="/img/181205/php01.png" alt="安装php"><br><code>php</code>安装完成<br>由于<code>PHP</code>是<code>Apache</code>的扩展，所以安装完<code>PHP</code>后需要重启<code>Apache</code>服务：  </p>
+<pre><code>service httpd restart  
+</code></pre><p><img src="/img/181205/apache02.png" alt="Apache重启">  </p>
+</li>
+</ol>
+<p>至此，<code>LAMP</code>环境安装完成</p>
+<h1 id="搭建网站"><a href="#搭建网站" class="headerlink" title="搭建网站"></a>搭建网站</h1><ol>
+<li>我们来导入网站源码测试一下，这次我们搭建一个漏洞环境，通过小黄鸭将文件导入<code>/var/www/html</code>目录中：<br><img src="/img/181205/cyberduck01.png" alt="cyberduck">  </li>
+<li><p>修改文件夹权限，避免出现权限问题：  </p>
+<pre><code>chown -R apache:aoache /var/www/html  
+</code></pre></li>
+<li><p>打开配置文件  </p>
+<pre><code>vi /var/www/html/sys/config.php  
+</code></pre><p>修改账户密码为自己数据库的账户密码，保存退出即可<br><img src="/img/181205/change01.png" alt="修改账户密码">  </p>
+</li>
+<li>浏览器访问一下，出现如下错误：<br><img src="/img/181205/error02.png" alt="没有数据库"><br>这是因为我们数据库中没有<code>vauditdemo</code>这个数据库，进入<code>mysql</code>创建一个就可以了：<br><img src="/img/181205/mysql06.png" alt="进入mysql"><br><img src="/img/181205/create01.png" alt="创建数据库">  </li>
+<li>浏览器再次访问：<br><img src="/img/181205/success01.png" alt="成功访问"><br>成功访问！</li>
+</ol>
 
 					
 				</div>
@@ -219,9 +287,15 @@
 
 		<ul class="am-pagination">
     
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2018/12/05/学习总结/" title="学习总结">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2018/12/05/LAMP环境搭建与配置/" title="LAMP环境搭建与配置">
+		<a class="pull-right" href="/2018/12/04/源码安装httpd/" title="源码安装httpd">
 			下一篇 &raquo;
 		</a>
 		</li>
@@ -313,7 +387,7 @@
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2018-12-03-周一"><span class="post-toc-text">2018/12/03 周一</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2018-12-04-周二"><span class="post-toc-text">2018/12/04 周二</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2018-12-05-周三"><span class="post-toc-text">2018/12/05 周三</span></a></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#说明"><span class="post-toc-text">说明</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#搭建LAMP"><span class="post-toc-text">搭建LAMP</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Apache"><span class="post-toc-text">安装Apache</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装MySQL"><span class="post-toc-text">安装MySQL</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装PHP"><span class="post-toc-text">安装PHP</span></a></li></ol></li></ol><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#搭建网站"><span class="post-toc-text">搭建网站</span></a></li>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>

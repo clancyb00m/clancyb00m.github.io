@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>源码安装httpd</title>
+	<title>windows搭建iis</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -54,7 +54,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《源码安装httpd》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《windows搭建iis》</p>
 			
 		
 	
@@ -160,8 +160,8 @@
 					
 					
 	
-		<a href="/2018/12/04/源码安装httpd/" itemprop="url">		
-			源码安装httpd		
+		<a href="/2018/12/06/windows搭建iis/" itemprop="url">		
+			windows搭建iis		
 		</a>
 	
 
@@ -170,9 +170,9 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2018/12/04/源码安装httpd/" itemprop="url">
-	<time datetime="2018-12-04T13:45:41.000Z" itemprop="datePublished">
-  		2018-12-04
+						<a href="/2018/12/06/windows搭建iis/" itemprop="url">
+	<time datetime="2018-12-06T04:30:01.000Z" itemprop="datePublished">
+  		2018-12-06
   </time>
 </a>    
 &nbsp;
@@ -182,7 +182,7 @@
 						
 							<i class="fa fa-tags"></i>
 							
-								<a href="#源码安装,httpd" title="源码安装,httpd" rel="1">源码安装,httpd</a>&nbsp;
+								<a href="#windows,iis,搭建,asp" title="windows,iis,搭建,asp" rel="1">windows,iis,搭建,asp</a>&nbsp;
 													 											
 						
 					</span>
@@ -192,56 +192,24 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<blockquote>
-<p>本文介绍了如何在linux（centos7）中通过httpd的源代码安装httpd服务  </p>
-</blockquote>
-<h1 id="ssh连接虚拟机"><a href="#ssh连接虚拟机" class="headerlink" title="ssh连接虚拟机"></a>ssh连接虚拟机</h1><blockquote>
-<p>注：为什么要用ssh操作虚拟机，优点如下：  </p>
-<blockquote>
+						<p>本次使用的虚拟机是<code>Windows Server 2008 R2</code>，我要在上面搭建<code>iis</code>服务，并运行一个<code>asp</code>的网站。  </p>
+<ul>
+<li>前提：<br>需要以下两个文件：</li>
+</ul>
 <ol>
-<li>界面美观  </li>
-<li>可以进行复制粘贴操作  </li>
-<li>安全</li>
-<li>…  </li>
+<li>.net framework 4.7.2</li>
+<li>一个asp的网站源码  </li>
 </ol>
-</blockquote>
-</blockquote>
-<p>我使用的软件为：Termius<br><img src="/img/181204/termius01.png" alt="termius图标"><br>界面如图所示：<br><img src="/img/181204/termius02.png" alt="termius界面"><br>点击右下角<code>NEW HOST</code>，弹出如下界面：<br><img src="/img/181204/newhost01.png" alt="新建连接">  </p>
-<blockquote>
-<p>label：  起个别名<br>  address： 在虚拟机里面输入命令<code>ifconfig</code>查看自己的ip地址<br>  username：  用户名<br>  password：  密码  </p>
-</blockquote>
-<p>点击<code>save</code>保存，之后双击即可连接<br><img src="/img/181204/lianjie01.png" alt="连接"><br>如果双击后有提示框弹出，点击确定即可</p>
-<h1 id="把httpd文件拷贝进centos7中"><a href="#把httpd文件拷贝进centos7中" class="headerlink" title="把httpd文件拷贝进centos7中"></a>把httpd文件拷贝进centos7中</h1><p>在Apache官网下载好源码后，使用这个软件进行真实机与虚拟机之间的文件拷贝<br><img src="/img/181204/copy01.png" alt="copy"><br>打开软件，点击左上角新建连接，填好内容后点击<code>连接</code>即可<br><img src="/img/181204/copy02.png" alt="cyberduck"><br><img src="/img/181204/copy03.png" alt="cyberduck02"><br>点击<code>允许</code><br>之后看到的内容和在虚拟机之中使用<code>ls</code>命令看到的内容是一样的<br><img src="/img/181204/copy04.png" alt="cyberduck03"><br><img src="/img/181204/copy05.png" alt="xuniji-ls"><br>把要安装的httpd的压缩文件直接拖入小黄鸭中，等待完成即可<br><img src="/img/181204/copy06.png" alt="cyberduck04">  </p>
-<h1 id="开始在Termius中远程安装"><a href="#开始在Termius中远程安装" class="headerlink" title="开始在Termius中远程安装"></a>开始在Termius中远程安装</h1><p>在开始之前，需要进行一个很重要的操作，安装开发者工具集：</p>
-<pre><code>yum groupinstall &quot;development tools&quot;  
-</code></pre><p>安装这个工具集的目的是为了能执行一些编译之类的命令，博主现在还不太懂<br><img src="/img/181204/developmenttools01.png" alt="development_tools01"><br><img src="/img/181204/developmenttools02.png" alt="development_tools02"><br><img src="/img/181204/developmenttools03.png" alt="development_tools03"><br>装完之后长这个样子：<br><img src="/img/181204/developmenttools04.png" alt="development_tools04"><br>之后开始安装：<br>解压：  </p>
-<pre><code>tar zxvf httpd-2.4.37.tar.gz  
-</code></pre><p><img src="/img/181204/tar01.png" alt="tar01">  </p>
-<p>进入到解压后的目录中，有一个INSTALL文件，通过小黄鸭（cyberduck）传到真实机上面通过编辑器打开：<br><img src="/img/181204/install01.png" alt="INSTALL"><br>红框中的内容为安装所需操作步骤，后面大写的<code>PERFIX</code>为路径，写上你想安装的路径即可  </p>
-<h3 id="执行第一个命令"><a href="#执行第一个命令" class="headerlink" title="执行第一个命令"></a>执行第一个命令</h3><pre><code>./configure --prefix=/usr/local/apache2  
-</code></pre><p><code>/usr/local/apache2</code>为路径，自己想装在哪儿装哪儿就完事儿了<br>出错：<br><img src="/img/181204/error01.png" alt="error01"><br>APR未找到，那么我们来找一下  </p>
-<pre><code>yum search apr  
-</code></pre><p><img src="/img/181204/apr01.png" alt="apr"><br>把里面所有文件装上即可，执行命令：  </p>
-<pre><code>yum install apr-devel apr-util-devel apr-util apr -y  
-</code></pre><p>解释：通过<code>yum install</code>同时安装四个文件，文件不需要写全后缀，linux会自动补全，把所有类型的前缀都安装上，一共就这四种，最后的<code>-y</code>参数是在遇到让你输入<code>y/n</code>的时候自动输入<code>y</code><br><img src="/img/181204/apr02.png" alt="apr02"><br>解决掉错误，继续执行第一个命令：  </p>
-<pre><code>./configure --prefix=/usr/local/apache2  
-</code></pre><p>再次出错：<br><img src="/img/181204/error02.png" alt="error02"><br>找一下pcre：</p>
-<pre><code>yum search pcre  
-</code></pre><p><img src="/img/181204/pcre01.png" alt="pcre"><br>同上，执行命令：  </p>
-<pre><code>yum install pcre-devel pcre2-devel pcre pcre2 -y
-</code></pre><p><img src="/img/181204/pcre02.png" alt="pcre01"><br>又解决一个错误，继续执行第一个命令：  </p>
-<pre><code>./configure --prefix=/usr/local/apache2  
-</code></pre><p><img src="/img/181204/installed.png" alt="安装完成">  </p>
-<h3 id="执行第二条命令"><a href="#执行第二条命令" class="headerlink" title="执行第二条命令"></a>执行第二条命令</h3><pre><code>make  
-</code></pre><p>输入后它会执行好多内容，等待一会儿即可<br><img src="/img/181204/make01.png" alt="make">   </p>
-<h3 id="执行第三条命令"><a href="#执行第三条命令" class="headerlink" title="执行第三条命令"></a>执行第三条命令</h3><pre><code>make install  
-</code></pre><p>输入完执行，然后等待即可<br><img src="/img/181204/make02.png" alt="makeinstall"><br>到这里httpd就安装完成了</p>
-<h3 id="执行第四条命令"><a href="#执行第四条命令" class="headerlink" title="执行第四条命令"></a>执行第四条命令</h3><pre><code>/usr/local/apache2/bin/apachectl start  
-</code></pre><p>解释：这条命令的作用是开启httpd服务<br>出现这个错误无关紧要，不用管：<br><img src="/img/181204/error03.png" alt="error03"><br>OK，成功开启</p>
-<h1 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h1><p>首先需要关闭防火墙才能在局域网其他主机访问：  </p>
-<pre><code>systemctl stop firewalld  
-</code></pre><p>之后在浏览器中输入<code>ip地址:80</code>即可访问</p>
-<h1 id="放入站点文件"><a href="#放入站点文件" class="headerlink" title="放入站点文件"></a>放入站点文件</h1><p>把我的博客源码放入apache安装目录下的<code>htdocs</code>文件夹中，通过小黄鸭（cyberduck）直接进行拖拽即可<br><img src="/img/181204/cyberduck01.png" alt="htdocs"><br><img src="/img/181204/ok01.png" alt="ok">  </p>
+<p><img src="/img/181206/start01.png" alt="准备操作"><br>操作步骤如下：  </p>
+<h1 id="安装IIS"><a href="#安装IIS" class="headerlink" title="安装IIS"></a>安装IIS</h1><p><img src="/img/181206/iis01.png" alt="安装IIS"><br><img src="/img/181206/iis02.png" alt="安装IIS"><br><img src="/img/181206/iis03.png" alt="安装IIS"><br>之后再次点击下一步<br><img src="/img/181206/iis04.png" alt="安装IIS"><br><img src="/img/181206/iis05.png" alt="安装IIS"><br><img src="/img/181206/iis06.png" alt="安装IIS"><br><img src="/img/181206/iis07.png" alt="安装IIS"><br><img src="/img/181206/iis08.png" alt="安装IIS"><br><img src="/img/181206/iis09.png" alt="安装IIS"><br>好无聊，iis装完了！找我这样选，基本的东西都有！</p>
+<h1 id="配置IIS"><a href="#配置IIS" class="headerlink" title="配置IIS"></a>配置IIS</h1><p><img src="/img/181206/iis10.png" alt="安装IIS">  </p>
+<h3 id="删除默认网站和应用池"><a href="#删除默认网站和应用池" class="headerlink" title="删除默认网站和应用池"></a>删除默认网站和应用池</h3><p><img src="/img/181206/iis11.png" alt="安装IIS">  </p>
+<h3 id="添加网站"><a href="#添加网站" class="headerlink" title="添加网站"></a>添加网站</h3><p><img src="/img/181206/iis12.png" alt="安装IIS"><br><img src="/img/181206/iis13.png" alt="安装IIS"><br>然后导入网站数据  </p>
+<h3 id="改权限"><a href="#改权限" class="headerlink" title="改权限"></a>改权限</h3><p><img src="/img/181206/iis14.png" alt="安装IIS"><br><img src="/img/181206/iis15.png" alt="安装IIS"><br><img src="/img/181206/iis16.png" alt="安装IIS">  </p>
+<h3 id="启用父路径"><a href="#启用父路径" class="headerlink" title="启用父路径"></a>启用父路径</h3><p><img src="/img/181206/iis17.png" alt="安装IIS"><br>False改为True<br><img src="/img/181206/iis18.png" alt="安装IIS">  </p>
+<h3 id="更改默认首页"><a href="#更改默认首页" class="headerlink" title="更改默认首页"></a>更改默认首页</h3><p><img src="/img/181206/iis19.png" alt="安装IIS"><br>这里去看下载的网站的源码，默认首页是什么格式的这里就怎么写<br><img src="/img/181206/iis20.png" alt="安装IIS">  </p>
+<h3 id="启用32位程序"><a href="#启用32位程序" class="headerlink" title="启用32位程序"></a>启用32位程序</h3><p><img src="/img/181206/iis21.png" alt="安装IIS"><br><img src="/img/181206/iis22.png" alt="安装IIS">  </p>
+<h3 id="选择-net-4版本"><a href="#选择-net-4版本" class="headerlink" title="选择.net 4版本"></a>选择.net 4版本</h3><p>由于我事前并没有安装，所以无法修改，所以这里没有截图，操作步骤同上，在选择<code>高级设置</code>的时候，这回选择<code>基本设置</code>，就可以在里面修改了。</p>
 
 					
 				</div>
@@ -250,15 +218,9 @@
 
 		<ul class="am-pagination">
     
-    	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2018/12/05/学习总结/" title="学习总结">
-      		&laquo; 上一篇
-		</a>
-		</li>
-	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2018/12/03/搭建GitHub博客系统/" title="搭建GitHub博客">
+		<a class="pull-right" href="/2018/12/05/LAMP环境搭建与配置/" title="LAMP环境搭建与配置">
 			下一篇 &raquo;
 		</a>
 		</li>
@@ -350,7 +312,7 @@
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ssh连接虚拟机"><span class="post-toc-text">ssh连接虚拟机</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#把httpd文件拷贝进centos7中"><span class="post-toc-text">把httpd文件拷贝进centos7中</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#开始在Termius中远程安装"><span class="post-toc-text">开始在Termius中远程安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#执行第一个命令"><span class="post-toc-text">执行第一个命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#执行第二条命令"><span class="post-toc-text">执行第二条命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#执行第三条命令"><span class="post-toc-text">执行第三条命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#执行第四条命令"><span class="post-toc-text">执行第四条命令</span></a></li></ol></li></ol><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#访问"><span class="post-toc-text">访问</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#放入站点文件"><span class="post-toc-text">放入站点文件</span></a></li>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装IIS"><span class="post-toc-text">安装IIS</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#配置IIS"><span class="post-toc-text">配置IIS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#删除默认网站和应用池"><span class="post-toc-text">删除默认网站和应用池</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加网站"><span class="post-toc-text">添加网站</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#改权限"><span class="post-toc-text">改权限</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#启用父路径"><span class="post-toc-text">启用父路径</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#更改默认首页"><span class="post-toc-text">更改默认首页</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#启用32位程序"><span class="post-toc-text">启用32位程序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#选择-net-4版本"><span class="post-toc-text">选择.net 4版本</span></a></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>

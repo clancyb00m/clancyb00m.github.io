@@ -1,0 +1,477 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>rpm安装php</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="clancy">
+    <meta name="keywords" content="security,safe">
+    <meta name="description" content="">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-2">
+
+	
+		<div id="cd-logo"><a href="/">来了，老弟！</a></div>		
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto"></p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《rpm安装php》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		12/7/2018 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(https://clancyb00m.github.io/Random-img/' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="标签">标签</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+    		
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/12/07/rpm安装php/" itemprop="url">		
+			rpm安装php		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/12/07/rpm安装php/" itemprop="url">
+	<time datetime="2018-12-07T04:31:00.000Z" itemprop="datePublished">
+  		2018-12-07
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#rpm" title="rpm" rel="1">rpm</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<blockquote>
+<p>本文可能有点乱，右边有个目录，看着那个来就行了</p>
+</blockquote>
+<blockquote>
+<p>本文讲述linux（centos7）使用rpm安装php的过程<br>rpm安装软件的命令是这样的：rpm -ivh 软件名  </p>
+<ol>
+<li>-i install,安装</li>
+<li>-v verbose,详细过程</li>
+<li>-h hash,检查hash值</li>
+</ol>
+</blockquote>
+<p>过程中会遇到依赖包的问题，一个一个解决掉就完事儿了！  </p>
+<h1 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h1><p>解压<code>php.rat.gz</code><br><img src="/img/rpm/tarphp01.png" alt="解压php"><br>进入<code>packages</code>目录中，有5个文件，都是安装包，这篇文章主线就是安装这五个包，随便执行一个瞅瞅<br><img src="/img/rpm/ls.png" alt="ls">  </p>
+<h1 id="安装httpd…"><a href="#安装httpd…" class="headerlink" title="安装httpd…"></a>安装httpd…</h1><p><img src="/img/rpm/httpd01.png" alt="安装httpd-2.4.6"><br>这个错误中说明安装此程序需要四个依赖，不过其中有一个依赖（<code>http-tools...</code>）在我解压<code>php.tar.gz</code>的时候里面有，所以，可以先安装那个试一试  </p>
+<h1 id="①安装httpd-tools…"><a href="#①安装httpd-tools…" class="headerlink" title="①安装httpd-tools…"></a>①安装httpd-tools…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/httpdtools01.png" alt="httpdtools"><br>缺少这两个依赖包，去镜像站下载，我这里用的华为的镜像站，下载好，传到虚拟机里面来，如下：<br><img src="/img/rpm/apr01.png" alt="安装apr">  </p>
+<h5 id="安装apr…"><a href="#安装apr…" class="headerlink" title="安装apr…"></a>安装apr…</h5><p><img src="/img/rpm/apr02.png" alt="apr"><br>成功！  </p>
+<h5 id="安装apr-util…："><a href="#安装apr-util…：" class="headerlink" title="安装apr-util…："></a>安装apr-util…：</h5><p><img src="/img/rpm/aprutil01.png" alt="apr-util"><br>成功！</p>
+<blockquote>
+<p>注：如果安装这两个顺序反了，可能会出错，不过也没啥，可能错误就是<code>apr-util</code>被<code>apr</code>依赖，那你先安装<code>apr</code>就ojbk了  </p>
+</blockquote>
+<h5 id="继续安装httpd-tools…"><a href="#继续安装httpd-tools…" class="headerlink" title="继续安装httpd-tools…"></a>继续安装httpd-tools…</h5><p><img src="/img/rpm/httpdtools02.png" alt="httpdtools"><br>成功！  </p>
+<h1 id="②安装httpd…"><a href="#②安装httpd…" class="headerlink" title="②安装httpd…"></a>②安装httpd…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/httpd02.png" alt="httpd"><br>这里有个坑！在镜像站里面是找不到<code>/etc/mime.types</code>这个货的，像这种错误信息里给出的名字和安装包的名字不一样的恶心情况，有两种解决办法：  </p>
+<blockquote>
+<ol>
+<li>使用<code>yum</code>安装httpd，然后查看安装过程，找到<code>/etc/mime.types</code>，看紧跟着它下面要安装的包的名字，就是我们要找的玩意儿<br><img src="/img/rpm/mailcap01.png" alt="mailcap">  </li>
+<li>Google一下，你全知道<br>所以我是Google出来看到别的大佬用的第一种方法找到然后分享的，然后我就直接去镜像站找了这个货，穿进虚拟机，装它  </li>
+</ol>
+</blockquote>
+<h5 id="安装mailcap…"><a href="#安装mailcap…" class="headerlink" title="安装mailcap…"></a>安装mailcap…</h5><p><img src="/img/rpm/mailcap02.png" alt="mailcap"><br>成功！！  </p>
+<h5 id="继续安装httpd…"><a href="#继续安装httpd…" class="headerlink" title="继续安装httpd…"></a>继续安装httpd…</h5><p><img src="/img/rpm/httpd03.png" alt="httpd"><br>成功！  </p>
+<h3 id="安装php…"><a href="#安装php…" class="headerlink" title="安装php…"></a>安装php…</h3><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php01.png" alt="php"><br>这里说明一点，这三个包是相互依赖的关系，不管你先装哪个，最后出错了，还是要按照这个顺序来，所以我就直接按照这个<code>正确</code>的顺序来装了：  </p>
+<h1 id="③安装php-common…"><a href="#③安装php-common…" class="headerlink" title="③安装php-common…"></a>③安装php-common…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php02.png" alt="php-common"><br>缺少这个玩意儿，去镜像站下载，传过来，装它：  </p>
+<h5 id="安装libzip…"><a href="#安装libzip…" class="headerlink" title="安装libzip…"></a>安装libzip…</h5><p><img src="/img/rpm/libzip01.png" alt="libzip"><br>成功！  </p>
+<h5 id="继续安装php-common…"><a href="#继续安装php-common…" class="headerlink" title="继续安装php-common…"></a>继续安装php-common…</h5><p><img src="/img/rpm/php03.png" alt="php-common"><br>成功！  </p>
+<h1 id="④安装php-cli…"><a href="#④安装php-cli…" class="headerlink" title="④安装php-cli…"></a>④安装php-cli…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php04.png" alt="php-cli"><br>这里！这里！是最恶心的一个地方！首先，找不到<code>libcrypto</code>这个玩意儿，然后发现这个是<code>openssl</code>的扩展还是依赖，就是最后发现是因为<code>openssl</code>的版本过低，然后去更新版本，如果通过rpm来装，好像有三十多个依赖包，我崩溃了。所以我选择用<code>yum</code>来装，<code>yum</code>大法好！！  </p>
+<h5 id="yum安装openssl"><a href="#yum安装openssl" class="headerlink" title="yum安装openssl"></a>yum安装openssl</h5><p><img src="/img/rpm/openssl01.png" alt="yumINSTALLopenssl"><br><img src="/img/rpm/openssl02.png" alt="yumINSTALLopenssl"><br>成功！  </p>
+<h5 id="继续安装php-cli…"><a href="#继续安装php-cli…" class="headerlink" title="继续安装php-cli…"></a>继续安装php-cli…</h5><p><img src="/img/rpm/php05.png" alt="php-cli"><br>成功！  </p>
+<h1 id="⑤安装php…"><a href="#⑤安装php…" class="headerlink" title="⑤安装php…"></a>⑤安装php…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php06.png" alt="php"><br>大功告成！！！！！！  </p>
+<h1 id="查看是否安装成功"><a href="#查看是否安装成功" class="headerlink" title="查看是否安装成功"></a>查看是否安装成功</h1><p>查看PHP版本即可：<br><img src="/img/rpm/php07.png" alt="phpversion">  </p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/12/06/windows搭建iis/" title="Windows搭建IIS">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment valine -->
+			<!-- show valine comment -->
+<div id="valineComment" class="comment"></div>
+
+<!-- valine`s js & css -->
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/js/valine.min.js"></script>
+<link rel="stylesheet" href="/css/comment.css">
+
+<script>
+	var checkExistComment = setInterval(function() {
+		if( $('#valineComment').length ) {
+			new Valine({
+				// AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+				av: AV,
+				//使用id寻找div元素（使用class可能找不到）
+				el: '#valineComment',
+				emoticon_url: 'https://cloud.panjunwen.com/alu',
+				emoticon_list: ["吐.png", "期待.png", "高兴.png", "吐血倒地.png", "哭泣.png", "欢呼.png"],
+				app_id: "3333....", //获取APP ID
+				app_key: "3333......", //获取APP KEY
+				placeholder: "no any!", //评论框占位提示文字        			
+			});
+			clearInterval(checkExistComment);
+		}
+	}, 100);
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#开始安装"><span class="post-toc-text">开始安装</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装httpd…"><span class="post-toc-text">安装httpd…</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#①安装httpd-tools…"><span class="post-toc-text">①安装httpd-tools…</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装apr…"><span class="post-toc-text">安装apr…</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装apr-util…："><span class="post-toc-text">安装apr-util…：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#继续安装httpd-tools…"><span class="post-toc-text">继续安装httpd-tools…</span></a></li></ol></li></ol><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#②安装httpd…"><span class="post-toc-text">②安装httpd…</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装mailcap…"><span class="post-toc-text">安装mailcap…</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#继续安装httpd…"><span class="post-toc-text">继续安装httpd…</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装php…"><span class="post-toc-text">安装php…</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#③安装php-common…"><span class="post-toc-text">③安装php-common…</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装libzip…"><span class="post-toc-text">安装libzip…</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#继续安装php-common…"><span class="post-toc-text">继续安装php-common…</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#④安装php-cli…"><span class="post-toc-text">④安装php-cli…</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#yum安装openssl"><span class="post-toc-text">yum安装openssl</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#继续安装php-cli…"><span class="post-toc-text">继续安装php-cli…</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#⑤安装php…"><span class="post-toc-text">⑤安装php…</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#查看是否安装成功"><span class="post-toc-text">查看是否安装成功</span></a></li>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="http://github.com/" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Weibo" target="_blank"><i class="fa fa-weibo"></i>&nbsp;</a>
+				
+				
+					<a href="http://github.com/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="QQ" target="_blank"><i class="fa fa-qq"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/" title="Twitter" target="_blank"><i class="fa fa-twitter"></i>&nbsp;</a>
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2017 - 2018, content by clancy. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+
+
+	<script type="text/javascript" src="/js/love.js"></script>
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(https://clancyb00m.github.io/Random-img/' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+

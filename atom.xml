@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>T0mmclancy`s Blog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://clancyb00m.github.io/"/>
+  <updated>2018-12-10T12:28:52.182Z</updated>
+  <id>https://clancyb00m.github.io/</id>
+  
+  <author>
+    <name>clancy</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>rpm安装php</title>
+    <link href="https://clancyb00m.github.io/2018/12/07/rpm%E5%AE%89%E8%A3%85php/"/>
+    <id>https://clancyb00m.github.io/2018/12/07/rpm安装php/</id>
+    <published>2018-12-07T04:31:00.000Z</published>
+    <updated>2018-12-10T12:28:52.182Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本文可能有点乱，右边有个目录，看着那个来就行了</p></blockquote><blockquote><p>本文讲述linux（centos7）使用rpm安装php的过程<br>rpm安装软件的命令是这样的：rpm -ivh 软件名  </p><ol><li>-i –install,安装</li><li>-v –verbose,详细过程</li><li>-h –hash,显示进度信息</li></ol></blockquote><p>过程中会遇到依赖包的问题，一个一个解决掉就完事儿了！  </p><h1 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h1><p>解压<code>php.rat.gz</code><br><img src="/img/rpm/tarphp01.png" alt="解压php"><br>进入<code>packages</code>目录中，有5个文件，都是安装包，这篇文章主线就是安装这五个包，随便执行一个瞅瞅<br><img src="/img/rpm/ls.png" alt="ls">  </p><h1 id="安装httpd…"><a href="#安装httpd…" class="headerlink" title="安装httpd…"></a>安装httpd…</h1><p><img src="/img/rpm/httpd01.png" alt="安装httpd-2.4.6"><br>这个错误中说明安装此程序需要四个依赖，不过其中有一个依赖（<code>http-tools...</code>）在我解压<code>php.tar.gz</code>的时候里面有，所以，可以先安装那个试一试  </p><h1 id="①安装httpd-tools…"><a href="#①安装httpd-tools…" class="headerlink" title="①安装httpd-tools…"></a>①安装httpd-tools…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/httpdtools01.png" alt="httpdtools"><br>缺少这两个依赖包，去镜像站下载，我这里用的华为的镜像站，下载好，传到虚拟机里面来，如下：<br><img src="/img/rpm/apr01.png" alt="安装apr">  </p><h5 id="安装apr…"><a href="#安装apr…" class="headerlink" title="安装apr…"></a>安装apr…</h5><p><img src="/img/rpm/apr02.png" alt="apr"><br>成功！  </p><h5 id="安装apr-util…："><a href="#安装apr-util…：" class="headerlink" title="安装apr-util…："></a>安装apr-util…：</h5><p><img src="/img/rpm/aprutil01.png" alt="apr-util"><br>成功！</p><blockquote><p>注：如果安装这两个顺序反了，可能会出错，不过也没啥，可能错误就是<code>apr-util</code>被<code>apr</code>依赖，那你先安装<code>apr</code>就ojbk了  </p></blockquote><h5 id="继续安装httpd-tools…"><a href="#继续安装httpd-tools…" class="headerlink" title="继续安装httpd-tools…"></a>继续安装httpd-tools…</h5><p><img src="/img/rpm/httpdtools02.png" alt="httpdtools"><br>成功！  </p><h1 id="②安装httpd…"><a href="#②安装httpd…" class="headerlink" title="②安装httpd…"></a>②安装httpd…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/httpd02.png" alt="httpd"><br>这里有个坑！在镜像站里面是找不到<code>/etc/mime.types</code>这个货的，像这种错误信息里给出的名字和安装包的名字不一样的恶心情况，有两种解决办法：  </p><blockquote><ol><li>使用<code>yum</code>安装httpd，然后查看安装过程，找到<code>/etc/mime.types</code>，看紧跟着它下面要安装的包的名字，就是我们要找的玩意儿<br><img src="/img/rpm/mailcap01.png" alt="mailcap">  </li><li>Google一下，你全知道<br>所以我是Google出来看到别的大佬用的第一种方法找到然后分享的，然后我就直接去镜像站找了这个货，传进虚拟机，装它  </li></ol></blockquote><h5 id="安装mailcap…"><a href="#安装mailcap…" class="headerlink" title="安装mailcap…"></a>安装mailcap…</h5><p><img src="/img/rpm/mailcap02.png" alt="mailcap"><br>成功！！  </p><h5 id="继续安装httpd…"><a href="#继续安装httpd…" class="headerlink" title="继续安装httpd…"></a>继续安装httpd…</h5><p><img src="/img/rpm/httpd03.png" alt="httpd"><br>成功！  </p><h3 id="安装php…"><a href="#安装php…" class="headerlink" title="安装php…"></a>安装php…</h3><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php01.png" alt="php"><br>这里说明一点，这三个包是相互依赖的关系，不管你先装哪个，最后出错了，还是要按照这个顺序来，所以我就直接按照这个<code>正确</code>的顺序来装了：  </p><h1 id="③安装php-common…"><a href="#③安装php-common…" class="headerlink" title="③安装php-common…"></a>③安装php-common…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php02.png" alt="php-common"><br>缺少这个玩意儿，去镜像站下载，传过来，装它：  </p><h5 id="安装libzip…"><a href="#安装libzip…" class="headerlink" title="安装libzip…"></a>安装libzip…</h5><p><img src="/img/rpm/libzip01.png" alt="libzip"><br>成功！  </p><h5 id="继续安装php-common…"><a href="#继续安装php-common…" class="headerlink" title="继续安装php-common…"></a>继续安装php-common…</h5><p><img src="/img/rpm/php03.png" alt="php-common"><br>成功！  </p><h1 id="④安装php-cli…"><a href="#④安装php-cli…" class="headerlink" title="④安装php-cli…"></a>④安装php-cli…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php04.png" alt="php-cli"><br>这里！这里！是最恶心的一个地方！首先，找不到<code>libcrypto</code>这个玩意儿，然后发现这个是<code>openssl</code>的扩展还是依赖，就是最后发现是因为<code>openssl</code>的版本过低，然后去更新版本，如果通过rpm来装，好像有三十多个依赖包，我崩溃了。所以我选择用<code>yum</code>来装，<code>yum</code>大法好！！  </p><h5 id="yum安装openssl"><a href="#yum安装openssl" class="headerlink" title="yum安装openssl"></a>yum安装openssl</h5><p><img src="/img/rpm/openssl01.png" alt="yumINSTALLopenssl"><br><img src="/img/rpm/openssl02.png" alt="yumINSTALLopenssl"><br>成功！  </p><h5 id="继续安装php-cli…"><a href="#继续安装php-cli…" class="headerlink" title="继续安装php-cli…"></a>继续安装php-cli…</h5><p><img src="/img/rpm/php05.png" alt="php-cli"><br>成功！  </p><h1 id="⑤安装php…"><a href="#⑤安装php…" class="headerlink" title="⑤安装php…"></a>⑤安装php…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php06.png" alt="php"><br>大功告成！！！！！！  </p><h1 id="查看是否安装成功"><a href="#查看是否安装成功" class="headerlink" title="查看是否安装成功"></a>查看是否安装成功</h1><p>查看PHP版本即可：<br><img src="/img/rpm/php07.png" alt="phpversion">  </p><blockquote><p>如果本文有任何错误，欢迎留言给我：<a href="https://github.com/clancyb00m/clancyb00m.github.io/issues" target="_blank" rel="noopener">Contact Me！</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;本文可能有点乱，右边有个目录，看着那个来就行了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文讲述linux（centos7）使用rpm安装php的过程&lt;br&gt;rpm安装软件的命令是这样的：rpm -ivh 软件名  &lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="rpm" scheme="https://clancyb00m.github.io/tags/rpm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows搭建IIS</title>
+    <link href="https://clancyb00m.github.io/2018/12/06/windows%E6%90%AD%E5%BB%BAiis/"/>
+    <id>https://clancyb00m.github.io/2018/12/06/windows搭建iis/</id>
+    <published>2018-12-06T04:30:01.000Z</published>
+    <updated>2018-12-10T12:28:59.547Z</updated>
+    
+    <content type="html"><![CDATA[<p>本次使用的虚拟机是<code>Windows Server 2008 R2</code>，我要在上面搭建<code>iis</code>服务，并运行一个<code>asp</code>的网站。  </p><ul><li>前提：<br>需要以下两个文件：</li></ul><ol><li>.net framework 4.7.2</li><li>一个asp的网站源码  </li></ol><p><img src="/img/181206/start01.png" alt="准备操作"><br>操作步骤如下：  </p><h1 id="安装IIS"><a href="#安装IIS" class="headerlink" title="安装IIS"></a>安装IIS</h1><p><img src="/img/181206/iis01.png" alt="安装IIS"><br><img src="/img/181206/iis02.png" alt="安装IIS"><br><img src="/img/181206/iis03.png" alt="安装IIS"><br>之后再次点击下一步<br><img src="/img/181206/iis04.png" alt="安装IIS"><br><img src="/img/181206/iis05.png" alt="安装IIS"><br><img src="/img/181206/iis06.png" alt="安装IIS"><br><img src="/img/181206/iis07.png" alt="安装IIS"><br><img src="/img/181206/iis08.png" alt="安装IIS"><br><img src="/img/181206/iis09.png" alt="安装IIS"><br>好无聊，iis装完了！照我这样选，基本的东西都有！</p><h1 id="配置IIS"><a href="#配置IIS" class="headerlink" title="配置IIS"></a>配置IIS</h1><p><img src="/img/181206/iis10.png" alt="安装IIS">  </p><h3 id="删除默认网站和应用池"><a href="#删除默认网站和应用池" class="headerlink" title="删除默认网站和应用池"></a>删除默认网站和应用池</h3><p><img src="/img/181206/iis11.png" alt="安装IIS">  </p><h3 id="添加网站"><a href="#添加网站" class="headerlink" title="添加网站"></a>添加网站</h3><p><img src="/img/181206/iis12.png" alt="安装IIS"><br><img src="/img/181206/iis13.png" alt="安装IIS"><br>然后导入网站数据  </p><h3 id="改权限"><a href="#改权限" class="headerlink" title="改权限"></a>改权限</h3><blockquote><p>改权限是为了能对网站进行各种操作<br><img src="/img/181206/iis14.png" alt="安装IIS"><br><img src="/img/181206/iis15.png" alt="安装IIS"><br><img src="/img/181206/iis16.png" alt="安装IIS">  </p></blockquote><h3 id="启用父路径"><a href="#启用父路径" class="headerlink" title="启用父路径"></a>启用父路径</h3><p><img src="/img/181206/iis17.png" alt="安装IIS"><br>False改为True<br><img src="/img/181206/iis18.png" alt="安装IIS">  </p><h3 id="更改默认首页"><a href="#更改默认首页" class="headerlink" title="更改默认首页"></a>更改默认首页</h3><p><img src="/img/181206/iis19.png" alt="安装IIS"><br>这里去看下载的网站的源码，默认首页是什么格式的这里就怎么写<br><img src="/img/181206/iis20.png" alt="安装IIS">  </p><h3 id="启用32位程序"><a href="#启用32位程序" class="headerlink" title="启用32位程序"></a>启用32位程序</h3><p><img src="/img/181206/iis21.png" alt="安装IIS"><br><img src="/img/181206/iis22.png" alt="安装IIS">  </p><h3 id="选择-net-4版本"><a href="#选择-net-4版本" class="headerlink" title="选择.net 4版本"></a>选择.net 4版本</h3><p>由于我事前并没有安装，所以无法修改，所以这里没有截图，操作步骤同上，在选择<code>高级设置</code>的时候，这回选择<code>基本设置</code>，就可以在里面修改了。  </p><blockquote><p>如果本文有任何错误，欢迎留言给我：<a href="https://github.com/clancyb00m/clancyb00m.github.io/issues" target="_blank" rel="noopener">Contact Me！</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;本次使用的虚拟机是&lt;code&gt;Windows Server 2008 R2&lt;/code&gt;，我要在上面搭建&lt;code&gt;iis&lt;/code&gt;服务，并运行一个&lt;code&gt;asp&lt;/code&gt;的网站。  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;前提：&lt;br&gt;需要以下两个文件：&lt;/li&gt;
+&lt;/u
+      
+    
+    </summary>
+    
+    
+      <category term="windows,iis,搭建,asp" scheme="https://clancyb00m.github.io/tags/windows-iis-%E6%90%AD%E5%BB%BA-asp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LAMP环境搭建与配置</title>
+    <link href="https://clancyb00m.github.io/2018/12/05/LAMP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+    <id>https://clancyb00m.github.io/2018/12/05/LAMP环境搭建与配置/</id>
+    <published>2018-12-05T04:30:00.000Z</published>
+    <updated>2018-12-10T12:28:44.533Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>本次搭建用的是<code>centos6</code>的虚拟机，是<a href="https://www.cleverbao.blog" target="_blank" rel="noopener">大佬</a>直接传给我的虚拟机，所有就存在了一个问题，克隆的虚拟机会出现网卡找不到的情况<br><img src="/img/181205/noeth001.png" alt="网卡找不到"><br>解决方法就是:  </p><ol><li><p>执行命令：  </p><pre><code>cat /etc/udev/rules.d/70-persistent-net.rules  </code></pre><p>查看里面最下面的网卡名称和MAC地址<br><img src="/img/181205/udev70net01.png" alt="udev70">  </p></li><li><p>然后打开网卡配置信息并修改  </p><pre><code>vi /etc/sysconfig/network-scripts/ifcfg-eth0 </code></pre><p><img src="/img/181205/eth101.png" alt="eth1"><br>然后重启网卡就可以了，执行命令：  </p><pre><code>service network restart  </code></pre><p>现在我们开始安装LAMP！</p><h1 id="搭建LAMP"><a href="#搭建LAMP" class="headerlink" title="搭建LAMP"></a>搭建LAMP</h1><p>LAMP=LINUX+APACHE+MYSQL+PHP  </p></li></ol><ul><li>这是在Linux下最常见的提供web服务的组合之一  </li><li>Linux 是免费开源软件，这意味着源代码可用的操作系统  </li><li>Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件  </li><li>MySQL 是多线程、多用户的SQL数据库管理系统  </li><li>PHP 是一种编程语言最初设计生产动态网站。PHP 是主要用于服务器端的应用程序软件  </li></ul><p>接下来我们开始安装，为了方便，我们直接使用<code>yum</code>来安装</p><h3 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h3><ol><li><p>执行命令：  </p><pre><code>yum install httpd httpd-devel httpd-manual mod_ssl mod_perl mod_auth_mysql  </code></pre><p><img src="/img/181205/httpd01.png" alt="安装httpd"></p></li><li>装完之后，在启动前，需要解决一个错误：<br><img src="/img/181205/error01.png" alt="servername"><br>首先验证你有没有这个错误，直接执行命令<code>httpd</code>看是否和上面错误一样，如果一样，那我们就来解决它  </li><li><p>我们先停止<code>httpd</code>服务，执行命令<code>service httpd stop</code>,打开<code>httpd.conf</code>配置文件，修改<code>ServcerName</code>，使域名生效，所以我们来执行命令：  </p><pre><code>vi /etc/httpd/conf/httpd.conf  /exam   :为了更快速的找到servername</code></pre><p>把<code>#</code>去掉，完事儿  </p></li><li><p>启动<code>httpd</code>：  </p><pre><code>service httpd start  </code></pre><p>这个时候去使用ip访问时访问不了的，因为防火墙有拦截，防火墙这么做，是为了防止网站受到攻击，之前我们直接关闭了防火墙去做访问，但是这样很不安全，所以我们就需要修改防火墙的规则来在防火墙开启的状态下又能正常访问  </p></li><li><p>修改防火墙规则<br>在<code>centos6</code>中，防火墙规则是放在一个文件中的，<code>centos7</code>中是通过命令修改的，这是不一样的地方<br>打开防火墙规则文件，修改就完事儿了  </p><pre><code>vi /etc/sysconfig/iptables  </code></pre><p>在里面我们需要加入一条规则：  </p><pre><code>-A INPUT -p tcp -m tcp --dport 80 -j ACCEPT  </code></pre><p>这里要说明两点：  </p><blockquote><ol><li>这条命令要加在这条命令：<img src="/img/181205/reject01.png" alt="拒绝所有数据访问">之前，因为这条命令拒绝所有数据包访问，而防火墙规则是从上到下执行的，我们需要写在这条命令前面才能生效  </li><li>解释一下这条命令：<code>-A</code>：追加规则，<code>-INPUT</code>：别人请求你，<code>-p</code>：指定协议类型，<code>-m</code>：启用扩展功能，<code>--dport</code>：<code>-p</code>的扩展，指定端口，<code>-j</code>：指定这条规则如何进行处理，<code>ACCEPT</code>表示通过  </li></ol></blockquote></li></ol><p>之后重启防火墙即可  </p><pre><code>service iptables restart  </code></pre><p><img src="/img/181205/iptables01.png" alt="重启防火墙"><br>成功访问：<br><img src="/img/181205/apache01.png" alt="访问Apache"><br>设置开机自启：  </p><pre><code>chkconfig httpd on  </code></pre><h3 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h3><ol><li><p>执行命令：</p><pre><code>yum install mysql mysql-server mysql-devel  </code></pre><p><img src="/img/181205/mysql01.png" alt="安装MySQL"><br>至此MySQL就安装完成  </p></li><li><p>启动<code>MySQL</code>  </p><pre><code>service mysqld start  </code></pre><p><img src="/img/181205/mysql02.png" alt="启动MySQL"><br><img src="/img/181205/mysql03.png" alt="启动MySQL02">  </p></li><li><p>初始化<code>MySQL</code>  </p><pre><code>mysql_secure_installation  </code></pre><p>在这里需要设置<code>MySQL</code>数据库密码：<br><img src="/img/181205/mysql04.png" alt="设置MySQL密码"><br>之后一路回车就完事儿了<br><img src="/img/181205/mysql05.png" alt="完成安装MySQL"><br>设置开机自启：  </p><pre><code>chkconfig mysqld on  </code></pre><p>至此<code>MySQL</code>就安装完成了！  </p><h3 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h3><pre><code>yum install php php-mysql php-common php-gd php-mbstring php-mcrypt php-devel php-xml  </code></pre><p><img src="/img/181205/php01.png" alt="安装php"><br><code>php</code>安装完成<br>由于<code>PHP</code>是<code>Apache</code>的扩展，所以安装完<code>PHP</code>后需要重启<code>Apache</code>服务：  </p><pre><code>service httpd restart  </code></pre><p><img src="/img/181205/apache02.png" alt="Apache重启">  </p></li></ol><p>至此，<code>LAMP</code>环境安装完成</p><h1 id="搭建网站"><a href="#搭建网站" class="headerlink" title="搭建网站"></a>搭建网站</h1><ol><li>我们来导入网站源码测试一下，这次我们搭建一个漏洞环境，通过小黄鸭将文件导入<code>/var/www/html</code>目录中：<br><img src="/img/181205/cyberduck01.png" alt="cyberduck">  </li><li><p>修改文件夹权限，避免出现权限问题：  </p><pre><code>chown -R apache:aoache /var/www/html  </code></pre></li><li><p>打开配置文件  </p><pre><code>vi /var/www/html/sys/config.php  </code></pre><p>修改账户密码为自己数据库的账户密码，保存退出即可<br><img src="/img/181205/change01.png" alt="修改账户密码">  </p></li><li>浏览器访问一下，出现如下错误：<br><img src="/img/181205/error02.png" alt="没有数据库"><br>这是因为我们数据库中没有<code>vauditdemo</code>这个数据库，进入<code>mysql</code>创建一个就可以了：<br><img src="/img/181205/mysql06.png" alt="进入mysql"><br><img src="/img/181205/create01.png" alt="创建数据库">  </li><li>浏览器再次访问：<br><img src="/img/181205/success01.png" alt="成功访问"><br>成功访问！  <blockquote><p>如果本文有任何错误，欢迎留言给我：<a href="https://github.com/clancyb00m/clancyb00m.github.io/issues" target="_blank" rel="noopener">Contact Me！</a></p></blockquote></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;说明&quot;&gt;&lt;a href=&quot;#说明&quot; class=&quot;headerlink&quot; title=&quot;说明&quot;&gt;&lt;/a&gt;说明&lt;/h1&gt;&lt;p&gt;本次搭建用的是&lt;code&gt;centos6&lt;/code&gt;的虚拟机，是&lt;a href=&quot;https://www.cleverbao.blog&quot; 
+      
+    
+    </summary>
+    
+    
+      <category term="lamp,搭建" scheme="https://clancyb00m.github.io/tags/lamp-%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习总结</title>
+    <link href="https://clancyb00m.github.io/2018/12/05/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
+    <id>https://clancyb00m.github.io/2018/12/05/学习总结/</id>
+    <published>2018-12-05T04:30:00.000Z</published>
+    <updated>2018-12-10T12:29:05.540Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="2018-12-03-周一"><a href="#2018-12-03-周一" class="headerlink" title="2018/12/03 周一"></a>2018/12/03 周一</h1><p>搭建博客系统，链接到我的博客文章：</p><blockquote><p><a href="https://clancyb00m.github.io/2018/12/03/%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/">搭建GitHub博客</a><br>里面讲到了hexo使用与安装，github使用，git使用，更改主题以及如何上传博客文章  </p></blockquote><h1 id="2018-12-04-周二"><a href="#2018-12-04-周二" class="headerlink" title="2018/12/04 周二"></a>2018/12/04 周二</h1><p>上午：linux命令拓展  </p><blockquote><p><a href="#">Linux命令拓展（待定）</a>   </p></blockquote><p>下午：linux(centos)中安装软件的三种方法：  </p><blockquote><ol><li>yum安装</li><li>rpm安装</li><li><a href="https://clancyb00m.github.io/2018/12/04/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85httpd/">源码安装</a><br>里面讲到了ssh连接，虚拟机与真实机之间拖拽文件，源码怎么安装软件，错误解决办法<br>在源码安装中并不是全都是用源码安装的，所以之后延伸到这篇博客：<a href="#">纯源码安装httpd（待定）</a>  </li></ol></blockquote><h1 id="2018-12-05-周三"><a href="#2018-12-05-周三" class="headerlink" title="2018/12/05 周三"></a>2018/12/05 周三</h1><p>LAMP环境搭建与应用</p><blockquote><ul><li>安装Apache服务，遇到防火墙拦截问题，添加防火墙规则  </li></ul></blockquote><h1 id="2018-12-06-周四"><a href="#2018-12-06-周四" class="headerlink" title="2018/12/06 周四"></a>2018/12/06 周四</h1><p>上午  </p><blockquote><p><a href="https://clancyb00m.github.io/2018/12/06/windows%E6%90%AD%E5%BB%BAiis/">windows server 2008 + asp网站搭建 + access数据库</a>  </p></blockquote><p>下午  </p><blockquote><p>windows server 2008 + asp网站搭建 + sql server 2008</p><ul><li>无法复现  </li></ul></blockquote><h1 id="2018-12-07-周五"><a href="#2018-12-07-周五" class="headerlink" title="2018/12/07 周五"></a>2018/12/07 周五</h1><p>html+css<br>更新了一篇博客：<a href="https://clancyb00m.github.io/2018/12/07/rpm%E5%AE%89%E8%A3%85php/">rpm安装php</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;2018-12-03-周一&quot;&gt;&lt;a href=&quot;#2018-12-03-周一&quot; class=&quot;headerlink&quot; title=&quot;2018/12/03 周一&quot;&gt;&lt;/a&gt;2018/12/03 周一&lt;/h1&gt;&lt;p&gt;搭建博客系统，链接到我的博客文章：&lt;/p&gt;
+&lt;blo
+      
+    
+    </summary>
+    
+    
+      <category term="笔记,总结" scheme="https://clancyb00m.github.io/tags/%E7%AC%94%E8%AE%B0-%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>源码安装httpd</title>
+    <link href="https://clancyb00m.github.io/2018/12/04/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85httpd/"/>
+    <id>https://clancyb00m.github.io/2018/12/04/源码安装httpd/</id>
+    <published>2018-12-04T13:45:41.000Z</published>
+    <updated>2018-12-10T12:29:27.321Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本文介绍了如何在linux（centos7）中通过httpd的源代码安装httpd服务  </p></blockquote><h1 id="ssh连接虚拟机"><a href="#ssh连接虚拟机" class="headerlink" title="ssh连接虚拟机"></a>ssh连接虚拟机</h1><blockquote><p>注：为什么要用ssh操作虚拟机，优点如下：  </p><blockquote><ol><li>界面美观  </li><li>可以进行复制粘贴操作  </li><li>安全</li><li>…  </li></ol></blockquote></blockquote><p>我使用的软件为：Termius<br><img src="/img/181204/termius01.png" alt="termius图标"><br>界面如图所示：<br><img src="/img/181204/termius02.png" alt="termius界面"><br>点击右下角<code>NEW HOST</code>，弹出如下界面：<br><img src="/img/181204/newhost01.png" alt="新建连接">  </p><blockquote><p>label：  起个别名<br>  address： 在虚拟机里面输入命令<code>ifconfig</code>查看自己的ip地址<br>  username：  用户名<br>  password：  密码  </p></blockquote><p>点击<code>save</code>保存，之后双击即可连接<br><img src="/img/181204/lianjie01.png" alt="连接"><br>如果双击后有提示框弹出，点击确定即可</p><h1 id="把httpd文件拷贝进centos7中"><a href="#把httpd文件拷贝进centos7中" class="headerlink" title="把httpd文件拷贝进centos7中"></a>把httpd文件拷贝进centos7中</h1><p>在Apache官网下载好源码后，使用这个软件进行真实机与虚拟机之间的文件拷贝<br><img src="/img/181204/copy01.png" alt="copy"><br>打开软件，点击左上角新建连接，填好内容后点击<code>连接</code>即可<br><img src="/img/181204/copy02.png" alt="cyberduck"><br><img src="/img/181204/copy03.png" alt="cyberduck02"><br>点击<code>允许</code><br>之后看到的内容和在虚拟机之中使用<code>ls</code>命令看到的内容是一样的<br><img src="/img/181204/copy04.png" alt="cyberduck03"><br><img src="/img/181204/copy05.png" alt="xuniji-ls"><br>把要安装的httpd的压缩文件直接拖入小黄鸭中，等待完成即可<br><img src="/img/181204/copy06.png" alt="cyberduck04">  </p><h1 id="开始在Termius中远程安装"><a href="#开始在Termius中远程安装" class="headerlink" title="开始在Termius中远程安装"></a>开始在Termius中远程安装</h1><p>在开始之前，需要进行一个很重要的操作，安装开发者工具集：</p><pre><code>yum groupinstall &quot;development tools&quot;  </code></pre><p>安装这个工具集的目的是为了能执行一些编译之类的命令，博主现在还不太懂<br><img src="/img/181204/developmenttools01.png" alt="development_tools01"><br><img src="/img/181204/developmenttools02.png" alt="development_tools02"><br><img src="/img/181204/developmenttools03.png" alt="development_tools03"><br>装完之后长这个样子：<br><img src="/img/181204/developmenttools04.png" alt="development_tools04"><br>之后开始安装：<br>解压：  </p><pre><code>tar zxvf httpd-2.4.37.tar.gz  </code></pre><p><img src="/img/181204/tar01.png" alt="tar01">  </p><p>进入到解压后的目录中，有一个INSTALL文件，通过小黄鸭（cyberduck）传到真实机上面通过编辑器打开：<br><img src="/img/181204/install01.png" alt="INSTALL"><br>红框中的内容为安装所需操作步骤，后面大写的<code>PERFIX</code>为路径，写上你想安装的路径即可  </p><h3 id="执行第一个命令"><a href="#执行第一个命令" class="headerlink" title="执行第一个命令"></a>执行第一个命令</h3><pre><code>./configure --prefix=/usr/local/apache2  </code></pre><p><code>/usr/local/apache2</code>为路径，自己想装在哪儿装哪儿就完事儿了<br>出错：<br><img src="/img/181204/error01.png" alt="error01"><br>APR未找到，那么我们来找一下  </p><pre><code>yum search apr  </code></pre><p><img src="/img/181204/apr01.png" alt="apr"><br>把里面所有文件装上即可，执行命令：  </p><pre><code>yum install apr-devel apr-util-devel apr-util apr -y  </code></pre><p>解释：通过<code>yum install</code>同时安装四个文件，文件不需要写全后缀，linux会自动补全，把所有类型的前缀都安装上，一共就这四种，最后的<code>-y</code>参数是在遇到让你输入<code>y/n</code>的时候自动输入<code>y</code><br><img src="/img/181204/apr02.png" alt="apr02"><br>解决掉错误，继续执行第一个命令：  </p><pre><code>./configure --prefix=/usr/local/apache2  </code></pre><p>再次出错：<br><img src="/img/181204/error02.png" alt="error02"><br>找一下pcre：</p><pre><code>yum search pcre  </code></pre><p><img src="/img/181204/pcre01.png" alt="pcre"><br>同上，执行命令：  </p><pre><code>yum install pcre-devel pcre2-devel pcre pcre2 -y</code></pre><p><img src="/img/181204/pcre02.png" alt="pcre01"><br>又解决一个错误，继续执行第一个命令：  </p><pre><code>./configure --prefix=/usr/local/apache2  </code></pre><p><img src="/img/181204/installed.png" alt="安装完成">  </p><h3 id="执行第二条命令"><a href="#执行第二条命令" class="headerlink" title="执行第二条命令"></a>执行第二条命令</h3><pre><code>make  </code></pre><p>输入后它会执行好多内容，等待一会儿即可<br><img src="/img/181204/make01.png" alt="make">   </p><h3 id="执行第三条命令"><a href="#执行第三条命令" class="headerlink" title="执行第三条命令"></a>执行第三条命令</h3><pre><code>make install  </code></pre><p>输入完执行，然后等待即可<br><img src="/img/181204/make02.png" alt="makeinstall"><br>到这里httpd就安装完成了</p><h3 id="执行第四条命令"><a href="#执行第四条命令" class="headerlink" title="执行第四条命令"></a>执行第四条命令</h3><pre><code>/usr/local/apache2/bin/apachectl start  </code></pre><p>解释：这条命令的作用是开启httpd服务<br>出现这个错误无关紧要，不用管：<br><img src="/img/181204/error03.png" alt="error03"><br>OK，成功开启</p><h1 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h1><p>首先需要关闭防火墙才能在局域网其他主机访问：  </p><pre><code>systemctl stop firewalld  </code></pre><p>之后在浏览器中输入<code>ip地址:80</code>即可访问</p><h1 id="放入站点文件"><a href="#放入站点文件" class="headerlink" title="放入站点文件"></a>放入站点文件</h1><p>把我的博客源码放入apache安装目录下的<code>htdocs</code>文件夹中，通过小黄鸭（cyberduck）直接进行拖拽即可<br><img src="/img/181204/cyberduck01.png" alt="htdocs"><br><img src="/img/181204/ok01.png" alt="ok">  </p><blockquote><p>如果本文有任何错误，欢迎留言给我：<a href="https://github.com/clancyb00m/clancyb00m.github.io/issues" target="_blank" rel="noopener">Contact Me！</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;本文介绍了如何在linux（centos7）中通过httpd的源代码安装httpd服务  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;ssh连接虚拟机&quot;&gt;&lt;a href=&quot;#ssh连接虚拟机&quot; class=&quot;headerlink&quot; tit
+      
+    
+    </summary>
+    
+    
+      <category term="源码安装,httpd" scheme="https://clancyb00m.github.io/tags/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85-httpd/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>搭建GitHub博客</title>
+    <link href="https://clancyb00m.github.io/2018/12/03/%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/"/>
+    <id>https://clancyb00m.github.io/2018/12/03/搭建GitHub博客系统/</id>
+    <published>2018-12-03T13:45:41.000Z</published>
+    <updated>2018-12-10T12:29:15.796Z</updated>
+    
+    <content type="html"><![CDATA[<p>注：本文操作系统环境为windows</p><h1 id="安装前提"><a href="#安装前提" class="headerlink" title="安装前提"></a>安装前提</h1><p>Nodejs : 官网下载就完事儿了，默认安装<br>Git : 官网下载，安装的时候勾选上可以在cmd中运行即可  </p><h1 id="文本解释器"><a href="#文本解释器" class="headerlink" title="文本解释器"></a>文本解释器</h1><p>Visual Studio Code(推荐)或者Sublime Text  </p><h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><p><img src="/img/hexo01.png" alt="hexo简介"><br><code>win+R</code>打开输入<code>cmd</code>，执行命令:  </p><pre><code>npm install -g hexo-cli  </code></pre><p>目的：安装hexo<br><img src="/img/hexo02.png" alt="hexo安装">  </p><h1 id="新建文件夹存储此项目"><a href="#新建文件夹存储此项目" class="headerlink" title="新建文件夹存储此项目"></a>新建文件夹存储此项目</h1><p>我的文件夹命名为<code>myblog</code>，在文件夹内打开cmd窗口，执行命令： </p><pre><code>hexo init .</code></pre><p>目的：初始化</p><h1 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h1><p>把<code>myblog</code>文件夹用visual studio code打开，打开<code>_config.yml</code>配置文件<br><img src="/img/config01.png" alt="config文件"><br>修改红框中的内容，注意：属性与值之间有空格，例：</p><pre><code>language: ZH-CN</code></pre><blockquote><p>url后续再做更改  </p></blockquote><h1 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h1><p>创建并登录GitHub，之后点击右上角<code>+</code>号，新建一个存储库<code>New repository</code><br><img src="/img/github01.png" alt="创建存储库"><br><img src="/img/github02.png" alt="创建存储库02"><br>之后点击<code>Create repository</code>就完事儿了<br>初始界面大致长这个样子：<br><img src="/img/github03.png" alt="初始界面"><br>选择<code>create new file</code>新建一个文件<br><img src="/img/github04.png" alt="新建文件">  </p><h1 id="下载静态文件并且完成本地访问"><a href="#下载静态文件并且完成本地访问" class="headerlink" title="下载静态文件并且完成本地访问"></a>下载静态文件并且完成本地访问</h1><p>由于在github中直接新建文件存在各种局限性，所以通过本地写会更方便一些<br>在<code>myblog</code>文件夹中打开cmd命令行窗口，执行命令：  </p><pre><code>hexo generate  </code></pre><p>目的：更新静态文件，hexo程序直接帮你写好初始化静态网页<br><img src="/img/hexo03.png" alt="更新网页源代码"><br>本地访问：  </p><blockquote><p>本地访问可以方便的看到文件在浏览器中的具体样子，便于修改  </p></blockquote><p><img src="/img/hexoserver.png" alt="本地开启服务器">  </p><h1 id="同步本地文件至github"><a href="#同步本地文件至github" class="headerlink" title="同步本地文件至github"></a>同步本地文件至github</h1><p>打开<code>github desktop</code>并登录<br>选择<code>clone a repository</code><br><img src="/img/clone01.png" alt="克隆项目"><br>选择存储库，设置本地路径，点击<code>clone</code><br><img src="/img/clone02.png" alt="克隆项目02"><br>把写好的文件放入上一步设置的路径中,打开<code>github desktop</code><br><img src="/img/upload01.png" alt="上传同步"><br>选择要上传的文件，点击<code>commit to master</code>进行上传<br>同步：<br><img src="/img/upload02.png" alt="同步">  </p><h1 id="主题更改"><a href="#主题更改" class="headerlink" title="主题更改"></a>主题更改</h1><p>找主题：<a href="https://hexo.io/themes" target="_blank" rel="noopener">themes</a><br>下载主题：  </p><pre><code>1.  复制文件路径：  </code></pre><p><img src="/img/copy01.png" alt="复制路径"><br>在<code>myblog/themes</code>文件夹中打开cmd窗口,执行命令：  </p><pre><code>git clone 主题路径</code></pre><p>在<code>myblog</code>文件夹中用编辑器打开<code>_config.yml</code>，修改<code>theme</code>值为你的主题名<br><img src="/img/themes01.png" alt="themes"></p><h1 id="清空旧网站文件，生成新网站文件"><a href="#清空旧网站文件，生成新网站文件" class="headerlink" title="清空旧网站文件，生成新网站文件"></a>清空旧网站文件，生成新网站文件</h1><p>在<code>myblog</code>文件中打开cmd命令行窗口，执行命令：  </p><pre><code>hexo clean  </code></pre><p><img src="/img/clean01.png" alt="clean"><br>目的：清除旧网站文件（public文件夹）  </p><pre><code>hexo generate</code></pre><p><img src="/img/hexo03.png" alt="generate"><br>目的：生成新网站文件（public文件夹）<br>如果想在本地访问，可执行命令：  </p><pre><code>hexo server  </code></pre><p><img src="/img/server01.png" alt="server"><br>目的：开启本地服务器<br>然后在浏览器地址栏输入<code>localhost:4000</code>即可  </p><h1 id="上传主题"><a href="#上传主题" class="headerlink" title="上传主题"></a>上传主题</h1><p>在github存储库的文件夹中删除所有文件（.gt隐藏文件不要删），把<code>myblog</code>文件夹中的<code>public</code>文件夹中的所有内容复制到github存储库文件夹中<br>在<code>github desktop</code>中添加摘要和描述，点击<code>commit to master</code>即可<br>同步：<br><img src="/img/upload02.png" alt="同步"></p><h1 id="如何在博客里面写文章"><a href="#如何在博客里面写文章" class="headerlink" title="如何在博客里面写文章"></a>如何在博客里面写文章</h1><p>在<code>myblog</code>文件夹中打开cmd命令行窗口，执行命令：  </p><pre><code>hexo new &quot;filename&quot;  </code></pre><p>屏幕会输出文件保存路径<br><img src="/img/hexonew01.png" alt="新建文件"><br>在<code>myblog</code>文件夹中打开vscode，打开上述图片位置，写入内容，保存即可<br>更新网站文件：<br>在<code>myblog</code>文件夹中打开cmd，执行命令：</p><pre><code>hexo generate</code></pre><p>目的：更新本地public文件夹<br><img src="/img/hexo03.png" alt="generate"><br>把<code>myblog/public</code>文件夹中的内容复制到github存储库的本地文件夹中，通过<code>github desktop</code>上传并同步即可  </p><h1 id="错误说明"><a href="#错误说明" class="headerlink" title="错误说明"></a>错误说明</h1><p><img src="/img/error01.png" alt="error01"><br>原因：<code>github desktop</code>的本地存储库文件夹中的.gt隐藏文件不能删除  </p><blockquote><p>如果本文有任何错误，欢迎留言给我：<a href="https://github.com/clancyb00m/clancyb00m.github.io/issues" target="_blank" rel="noopener">Contact Me！</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;注：本文操作系统环境为windows&lt;/p&gt;
+&lt;h1 id=&quot;安装前提&quot;&gt;&lt;a href=&quot;#安装前提&quot; class=&quot;headerlink&quot; title=&quot;安装前提&quot;&gt;&lt;/a&gt;安装前提&lt;/h1&gt;&lt;p&gt;Nodejs : 官网下载就完事儿了，默认安装&lt;br&gt;Git : 官网下
+      
+    
+    </summary>
+    
+    
+      <category term="GitHub,博客,搭建" scheme="https://clancyb00m.github.io/tags/GitHub-%E5%8D%9A%E5%AE%A2-%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
+  
+</feed>

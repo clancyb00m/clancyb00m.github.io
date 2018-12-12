@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[rpm安装php]]></title>
+    <url>%2F2018%2F12%2F07%2Frpm%E5%AE%89%E8%A3%85php%2F</url>
+    <content type="text"><![CDATA[本文可能有点乱，右边有个目录，看着那个来就行了 本文讲述linux（centos7）使用rpm安装php的过程rpm安装软件的命令是这样的：rpm -ivh 软件名 -i –install,安装 -v –verbose,详细过程 -h –hash,显示进度信息 过程中会遇到依赖包的问题，一个一个解决掉就完事儿了！ 开始安装解压php.rat.gz进入packages目录中，有5个文件，都是安装包，这篇文章主线就是安装这五个包，随便执行一个瞅瞅 安装httpd…这个错误中说明安装此程序需要四个依赖，不过其中有一个依赖（http-tools...）在我解压php.tar.gz的时候里面有，所以，可以先安装那个试一试 ①安装httpd-tools…缺少这两个依赖包，去镜像站下载，我这里用的华为的镜像站，下载好，传到虚拟机里面来，如下： 安装apr…成功！ 安装apr-util…：成功！ 注：如果安装这两个顺序反了，可能会出错，不过也没啥，可能错误就是apr-util被apr依赖，那你先安装apr就ojbk了 继续安装httpd-tools…成功！ ②安装httpd…这里有个坑！在镜像站里面是找不到/etc/mime.types这个货的，像这种错误信息里给出的名字和安装包的名字不一样的恶心情况，有两种解决办法： 使用yum安装httpd，然后查看安装过程，找到/etc/mime.types，看紧跟着它下面要安装的包的名字，就是我们要找的玩意儿 Google一下，你全知道所以我是Google出来看到别的大佬用的第一种方法找到然后分享的，然后我就直接去镜像站找了这个货，传进虚拟机，装它 安装mailcap…成功！！ 继续安装httpd…成功！ 安装php…这里说明一点，这三个包是相互依赖的关系，不管你先装哪个，最后出错了，还是要按照这个顺序来，所以我就直接按照这个正确的顺序来装了： ③安装php-common…缺少这个玩意儿，去镜像站下载，传过来，装它： 安装libzip…成功！ 继续安装php-common…成功！ ④安装php-cli…这里！这里！是最恶心的一个地方！首先，找不到libcrypto这个玩意儿，然后发现这个是openssl的扩展还是依赖，就是最后发现是因为openssl的版本过低，然后去更新版本，如果通过rpm来装，好像有三十多个依赖包，我崩溃了。所以我选择用yum来装，yum大法好！！ yum安装openssl成功！ 继续安装php-cli…成功！ ⑤安装php…大功告成！！！！！！ 查看是否安装成功查看PHP版本即可： 如果本文有任何错误，欢迎留言给我：Contact Me！]]></content>
+      <tags>
+        <tag>rpm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Windows搭建IIS]]></title>
+    <url>%2F2018%2F12%2F06%2Fwindows%E6%90%AD%E5%BB%BAiis%2F</url>
+    <content type="text"><![CDATA[本次使用的虚拟机是Windows Server 2008 R2，我要在上面搭建iis服务，并运行一个asp的网站。 前提：需要以下两个文件： .net framework 4.7.2 一个asp的网站源码 操作步骤如下： 安装IIS之后再次点击下一步好无聊，iis装完了！照我这样选，基本的东西都有！ 配置IIS 删除默认网站和应用池 添加网站然后导入网站数据 改权限 改权限是为了能对网站进行各种操作 启用父路径False改为True 更改默认首页这里去看下载的网站的源码，默认首页是什么格式的这里就怎么写 启用32位程序 选择.net 4版本由于我事前并没有安装，所以无法修改，所以这里没有截图，操作步骤同上，在选择高级设置的时候，这回选择基本设置，就可以在里面修改了。 如果本文有任何错误，欢迎留言给我：Contact Me！]]></content>
+      <tags>
+        <tag>windows,iis,搭建,asp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LAMP环境搭建与配置]]></title>
+    <url>%2F2018%2F12%2F05%2FLAMP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[说明本次搭建用的是centos6的虚拟机，是大佬直接传给我的虚拟机，所有就存在了一个问题，克隆的虚拟机会出现网卡找不到的情况解决方法就是: 执行命令： cat /etc/udev/rules.d/70-persistent-net.rules 查看里面最下面的网卡名称和MAC地址 然后打开网卡配置信息并修改 vi /etc/sysconfig/network-scripts/ifcfg-eth0 然后重启网卡就可以了，执行命令： service network restart 现在我们开始安装LAMP！ 搭建LAMPLAMP=LINUX+APACHE+MYSQL+PHP 这是在Linux下最常见的提供web服务的组合之一 Linux 是免费开源软件，这意味着源代码可用的操作系统 Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件 MySQL 是多线程、多用户的SQL数据库管理系统 PHP 是一种编程语言最初设计生产动态网站。PHP 是主要用于服务器端的应用程序软件 接下来我们开始安装，为了方便，我们直接使用yum来安装 安装Apache 执行命令： yum install httpd httpd-devel httpd-manual mod_ssl mod_perl mod_auth_mysql 装完之后，在启动前，需要解决一个错误：首先验证你有没有这个错误，直接执行命令httpd看是否和上面错误一样，如果一样，那我们就来解决它 我们先停止httpd服务，执行命令service httpd stop,打开httpd.conf配置文件，修改ServcerName，使域名生效，所以我们来执行命令： vi /etc/httpd/conf/httpd.conf /exam :为了更快速的找到servername 把#去掉，完事儿 启动httpd： service httpd start 这个时候去使用ip访问时访问不了的，因为防火墙有拦截，防火墙这么做，是为了防止网站受到攻击，之前我们直接关闭了防火墙去做访问，但是这样很不安全，所以我们就需要修改防火墙的规则来在防火墙开启的状态下又能正常访问 修改防火墙规则在centos6中，防火墙规则是放在一个文件中的，centos7中是通过命令修改的，这是不一样的地方打开防火墙规则文件，修改就完事儿了 vi /etc/sysconfig/iptables 在里面我们需要加入一条规则： -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT 这里要说明两点： 这条命令要加在这条命令：之前，因为这条命令拒绝所有数据包访问，而防火墙规则是从上到下执行的，我们需要写在这条命令前面才能生效 解释一下这条命令：-A：追加规则，-INPUT：别人请求你，-p：指定协议类型，-m：启用扩展功能，--dport：-p的扩展，指定端口，-j：指定这条规则如何进行处理，ACCEPT表示通过 之后重启防火墙即可 service iptables restart 成功访问：设置开机自启： chkconfig httpd on 安装MySQL 执行命令： yum install mysql mysql-server mysql-devel 至此MySQL就安装完成 启动MySQL service mysqld start 初始化MySQL mysql_secure_installation 在这里需要设置MySQL数据库密码：之后一路回车就完事儿了设置开机自启： chkconfig mysqld on 至此MySQL就安装完成了！ 安装PHPyum install php php-mysql php-common php-gd php-mbstring php-mcrypt php-devel php-xml php安装完成由于PHP是Apache的扩展，所以安装完PHP后需要重启Apache服务： service httpd restart 至此，LAMP环境安装完成 搭建网站 我们来导入网站源码测试一下，这次我们搭建一个漏洞环境，通过小黄鸭将文件导入/var/www/html目录中： 修改文件夹权限，避免出现权限问题： chown -R apache:aoache /var/www/html 打开配置文件 vi /var/www/html/sys/config.php 修改账户密码为自己数据库的账户密码，保存退出即可 浏览器访问一下，出现如下错误：这是因为我们数据库中没有vauditdemo这个数据库，进入mysql创建一个就可以了： 浏览器再次访问：成功访问！ 如果本文有任何错误，欢迎留言给我：Contact Me！]]></content>
+      <tags>
+        <tag>lamp,搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[学习总结]]></title>
+    <url>%2F2018%2F12%2F05%2F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[2018/12/03 周一搭建博客系统，链接到我的博客文章： 搭建GitHub博客里面讲到了hexo使用与安装，github使用，git使用，更改主题以及如何上传博客文章 2018/12/04 周二上午：linux命令拓展 Linux命令拓展（待定） 下午：linux(centos)中安装软件的三种方法： yum安装 rpm安装 源码安装里面讲到了ssh连接，虚拟机与真实机之间拖拽文件，源码怎么安装软件，错误解决办法在源码安装中并不是全都是用源码安装的，所以之后延伸到这篇博客：纯源码安装httpd（待定） 2018/12/05 周三LAMP环境搭建与应用 安装Apache服务，遇到防火墙拦截问题，添加防火墙规则 2018/12/06 周四上午 windows server 2008 + asp网站搭建 + access数据库 下午 windows server 2008 + asp网站搭建 + sql server 2008 无法复现 2018/12/07 周五html+css更新了一篇博客：rpm安装php]]></content>
+      <tags>
+        <tag>笔记,总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[源码安装httpd]]></title>
+    <url>%2F2018%2F12%2F04%2F%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85httpd%2F</url>
+    <content type="text"><![CDATA[本文介绍了如何在linux（centos7）中通过httpd的源代码安装httpd服务 ssh连接虚拟机 注：为什么要用ssh操作虚拟机，优点如下： 界面美观 可以进行复制粘贴操作 安全 … 我使用的软件为：Termius界面如图所示：点击右下角NEW HOST，弹出如下界面： label： 起个别名 address： 在虚拟机里面输入命令ifconfig查看自己的ip地址 username： 用户名 password： 密码 点击save保存，之后双击即可连接如果双击后有提示框弹出，点击确定即可 把httpd文件拷贝进centos7中在Apache官网下载好源码后，使用这个软件进行真实机与虚拟机之间的文件拷贝打开软件，点击左上角新建连接，填好内容后点击连接即可点击允许之后看到的内容和在虚拟机之中使用ls命令看到的内容是一样的把要安装的httpd的压缩文件直接拖入小黄鸭中，等待完成即可 开始在Termius中远程安装在开始之前，需要进行一个很重要的操作，安装开发者工具集： yum groupinstall &quot;development tools&quot; 安装这个工具集的目的是为了能执行一些编译之类的命令，博主现在还不太懂装完之后长这个样子：之后开始安装：解压： tar zxvf httpd-2.4.37.tar.gz 进入到解压后的目录中，有一个INSTALL文件，通过小黄鸭（cyberduck）传到真实机上面通过编辑器打开：红框中的内容为安装所需操作步骤，后面大写的PERFIX为路径，写上你想安装的路径即可 执行第一个命令./configure --prefix=/usr/local/apache2 /usr/local/apache2为路径，自己想装在哪儿装哪儿就完事儿了出错：APR未找到，那么我们来找一下 yum search apr 把里面所有文件装上即可，执行命令： yum install apr-devel apr-util-devel apr-util apr -y 解释：通过yum install同时安装四个文件，文件不需要写全后缀，linux会自动补全，把所有类型的前缀都安装上，一共就这四种，最后的-y参数是在遇到让你输入y/n的时候自动输入y解决掉错误，继续执行第一个命令： ./configure --prefix=/usr/local/apache2 再次出错：找一下pcre： yum search pcre 同上，执行命令： yum install pcre-devel pcre2-devel pcre pcre2 -y 又解决一个错误，继续执行第一个命令： ./configure --prefix=/usr/local/apache2 执行第二条命令make 输入后它会执行好多内容，等待一会儿即可 执行第三条命令make install 输入完执行，然后等待即可到这里httpd就安装完成了 执行第四条命令/usr/local/apache2/bin/apachectl start 解释：这条命令的作用是开启httpd服务出现这个错误无关紧要，不用管：OK，成功开启 访问首先需要关闭防火墙才能在局域网其他主机访问： systemctl stop firewalld 之后在浏览器中输入ip地址:80即可访问 放入站点文件把我的博客源码放入apache安装目录下的htdocs文件夹中，通过小黄鸭（cyberduck）直接进行拖拽即可 如果本文有任何错误，欢迎留言给我：Contact Me！]]></content>
+      <tags>
+        <tag>源码安装,httpd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[搭建GitHub博客]]></title>
+    <url>%2F2018%2F12%2F03%2F%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%2F</url>
+    <content type="text"><![CDATA[注：本文操作系统环境为windows 安装前提Nodejs : 官网下载就完事儿了，默认安装Git : 官网下载，安装的时候勾选上可以在cmd中运行即可 文本解释器Visual Studio Code(推荐)或者Sublime Text 安装hexowin+R打开输入cmd，执行命令: npm install -g hexo-cli 目的：安装hexo 新建文件夹存储此项目我的文件夹命名为myblog，在文件夹内打开cmd窗口，执行命令： hexo init . 目的：初始化 修改配置文件把myblog文件夹用visual studio code打开，打开_config.yml配置文件修改红框中的内容，注意：属性与值之间有空格，例： language: ZH-CN url后续再做更改 GitHub创建并登录GitHub，之后点击右上角+号，新建一个存储库New repository之后点击Create repository就完事儿了初始界面大致长这个样子：选择create new file新建一个文件 下载静态文件并且完成本地访问由于在github中直接新建文件存在各种局限性，所以通过本地写会更方便一些在myblog文件夹中打开cmd命令行窗口，执行命令： hexo generate 目的：更新静态文件，hexo程序直接帮你写好初始化静态网页本地访问： 本地访问可以方便的看到文件在浏览器中的具体样子，便于修改 同步本地文件至github打开github desktop并登录选择clone a repository选择存储库，设置本地路径，点击clone把写好的文件放入上一步设置的路径中,打开github desktop选择要上传的文件，点击commit to master进行上传同步： 主题更改找主题：themes下载主题： 1. 复制文件路径： 在myblog/themes文件夹中打开cmd窗口,执行命令： git clone 主题路径 在myblog文件夹中用编辑器打开_config.yml，修改theme值为你的主题名 清空旧网站文件，生成新网站文件在myblog文件中打开cmd命令行窗口，执行命令： hexo clean 目的：清除旧网站文件（public文件夹） hexo generate 目的：生成新网站文件（public文件夹）如果想在本地访问，可执行命令： hexo server 目的：开启本地服务器然后在浏览器地址栏输入localhost:4000即可 上传主题在github存储库的文件夹中删除所有文件（.gt隐藏文件不要删），把myblog文件夹中的public文件夹中的所有内容复制到github存储库文件夹中在github desktop中添加摘要和描述，点击commit to master即可同步： 如何在博客里面写文章在myblog文件夹中打开cmd命令行窗口，执行命令： hexo new &quot;filename&quot; 屏幕会输出文件保存路径在myblog文件夹中打开vscode，打开上述图片位置，写入内容，保存即可更新网站文件：在myblog文件夹中打开cmd，执行命令： hexo generate 目的：更新本地public文件夹把myblog/public文件夹中的内容复制到github存储库的本地文件夹中，通过github desktop上传并同步即可 错误说明原因：github desktop的本地存储库文件夹中的.gt隐藏文件不能删除 如果本文有任何错误，欢迎留言给我：Contact Me！]]></content>
+      <tags>
+        <tag>GitHub,博客,搭建</tag>
+      </tags>
+  </entry>
+</search>

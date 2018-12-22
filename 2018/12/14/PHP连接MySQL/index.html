@@ -117,47 +117,18 @@
 
 
 
-  <meta name="description" content="本文可能有点乱，右边有个目录，看着那个来就行了   本文讲述linux（centos7）使用rpm安装php的过程rpm安装软件的命令是这样的：rpm -ivh 软件名    -i –install,安装 -v –verbose,详细过程 -h –hash,显示进度信息   过程中会遇到依赖包的问题，一个一个解决掉就完事儿了！   开始安装解压php.rat.gz进入packages目录中，有5">
-<meta name="keywords" content="rpm">
+  <meta name="description" content="PHP操作MySQL数据库文中所讲不适用于实际场景，仅适用于本地练习，如有问题，后果自负 我把这个过程分成了两大块：连接和操作  连接  1234567写好配置信息，诸如：host、db_name、db_user、db_pwd等信息建立连接选择要操作的数据库设置请求和返回数据的字符集 通常我喜欢把连接这部分写入单独的文件中，每次使用时，只需要在其他页面调用即可 1include &amp;apos;con">
+<meta name="keywords" content="php,mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="rpm安装php">
-<meta property="og:url" content="https://clancyb00m.github.io/2018/12/07/rpm安装php/index.html">
+<meta property="og:title" content="PHP连接MySQL">
+<meta property="og:url" content="https://clancyb00m.github.io/2018/12/14/PHP连接MySQL/index.html">
 <meta property="og:site_name" content="T0mmclancy`s Blog">
-<meta property="og:description" content="本文可能有点乱，右边有个目录，看着那个来就行了   本文讲述linux（centos7）使用rpm安装php的过程rpm安装软件的命令是这样的：rpm -ivh 软件名    -i –install,安装 -v –verbose,详细过程 -h –hash,显示进度信息   过程中会遇到依赖包的问题，一个一个解决掉就完事儿了！   开始安装解压php.rat.gz进入packages目录中，有5">
+<meta property="og:description" content="PHP操作MySQL数据库文中所讲不适用于实际场景，仅适用于本地练习，如有问题，后果自负 我把这个过程分成了两大块：连接和操作  连接  1234567写好配置信息，诸如：host、db_name、db_user、db_pwd等信息建立连接选择要操作的数据库设置请求和返回数据的字符集 通常我喜欢把连接这部分写入单独的文件中，每次使用时，只需要在其他页面调用即可 1include &amp;apos;con">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/tarphp01.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/ls.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/httpd01.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/ls.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/httpdtools01.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/apr01.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/apr02.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/aprutil01.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/httpdtools02.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/ls.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/httpd02.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/mailcap01.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/mailcap02.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/httpd03.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/ls.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/php01.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/ls.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/php02.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/libzip01.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/php03.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/ls.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/php04.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/openssl01.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/openssl02.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/php05.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/ls.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/php06.png">
-<meta property="og:image" content="https://clancyb00m.github.io/img/rpm/php07.png">
-<meta property="og:updated_time" content="2018-12-10T12:28:52.182Z">
+<meta property="og:updated_time" content="2018-12-22T06:32:10.639Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="rpm安装php">
-<meta name="twitter:description" content="本文可能有点乱，右边有个目录，看着那个来就行了   本文讲述linux（centos7）使用rpm安装php的过程rpm安装软件的命令是这样的：rpm -ivh 软件名    -i –install,安装 -v –verbose,详细过程 -h –hash,显示进度信息   过程中会遇到依赖包的问题，一个一个解决掉就完事儿了！   开始安装解压php.rat.gz进入packages目录中，有5">
-<meta name="twitter:image" content="https://clancyb00m.github.io/img/rpm/tarphp01.png">
+<meta name="twitter:title" content="PHP连接MySQL">
+<meta name="twitter:description" content="PHP操作MySQL数据库文中所讲不适用于实际场景，仅适用于本地练习，如有问题，后果自负 我把这个过程分成了两大块：连接和操作  连接  1234567写好配置信息，诸如：host、db_name、db_user、db_pwd等信息建立连接选择要操作的数据库设置请求和返回数据的字符集 通常我喜欢把连接这部分写入单独的文件中，每次使用时，只需要在其他页面调用即可 1include &amp;apos;con">
 
 
 
@@ -166,7 +137,7 @@
 
 
 
-  <link rel="canonical" href="https://clancyb00m.github.io/2018/12/07/rpm安装php/">
+  <link rel="canonical" href="https://clancyb00m.github.io/2018/12/14/PHP连接MySQL/">
 
 
 
@@ -176,7 +147,7 @@
   };
 </script>
 
-  <title>rpm安装php | T0mmclancy`s Blog</title>
+  <title>PHP连接MySQL | T0mmclancy`s Blog</title>
   
 
 
@@ -390,7 +361,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://clancyb00m.github.io/2018/12/07/rpm安装php/">
+    <link itemprop="mainEntityOfPage" href="https://clancyb00m.github.io/2018/12/14/PHP连接MySQL/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="clancy">
@@ -407,7 +378,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">rpm安装php
+          <h1 class="post-title" itemprop="name headline">PHP连接MySQL
               
             
           </h1>
@@ -432,7 +403,7 @@
                 
               
 
-              <time title="创建时间：2018-12-07 12:31:00" itemprop="dateCreated datePublished" datetime="2018-12-07T12:31:00+08:00">2018-12-07</time>
+              <time title="创建时间：2018-12-14 14:32:00" itemprop="dateCreated datePublished" datetime="2018-12-14T14:32:00+08:00">2018-12-14</time>
             
 
             
@@ -449,7 +420,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-10 20:28:52" itemprop="dateModified" datetime="2018-12-10T20:28:52+08:00">2018-12-10</time>
+                <time title="修改时间：2018-12-22 14:32:10" itemprop="dateModified" datetime="2018-12-22T14:32:10+08:00">2018-12-22</time>
               
             
           </span>
@@ -482,48 +453,29 @@
       
 
       
-        <blockquote>
-<p>本文可能有点乱，右边有个目录，看着那个来就行了</p>
-</blockquote>
-<blockquote>
-<p>本文讲述linux（centos7）使用rpm安装php的过程<br>rpm安装软件的命令是这样的：rpm -ivh 软件名  </p>
-<ol>
-<li>-i –install,安装</li>
-<li>-v –verbose,详细过程</li>
-<li>-h –hash,显示进度信息</li>
-</ol>
-</blockquote>
-<p>过程中会遇到依赖包的问题，一个一个解决掉就完事儿了！  </p>
-<h1 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h1><p>解压<code>php.rat.gz</code><br><img src="/img/rpm/tarphp01.png" alt="解压php"><br>进入<code>packages</code>目录中，有5个文件，都是安装包，这篇文章主线就是安装这五个包，随便执行一个瞅瞅<br><img src="/img/rpm/ls.png" alt="ls">  </p>
-<h1 id="安装httpd…"><a href="#安装httpd…" class="headerlink" title="安装httpd…"></a>安装httpd…</h1><p><img src="/img/rpm/httpd01.png" alt="安装httpd-2.4.6"><br>这个错误中说明安装此程序需要四个依赖，不过其中有一个依赖（<code>http-tools...</code>）在我解压<code>php.tar.gz</code>的时候里面有，所以，可以先安装那个试一试  </p>
-<h1 id="①安装httpd-tools…"><a href="#①安装httpd-tools…" class="headerlink" title="①安装httpd-tools…"></a>①安装httpd-tools…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/httpdtools01.png" alt="httpdtools"><br>缺少这两个依赖包，去镜像站下载，我这里用的华为的镜像站，下载好，传到虚拟机里面来，如下：<br><img src="/img/rpm/apr01.png" alt="安装apr">  </p>
-<h5 id="安装apr…"><a href="#安装apr…" class="headerlink" title="安装apr…"></a>安装apr…</h5><p><img src="/img/rpm/apr02.png" alt="apr"><br>成功！  </p>
-<h5 id="安装apr-util…："><a href="#安装apr-util…：" class="headerlink" title="安装apr-util…："></a>安装apr-util…：</h5><p><img src="/img/rpm/aprutil01.png" alt="apr-util"><br>成功！</p>
-<blockquote>
-<p>注：如果安装这两个顺序反了，可能会出错，不过也没啥，可能错误就是<code>apr-util</code>被<code>apr</code>依赖，那你先安装<code>apr</code>就ojbk了  </p>
-</blockquote>
-<h5 id="继续安装httpd-tools…"><a href="#继续安装httpd-tools…" class="headerlink" title="继续安装httpd-tools…"></a>继续安装httpd-tools…</h5><p><img src="/img/rpm/httpdtools02.png" alt="httpdtools"><br>成功！  </p>
-<h1 id="②安装httpd…"><a href="#②安装httpd…" class="headerlink" title="②安装httpd…"></a>②安装httpd…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/httpd02.png" alt="httpd"><br>这里有个坑！在镜像站里面是找不到<code>/etc/mime.types</code>这个货的，像这种错误信息里给出的名字和安装包的名字不一样的恶心情况，有两种解决办法：  </p>
-<blockquote>
-<ol>
-<li>使用<code>yum</code>安装httpd，然后查看安装过程，找到<code>/etc/mime.types</code>，看紧跟着它下面要安装的包的名字，就是我们要找的玩意儿<br><img src="/img/rpm/mailcap01.png" alt="mailcap">  </li>
-<li>Google一下，你全知道<br>所以我是Google出来看到别的大佬用的第一种方法找到然后分享的，然后我就直接去镜像站找了这个货，传进虚拟机，装它  </li>
-</ol>
-</blockquote>
-<h5 id="安装mailcap…"><a href="#安装mailcap…" class="headerlink" title="安装mailcap…"></a>安装mailcap…</h5><p><img src="/img/rpm/mailcap02.png" alt="mailcap"><br>成功！！  </p>
-<h5 id="继续安装httpd…"><a href="#继续安装httpd…" class="headerlink" title="继续安装httpd…"></a>继续安装httpd…</h5><p><img src="/img/rpm/httpd03.png" alt="httpd"><br>成功！  </p>
-<h3 id="安装php…"><a href="#安装php…" class="headerlink" title="安装php…"></a>安装php…</h3><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php01.png" alt="php"><br>这里说明一点，这三个包是相互依赖的关系，不管你先装哪个，最后出错了，还是要按照这个顺序来，所以我就直接按照这个<code>正确</code>的顺序来装了：  </p>
-<h1 id="③安装php-common…"><a href="#③安装php-common…" class="headerlink" title="③安装php-common…"></a>③安装php-common…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php02.png" alt="php-common"><br>缺少这个玩意儿，去镜像站下载，传过来，装它：  </p>
-<h5 id="安装libzip…"><a href="#安装libzip…" class="headerlink" title="安装libzip…"></a>安装libzip…</h5><p><img src="/img/rpm/libzip01.png" alt="libzip"><br>成功！  </p>
-<h5 id="继续安装php-common…"><a href="#继续安装php-common…" class="headerlink" title="继续安装php-common…"></a>继续安装php-common…</h5><p><img src="/img/rpm/php03.png" alt="php-common"><br>成功！  </p>
-<h1 id="④安装php-cli…"><a href="#④安装php-cli…" class="headerlink" title="④安装php-cli…"></a>④安装php-cli…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php04.png" alt="php-cli"><br>这里！这里！是最恶心的一个地方！首先，找不到<code>libcrypto</code>这个玩意儿，然后发现这个是<code>openssl</code>的扩展还是依赖，就是最后发现是因为<code>openssl</code>的版本过低，然后去更新版本，如果通过rpm来装，好像有三十多个依赖包，我崩溃了。所以我选择用<code>yum</code>来装，<code>yum</code>大法好！！  </p>
-<h5 id="yum安装openssl"><a href="#yum安装openssl" class="headerlink" title="yum安装openssl"></a>yum安装openssl</h5><p><img src="/img/rpm/openssl01.png" alt="yumINSTALLopenssl"><br><img src="/img/rpm/openssl02.png" alt="yumINSTALLopenssl"><br>成功！  </p>
-<h5 id="继续安装php-cli…"><a href="#继续安装php-cli…" class="headerlink" title="继续安装php-cli…"></a>继续安装php-cli…</h5><p><img src="/img/rpm/php05.png" alt="php-cli"><br>成功！  </p>
-<h1 id="⑤安装php…"><a href="#⑤安装php…" class="headerlink" title="⑤安装php…"></a>⑤安装php…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php06.png" alt="php"><br>大功告成！！！！！！  </p>
-<h1 id="查看是否安装成功"><a href="#查看是否安装成功" class="headerlink" title="查看是否安装成功"></a>查看是否安装成功</h1><p>查看PHP版本即可：<br><img src="/img/rpm/php07.png" alt="phpversion">  </p>
-<blockquote>
-<p>如果本文有任何错误，欢迎留言给我：<a href="https://github.com/clancyb00m/clancyb00m.github.io/issues" target="_blank" rel="noopener">Contact Me！</a></p>
-</blockquote>
+        <h1 id="PHP操作MySQL数据库"><a href="#PHP操作MySQL数据库" class="headerlink" title="PHP操作MySQL数据库"></a>PHP操作MySQL数据库</h1><p><strong>文中所讲不适用于实际场景，仅适用于本地练习，如有问题，后果自负</strong></p>
+<p>我把这个过程分成了两大块：<strong>连接</strong>和<strong>操作</strong></p>
+<ul>
+<li>连接</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">写好配置信息，诸如：host、db_name、db_user、db_pwd等信息</span><br><span class="line"></span><br><span class="line">建立连接</span><br><span class="line"></span><br><span class="line">选择要操作的数据库</span><br><span class="line"></span><br><span class="line">设置请求和返回数据的字符集</span><br></pre></td></tr></table></figure>
+<p>通常我喜欢把连接这部分写入单独的文件中，每次使用时，只需要在其他页面调用即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include &apos;conf.php&apos;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>操作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">构造SQL语句</span><br><span class="line"></span><br><span class="line">执行SQL语句，如果有错，则报错</span><br><span class="line"></span><br><span class="line">从结果集中取出一行并返回</span><br><span class="line"></span><br><span class="line">关闭连接</span><br></pre></td></tr></table></figure>
+<h2 id="使用mysqli扩展"><a href="#使用mysqli扩展" class="headerlink" title="使用mysqli扩展"></a>使用mysqli扩展</h2><p>使用mysqli扩展需要配置<code>php.ini</code>配置文件中的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension_dir = &quot;你的php.exe的存放路径\ext&quot;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">删除下面这句话前面的英文分号`;`</span><br><span class="line">;extension=php_mysqli.dll</span><br></pre></td></tr></table></figure>
+<p>之后重启服务即可</p>
+<p>注：下图中<code>$mysqli</code>为连接的<code>conf.php</code>中的第二步<code>建立连接</code>的结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">include &apos;conf.php&apos;;</span><br><span class="line"></span><br><span class="line">#1.构造SQL语句，查找content表中id为1的记录</span><br><span class="line">$sql = &quot;SELECT * FROM content WHERE id = 1&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#2.执行SQL语句</span><br><span class="line">$res = $mysqli-&gt;query($sql);</span><br><span class="line"></span><br><span class="line">#如果语句本身有错，则报错</span><br><span class="line">    if (!$res)&#123; </span><br><span class="line">        die(&quot;SQL语句出错！&quot;.$mysqli-&gt;error);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#3.fetch_assoc()从结果集中取出一行以关联数组形式返回并用foreach输出</span><br><span class="line">while($row = $res-&gt;fetch_assoc())&#123;</span><br><span class="line">    foreach ($row as $key=&gt;$value)&#123;</span><br><span class="line">    echo $key.&apos;=&apos;.$value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#4.关闭连接</span><br><span class="line">#mysqli-&gt;close();</span><br></pre></td></tr></table></figure>
+<h2 id="使用mysql扩展"><a href="#使用mysql扩展" class="headerlink" title="使用mysql扩展"></a>使用mysql扩展</h2><p>此扩展只支持PHP版本5.5以下，所以就不赘述了</p>
+<h2 id="使用PDO技术（防止SQL注入）"><a href="#使用PDO技术（防止SQL注入）" class="headerlink" title="使用PDO技术（防止SQL注入）"></a>使用PDO技术（防止SQL注入）</h2><p>操作步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1.配置信息</span><br><span class="line"></span><br><span class="line">2.创建PDO对象</span><br><span class="line"></span><br><span class="line">3.执行SQL语句，编码</span><br><span class="line"></span><br><span class="line">4.构造SQL语句，在变化的地方使用`?`</span><br><span class="line"></span><br><span class="line">5.编译预处理</span><br><span class="line"></span><br><span class="line">6.传值，绑定</span><br><span class="line"></span><br><span class="line">7.执行SQL语句</span><br><span class="line"></span><br><span class="line">8.判断语句</span><br><span class="line"></span><br><span class="line">9.从结果集中取出一行并返回</span><br><span class="line"></span><br><span class="line">10.输出</span><br><span class="line"></span><br><span class="line">11.关闭连接</span><br></pre></td></tr></table></figure>
+<p>代码实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$mysqli_conf = array(</span><br><span class="line">    &apos;host&apos;      =&gt;  &apos;127.0.0.1:3306&apos;,</span><br><span class="line">    &apos;db_user&apos;   =&gt;  &apos;root&apos;,</span><br><span class="line">    &apos;db_pwd&apos;    =&gt;  &apos;root&apos;,</span><br><span class="line">    &apos;db_name&apos;   =&gt;  &apos;test&apos;</span><br><span class="line">);</span><br><span class="line">//创建一个PDO对象</span><br><span class="line">$dsn = &quot;mysql:host=127.0.0.1&quot;;</span><br><span class="line">$dbuser = &apos;root&apos;;</span><br><span class="line">$dbpass = &apos;root&apos;;</span><br><span class="line">$pdo = new PDO($dsn,$dbuser,$dbpass);</span><br><span class="line">//执行SQL语句，编码</span><br><span class="line">$pdo-&gt;exec(&quot;set names &apos;utf8&apos;&quot;);</span><br><span class="line">//构造SQL语句，在变化的地方使用?</span><br><span class="line">$sql = &quot;select * from content where id = ?&quot;;</span><br><span class="line">#编译预处理</span><br><span class="line">$stmt = $pdo-&gt;prepare($sql);</span><br><span class="line">#传值，绑定</span><br><span class="line">$stmt-&gt;bindValue(1,&apos;1&apos;,PDO::PARAM_STR);		第一个`1`指的是第一个`?`，第二个`1`是问号的内容</span><br><span class="line">#执行SQL语句</span><br><span class="line">$rs = $stmt-&gt;execute();</span><br><span class="line">#如果为真</span><br><span class="line">if ($rs)&#123;</span><br><span class="line">    #PDO::FETCH_ASSOC       关联数组形式</span><br><span class="line">    #PDO::FETCH_NUM         数字索引形式</span><br><span class="line">    #从结果集中取出一行并返回</span><br><span class="line">    while($row = $stmt-&gt;fetch(PDO::FETCH_ASSOC))&#123;</span><br><span class="line">    	#输出</span><br><span class="line">        echo &quot;&lt;pre&gt;&quot;;</span><br><span class="line">        var_dump($row);</span><br><span class="line">        echo &quot;&lt;/pre&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">#关闭连接</span><br><span class="line">$pdo = null;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -547,7 +499,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/rpm/" rel="tag"><i class="fa fa-tag"></i> rpm</a>
+            <a href="/tags/php-mysql/" rel="tag"><i class="fa fa-tag"></i> php,mysql</a>
           
         </div>
       
@@ -560,8 +512,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/06/windows搭建iis/" rel="next" title="Windows搭建IIS">
-                <i class="fa fa-chevron-left"></i> Windows搭建IIS
+              <a href="/2018/12/14/apache配置和虚拟主机/" rel="next" title="apache配置和虚拟主机">
+                <i class="fa fa-chevron-left"></i> apache配置和虚拟主机
               </a>
             
           </div>
@@ -570,8 +522,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/13/php(以代码层面出发)/" rel="prev" title="php(以代码层面出发)">
-                php(以代码层面出发) <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/17/php表单+文件+代码、命令执行/" rel="prev" title="php表单+文件+代码、命令执行">
+                php表单+文件+代码、命令执行 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -730,7 +682,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开始安装"><span class="nav-number">1.</span> <span class="nav-text">开始安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装httpd…"><span class="nav-number">2.</span> <span class="nav-text">安装httpd…</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#①安装httpd-tools…"><span class="nav-number">3.</span> <span class="nav-text">①安装httpd-tools…</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装apr…"><span class="nav-number">3.0.0.0.1.</span> <span class="nav-text">安装apr…</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#安装apr-util…："><span class="nav-number">3.0.0.0.2.</span> <span class="nav-text">安装apr-util…：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#继续安装httpd-tools…"><span class="nav-number">3.0.0.0.3.</span> <span class="nav-text">继续安装httpd-tools…</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#②安装httpd…"><span class="nav-number">4.</span> <span class="nav-text">②安装httpd…</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装mailcap…"><span class="nav-number">4.0.0.0.1.</span> <span class="nav-text">安装mailcap…</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#继续安装httpd…"><span class="nav-number">4.0.0.0.2.</span> <span class="nav-text">继续安装httpd…</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装php…"><span class="nav-number">4.0.1.</span> <span class="nav-text">安装php…</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#③安装php-common…"><span class="nav-number">5.</span> <span class="nav-text">③安装php-common…</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装libzip…"><span class="nav-number">5.0.0.0.1.</span> <span class="nav-text">安装libzip…</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#继续安装php-common…"><span class="nav-number">5.0.0.0.2.</span> <span class="nav-text">继续安装php-common…</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#④安装php-cli…"><span class="nav-number">6.</span> <span class="nav-text">④安装php-cli…</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#yum安装openssl"><span class="nav-number">6.0.0.0.1.</span> <span class="nav-text">yum安装openssl</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#继续安装php-cli…"><span class="nav-number">6.0.0.0.2.</span> <span class="nav-text">继续安装php-cli…</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⑤安装php…"><span class="nav-number">7.</span> <span class="nav-text">⑤安装php…</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看是否安装成功"><span class="nav-number">8.</span> <span class="nav-text">查看是否安装成功</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP操作MySQL数据库"><span class="nav-number">1.</span> <span class="nav-text">PHP操作MySQL数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用mysqli扩展"><span class="nav-number">1.1.</span> <span class="nav-text">使用mysqli扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用mysql扩展"><span class="nav-number">1.2.</span> <span class="nav-text">使用mysql扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用PDO技术（防止SQL注入）"><span class="nav-number">1.3.</span> <span class="nav-text">使用PDO技术（防止SQL注入）</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -909,7 +861,7 @@
   
     <script type="text/javascript">
       window.livereOptions = {
-        refer: '2018/12/07/rpm安装php/'
+        refer: '2018/12/14/PHP连接MySQL/'
       };
       (function(d, s) {
         var j, e = d.getElementsByTagName(s)[0];

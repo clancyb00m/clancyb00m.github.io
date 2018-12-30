@@ -1,0 +1,69 @@
+<meta charset="utf-8">
+<?php
+$conn = new mysqli('127.0.0.1','root','root','test');
+@$id = $_GET['id'];
+if ($id) {
+    // SELECT * FROM `users` WHERE `id` = 1;
+    $sql = "SELECT * FROM `users` WHERE `id` = $id ;";
+    echo "SQL语句1：".$sql;
+    echo '<br />';
+    $res = $conn->query($sql) or printf($conn->error);
+    echo '<br>';echo '<br>';
+
+    // SELECT * FROM `users` WHERE (`id` = 1);
+    $sql = "SELECT * FROM `users` WHERE (`id` = $id );";
+    echo "SQL语句2：".$sql;
+    echo '<br />';
+    $res = $conn->query($sql) or printf($conn->error);
+    echo '<br>';echo '<br>';
+
+    // SELECT * FROM `users` WHERE ((`id` = 1));
+    $sql = "SELECT * FROM `users` WHERE ((`id` = $id ));";
+    echo "SQL语句3：".$sql;
+    echo '<br />';
+    $res = $conn->query($sql) or printf($conn->error);
+    echo '<br>';echo '<br>';
+
+    // SELECT * FROM `users` WHERE `id` = '1';
+    $sql = "SELECT * FROM `users` WHERE `id` = '$id' ;";
+    echo "SQL语句4：".$sql;
+    echo '<br />';
+    $res = $conn->query($sql) or printf($conn->error);
+    echo '<br>';echo '<br>';
+
+    // SELECT * FROM `users` WHERE (`id` = '1');
+    $sql = "SELECT * FROM `users` WHERE (`id` = '$id') ;";
+    echo "SQL语句5：".$sql;
+    echo '<br />';
+    $res = $conn->query($sql) or printf($conn->error);
+    echo '<br>';echo '<br>';
+
+    // SELECT * FROM `users` WHERE (`id` = ('1'));
+    $sql = "SELECT * FROM `users` WHERE (`id` = ('$id')) ;";
+    echo "SQL语句6：".$sql;
+    echo '<br />';
+    $res = $conn->query($sql) or printf($conn->error);
+    echo '<br>';echo '<br>';
+
+    // SELECT * FROM `users` WHERE `id` = "1";
+    $sql = 'SELECT * FROM `users` WHERE `id` = "'.$id.'" ;';
+    echo "SQL语句7：".$sql;
+    echo '<br />';
+    $res = $conn->query($sql) or printf($conn->error);
+    echo '<br>';echo '<br>';
+
+    // SELECT * FROM `users` WHERE (`id` = "1");
+    $sql = 'SELECT * FROM `users` WHERE (`id` = "'.$id.'") ;';
+    echo "SQL语句8：".$sql;
+    echo '<br />';
+    $res = $conn->query($sql) or printf($conn->error);
+    echo '<br>';echo '<br>';
+
+    // SELECT * FROM `users` WHERE (`id` = ("1"));
+    $sql = 'SELECT * FROM `users` WHERE (`id` = ("'.$id.'")) ;';
+    echo "SQL语句9：".$sql;
+    echo '<br />';
+    $res = $conn->query($sql) or printf($conn->error);
+    echo '<br>';echo '<br>';
+}
+?>

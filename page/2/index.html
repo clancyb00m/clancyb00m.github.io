@@ -356,7 +356,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://clancyb00m.github.io/2018/12/05/学习总结/">
+    <link itemprop="mainEntityOfPage" href="https://clancyb00m.github.io/2018/12/14/apache配置和虚拟主机/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="clancy">
@@ -376,7 +376,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/12/05/学习总结/" class="post-title-link" itemprop="https://clancyb00m.github.io/page/2/index.html">学习总结</a>
+                <a href="/2018/12/14/apache配置和虚拟主机/" class="post-title-link" itemprop="https://clancyb00m.github.io/page/2/index.html">apache配置和虚拟主机</a>
               
             
           </h1>
@@ -401,7 +401,7 @@
                 
               
 
-              <time title="创建时间：2018-12-05 12:30:00" itemprop="dateCreated datePublished" datetime="2018-12-05T12:30:00+08:00">2018-12-05</time>
+              <time title="创建时间：2018-12-14 12:21:00" itemprop="dateCreated datePublished" datetime="2018-12-14T12:21:00+08:00">2018-12-14</time>
             
 
             
@@ -418,7 +418,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-10 20:29:05" itemprop="dateModified" datetime="2018-12-10T20:29:05+08:00">2018-12-10</time>
+                <time title="修改时间：2018-12-20 21:40:13" itemprop="dateModified" datetime="2018-12-20T21:40:13+08:00">2018-12-20</time>
               
             
           </span>
@@ -430,6 +430,18 @@
           
 
           
+          
+             <span id="/2018/12/14/apache配置和虚拟主机/" class="leancloud_visitors" data-flag-title="apache配置和虚拟主机">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>°C</span>
+             </span>
           
 
           
@@ -453,20 +465,757 @@
       
         
           
-          2018/12/03 周一搭建博客系统，链接到我的博客文章：
+          Apache配置
+Apache主配置文件名：httpd.conf
 
-搭建GitHub博客里面讲到了hexo使用与安装，github使用，git使用，更改主题以及如何上传博客文章  
+每次修改完必须重启服务才能生效
 
-2018/12/04 周二上午：linux命令拓展  
 
-Linux命令拓展（待定）   
+检查Apache主程序是否有语法错误：
+1在命令行中，输入：httpd.exe -t
+前提是配置好环境变量或者在主程序目录中执行
 
-下午：linux(cent
+DocumentRoot：网站根目录
+12DocumentRoo
           ...
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/12/05/学习总结/#more" rel="contents">
+              <a class="btn" href="/2018/12/14/apache配置和虚拟主机/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://clancyb00m.github.io/2018/12/13/PHP基础总结(以漏洞层面出发)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="clancy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="T0mmclancy`s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/13/PHP基础总结(以漏洞层面出发)/" class="post-title-link" itemprop="https://clancyb00m.github.io/page/2/index.html">php(以漏洞层面出发)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-13 18:30:00" itemprop="dateCreated datePublished" datetime="2018-12-13T18:30:00+08:00">2018-12-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-20 21:35:01" itemprop="dateModified" datetime="2018-12-20T21:35:01+08:00">2018-12-20</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/12/13/PHP基础总结(以漏洞层面出发)/" class="leancloud_visitors" data-flag-title="php(以漏洞层面出发)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>°C</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          HTML + CSS常用标签12345678910111213141516&lt;a href=&apos;&apos;&gt;&lt;/a&gt;&lt;img src=&apos;&apos;&gt;&lt;from action=&apos;&apos; method=&apos;&apos;
+          ...
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/12/13/PHP基础总结(以漏洞层面出发)/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://clancyb00m.github.io/2018/12/13/php(以代码层面出发)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="clancy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="T0mmclancy`s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/13/php(以代码层面出发)/" class="post-title-link" itemprop="https://clancyb00m.github.io/page/2/index.html">php(以代码层面出发)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-13 12:30:00" itemprop="dateCreated datePublished" datetime="2018-12-13T12:30:00+08:00">2018-12-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-20 21:34:12" itemprop="dateModified" datetime="2018-12-20T21:34:12+08:00">2018-12-20</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/12/13/php(以代码层面出发)/" class="leancloud_visitors" data-flag-title="php(以代码层面出发)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>°C</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          语言基础
+php文件的后缀名：.php
+php区分大小写，关键字和函数名不区分大小写
+php所有代码不会在前端显示
+注释：
+单行注释：//或#
+多行注释：/* 注释内容 */
+
+
+
+变量
+变量：
+
+可以包含字母，数字，下划线
+以$开始
+不能以数字开头
+
+
+{}：可以包住变量，如{$a}，用途：可在变
+          ...
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/12/13/php(以代码层面出发)/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://clancyb00m.github.io/2018/12/07/rpm安装php/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="clancy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="T0mmclancy`s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/07/rpm安装php/" class="post-title-link" itemprop="https://clancyb00m.github.io/page/2/index.html">rpm安装php</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-07 12:31:00" itemprop="dateCreated datePublished" datetime="2018-12-07T12:31:00+08:00">2018-12-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-10 20:28:52" itemprop="dateModified" datetime="2018-12-10T20:28:52+08:00">2018-12-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/12/07/rpm安装php/" class="leancloud_visitors" data-flag-title="rpm安装php">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>°C</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+本文可能有点乱，右边有个目录，看着那个来就行了
+
+
+本文讲述linux（centos7）使用rpm安装php的过程rpm安装软件的命令是这样的：rpm -ivh 软件名  
+
+-i –install,安装
+-v –verbose,详细过程
+-h –hash,显示进度信息
+
+
+过程中会遇到依赖包的问
+          ...
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/12/07/rpm安装php/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://clancyb00m.github.io/2018/12/06/windows搭建iis/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="clancy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="T0mmclancy`s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/06/windows搭建iis/" class="post-title-link" itemprop="https://clancyb00m.github.io/page/2/index.html">Windows搭建IIS</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-06 12:30:01" itemprop="dateCreated datePublished" datetime="2018-12-06T12:30:01+08:00">2018-12-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-10 20:28:59" itemprop="dateModified" datetime="2018-12-10T20:28:59+08:00">2018-12-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/12/06/windows搭建iis/" class="leancloud_visitors" data-flag-title="Windows搭建IIS">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>°C</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          本次使用的虚拟机是Windows Server 2008 R2，我要在上面搭建iis服务，并运行一个asp的网站。  
+
+前提：需要以下两个文件：
+
+
+.net framework 4.7.2
+一个asp的网站源码  
+
+操作步骤如下：  
+安装IIS之后再次点击下一步好无聊，iis装完了！照我这样
+          ...
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/12/06/windows搭建iis/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -588,7 +1337,7 @@ Linux命令拓展（待定）
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-10 20:28:44" itemprop="dateModified" datetime="2018-12-10T20:28:44+08:00">2018-12-10</time>
+                <time title="修改时间：2018-12-30 15:15:55" itemprop="dateModified" datetime="2018-12-30T15:15:55+08:00">2018-12-30</time>
               
             
           </span>
@@ -600,6 +1349,18 @@ Linux命令拓展（待定）
           
 
           
+          
+             <span id="/2018/12/05/LAMP环境搭建与配置/" class="leancloud_visitors" data-flag-title="LAMP环境搭建与配置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>°C</span>
+             </span>
           
 
           
@@ -767,6 +1528,18 @@ cat /etc/udev/rules.d/70-persistent-net.rules
           
 
           
+          
+             <span id="/2018/12/04/源码安装httpd/" class="leancloud_visitors" data-flag-title="源码安装httpd">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>°C</span>
+             </span>
           
 
           
@@ -944,6 +1717,18 @@ ssh连接虚拟机
 
           
           
+             <span id="/2018/12/03/搭建GitHub博客系统/" class="leancloud_visitors" data-flag-title="搭建GitHub博客">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>°C</span>
+             </span>
+          
 
           
 
@@ -1067,7 +1852,7 @@ ssh连接虚拟机
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1110,7 +1895,15 @@ ssh连接虚拟机
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -1194,7 +1987,7 @@ ssh连接虚拟机
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共14.6k字</span>
+  <span class="post-count">博客全站共17.6k字</span>
 </div>
         
 
@@ -1243,12 +2036,6 @@ ssh连接虚拟机
 
 
 
-
-  
-    
-      
-  
-  <script type="text/javascript" color="255,0,0" opacity="0.5" zindex="-1" count="200" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
 
@@ -1650,6 +2437,73 @@ ssh连接虚拟机
   
 
   
+  <script>
+    
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
+        .done(function ({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "avwihOhYyzK3p5uDfJnotfEH-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "avwihOhYyzK3p5uDfJnotfEH-gzGzoHsz",
+                'X-LC-Key': "wocu1bJitMtTKGGEiBUxJAqB",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+          
+        })
+    });
+  </script>
+
+
 
   
 
@@ -1658,6 +2512,8 @@ ssh连接虚拟机
   
 
   
+
+  
   
 
   
@@ -1673,7 +2529,9 @@ ssh连接虚拟机
   
 
 
-<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+<script type="text/javascript" color="0,0,0" opacity="0.7" zindex="-2" count="50" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
+
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
 </body>
 </html>

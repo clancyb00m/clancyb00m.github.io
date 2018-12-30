@@ -21,6 +21,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
 <meta name="theme-color" content="#222">
 
 
@@ -33,7 +46,7 @@
     
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-center-circle.min.css?v=1.0.2" rel="stylesheet">
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -125,7 +138,7 @@
 <meta property="og:site_name" content="T0mmclancy`s Blog">
 <meta property="og:description" content="参数常用参数  -sT     TCP connect()扫描，这种方式会在目标主机的日志中记录大批的链接请求以及错误信息。-sP     ping扫描，加上这个参数会使用ping扫描，只有主机存活，nmap才会继续扫描，一般最好不加，因为有的主机会禁止ping，却实际存在。-sS     半开扫描，一般不会记入日志，不过需要root权限。-sU     udp扫描，但是一般不可靠，-sA">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-30T10:44:20.147Z">
+<meta property="og:updated_time" content="2018-12-30T11:05:39.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NMAP速查手册">
 <meta name="twitter:description" content="参数常用参数  -sT     TCP connect()扫描，这种方式会在目标主机的日志中记录大批的链接请求以及错误信息。-sP     ping扫描，加上这个参数会使用ping扫描，只有主机存活，nmap才会继续扫描，一般最好不加，因为有的主机会禁止ping，却实际存在。-sS     半开扫描，一般不会记入日志，不过需要root权限。-sU     udp扫描，但是一般不可靠，-sA">
@@ -404,7 +417,7 @@
                 
               
 
-              <time title="创建时间：2018-12-30 16:20:00 / 修改时间：18:44:20" itemprop="dateCreated datePublished" datetime="2018-12-30T16:20:00+08:00">2018-12-30</time>
+              <time title="创建时间：2018-12-30 16:20:00 / 修改时间：19:05:39" itemprop="dateCreated datePublished" datetime="2018-12-30T16:20:00+08:00">2018-12-30</time>
             
 
             
@@ -1278,9 +1291,14 @@
             })
           } else {
             
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
-              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
             
           }
         })
@@ -1340,7 +1358,5 @@
 
 <script type="text/javascript" color="0,0,0" opacity="0.7" zindex="-2" count="50" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
-
-<script type="text/javascript" src="/js/src/clicklove.js"></script>
 </body>
 </html>

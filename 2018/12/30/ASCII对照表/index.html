@@ -21,6 +21,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
 <meta name="theme-color" content="#222">
 
 
@@ -33,7 +46,7 @@
     
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-center-circle.min.css?v=1.0.2" rel="stylesheet">
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -125,7 +138,7 @@
 <meta property="og:site_name" content="T0mmclancy`s Blog">
 <meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596二		十     十六">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-30T10:44:11.729Z">
+<meta property="og:updated_time" content="2018-12-30T11:05:32.667Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ASCII对照表">
 <meta name="twitter:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596二		十     十六">
@@ -404,7 +417,7 @@
                 
               
 
-              <time title="创建时间：2018-12-30 16:01:00 / 修改时间：18:44:11" itemprop="dateCreated datePublished" datetime="2018-12-30T16:01:00+08:00">2018-12-30</time>
+              <time title="创建时间：2018-12-30 16:01:00 / 修改时间：19:05:32" itemprop="dateCreated datePublished" datetime="2018-12-30T16:01:00+08:00">2018-12-30</time>
             
 
             
@@ -1219,9 +1232,14 @@
             })
           } else {
             
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
-              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
             
           }
         })
@@ -1281,7 +1299,5 @@
 
 <script type="text/javascript" color="0,0,0" opacity="0.7" zindex="-2" count="50" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
-
-<script type="text/javascript" src="/js/src/clicklove.js"></script>
 </body>
 </html>

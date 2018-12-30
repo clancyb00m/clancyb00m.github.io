@@ -21,6 +21,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
 <meta name="theme-color" content="#222">
 
 
@@ -33,7 +46,7 @@
     
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-center-circle.min.css?v=1.0.2" rel="stylesheet">
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -125,7 +138,7 @@
 <meta property="og:site_name" content="T0mmclancy`s Blog">
 <meta property="og:description" content="语言基础 php文件的后缀名：.php php区分大小写，关键字和函数名不区分大小写 php所有代码不会在前端显示 注释： 单行注释：//或# 多行注释：/* 注释内容 */    变量 变量：  可以包含字母，数字，下划线 以$开始 不能以数字开头   {}：可以包住变量，如{$a}，用途：可在变量后紧跟其他内容，无需空格  赋值传值和引用传值  赋值传值：    $a = 1; ​">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-20T13:34:12.286Z">
+<meta property="og:updated_time" content="2018-12-30T10:47:19.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php(以代码层面出发)">
 <meta name="twitter:description" content="语言基础 php文件的后缀名：.php php区分大小写，关键字和函数名不区分大小写 php所有代码不会在前端显示 注释： 单行注释：//或# 多行注释：/* 注释内容 */    变量 变量：  可以包含字母，数字，下划线 以$开始 不能以数字开头   {}：可以包住变量，如{$a}，用途：可在变量后紧跟其他内容，无需空格  赋值传值和引用传值  赋值传值：    $a = 1; ​">
@@ -421,7 +434,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-20 21:34:12" itemprop="dateModified" datetime="2018-12-20T21:34:12+08:00">2018-12-20</time>
+                <time title="修改时间：2018-12-30 18:47:19" itemprop="dateModified" datetime="2018-12-30T18:47:19+08:00">2018-12-30</time>
               
             
           </span>
@@ -1544,9 +1557,14 @@
             })
           } else {
             
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
-              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
             
           }
         })
@@ -1606,7 +1624,5 @@
 
 <script type="text/javascript" color="0,0,0" opacity="0.7" zindex="-2" count="50" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
-
-<script type="text/javascript" src="/js/src/clicklove.js"></script>
 </body>
 </html>

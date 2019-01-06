@@ -1,14 +1,27 @@
 <meta charset="utf-8">
 <?php
-$conn = new mysqli('127.0.0.1','root','root','test');
+/**
+ * Created by PhpStorm.
+ * User: bao
+ * Date: 2018-12-28
+ * Time: 10:50
+ */
+    // @$data = $res->fetch_assoc();
+
+    // echo '<br />执行结果：';
+    // print_r($data);
+
+$conn = new mysqli('127.0.0.1','root','r00t','test');
 @$id = $_GET['id'];
 if ($id) {
+
     // SELECT * FROM `users` WHERE `id` = 1;
     $sql = "SELECT * FROM `users` WHERE `id` = $id ;";
     echo "SQL语句1：".$sql;
     echo '<br />';
     $res = $conn->query($sql) or printf($conn->error);
     echo '<br>';echo '<br>';
+
 
     // SELECT * FROM `users` WHERE (`id` = 1);
     $sql = "SELECT * FROM `users` WHERE (`id` = $id );";
@@ -17,12 +30,14 @@ if ($id) {
     $res = $conn->query($sql) or printf($conn->error);
     echo '<br>';echo '<br>';
 
+
     // SELECT * FROM `users` WHERE ((`id` = 1));
     $sql = "SELECT * FROM `users` WHERE ((`id` = $id ));";
     echo "SQL语句3：".$sql;
     echo '<br />';
     $res = $conn->query($sql) or printf($conn->error);
     echo '<br>';echo '<br>';
+
 
     // SELECT * FROM `users` WHERE `id` = '1';
     $sql = "SELECT * FROM `users` WHERE `id` = '$id' ;";
@@ -31,12 +46,14 @@ if ($id) {
     $res = $conn->query($sql) or printf($conn->error);
     echo '<br>';echo '<br>';
 
+
     // SELECT * FROM `users` WHERE (`id` = '1');
     $sql = "SELECT * FROM `users` WHERE (`id` = '$id') ;";
     echo "SQL语句5：".$sql;
     echo '<br />';
     $res = $conn->query($sql) or printf($conn->error);
     echo '<br>';echo '<br>';
+
 
     // SELECT * FROM `users` WHERE (`id` = ('1'));
     $sql = "SELECT * FROM `users` WHERE (`id` = ('$id')) ;";
@@ -45,12 +62,14 @@ if ($id) {
     $res = $conn->query($sql) or printf($conn->error);
     echo '<br>';echo '<br>';
 
+
     // SELECT * FROM `users` WHERE `id` = "1";
     $sql = 'SELECT * FROM `users` WHERE `id` = "'.$id.'" ;';
     echo "SQL语句7：".$sql;
     echo '<br />';
     $res = $conn->query($sql) or printf($conn->error);
     echo '<br>';echo '<br>';
+
 
     // SELECT * FROM `users` WHERE (`id` = "1");
     $sql = 'SELECT * FROM `users` WHERE (`id` = "'.$id.'") ;';
@@ -66,4 +85,11 @@ if ($id) {
     $res = $conn->query($sql) or printf($conn->error);
     echo '<br>';echo '<br>';
 }
+
+
+
+
+
+
+
 ?>

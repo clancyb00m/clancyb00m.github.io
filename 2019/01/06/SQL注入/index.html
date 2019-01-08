@@ -153,7 +153,7 @@
 <meta property="og:image" content="https://clancyb00m.github.io/img/sqli/update01.png">
 <meta property="og:image" content="https://clancyb00m.github.io/img/sqli/login01.png">
 <meta property="og:image" content="https://clancyb00m.github.io/img/sqli/reg01.png">
-<meta property="og:updated_time" content="2019-01-06T11:32:14.683Z">
+<meta property="og:updated_time" content="2019-01-08T09:08:18.527Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL注入">
 <meta name="twitter:description" content="本文只是笔记整理，可能有不足之处，望大佬之处  什么是SQL注入所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令 SQL注入原理：对用户输入过滤不严谨 SQL注入本质：违背了数据与代码分离的原则 SQL注入漏洞有两个关键条件 用户能控制输入的内容 web应用把用户输入的内容带入到数据库去执行  只要满足以上两个条件，">
@@ -433,12 +433,24 @@
                 
               
 
-              <time title="创建时间：2019-01-06 21:26:41 / 修改时间：19:32:14" itemprop="dateCreated datePublished" datetime="2019-01-06T21:26:41+08:00">2019-01-06</time>
+              <time title="创建时间：2019-01-06 21:26:41" itemprop="dateCreated datePublished" datetime="2019-01-06T21:26:41+08:00">2019-01-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-08 17:08:18" itemprop="dateModified" datetime="2019-01-08T17:08:18+08:00">2019-01-08</time>
               
             
           </span>
@@ -710,11 +722,7 @@
 <p>sqlmap -u <a href="http://192.168.11.86/index.php?id=1" target="_blank" rel="noopener">http://192.168.11.86/index.php?id=1</a> -D 数据库名 -T 表名 –columns</p>
 <p>查看数据</p>
 <p>sqlmap -u <a href="http://192.168.11.86/index.php?id=1" target="_blank" rel="noopener">http://192.168.11.86/index.php?id=1</a> -D 数据库名 -T 表名 –dump</p>
-<h1 id="防御SQL注入"><a href="#防御SQL注入" class="headerlink" title="防御SQL注入"></a>防御SQL注入</h1><p>addslashes():</p>
-<ol>
-<li>对整型数据无效</li>
-<li>上传文件处无法处理，需要额外设置</li>
-</ol>
+<h1 id="防御SQL注入"><a href="#防御SQL注入" class="headerlink" title="防御SQL注入"></a>防御SQL注入</h1><p>addslashes():对整型数据无效</p>
 <p>cookie处不要有SQL语句中的参数，不然会造成cookie注入</p>
 <blockquote>
 <p>如果本文有任何错误，欢迎留言给我：<a href="https://github.com/clancyb00m/clancyb00m.github.io/issues" target="_blank" rel="noopener">Contact Me！</a></p>

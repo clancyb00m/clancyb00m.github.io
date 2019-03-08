@@ -131,8 +131,9 @@
 
 
   <meta name="description" content="序列化与反序列化用户数据在$_SESSION中存储，当用户数据过大，内存占用过大，为了节省内存，选择把用户数据存储在文件中，即使用serialize()函数把用户数据存储到文件中，在使用的时候，在通过unserialize()函数调用 漏洞成因漏洞的形成的根本原因是程序没有对用户输入的反序列化字符串进行检测，导致反序列化过程可以被恶意控制，进而造成代码执行、getshell等一系列不可控的后果 s">
+<meta name="keywords" content="反序列化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="T0mmclancy`s Blog">
+<meta property="og:title" content="浅析PHP反序列化漏洞">
 <meta property="og:url" content="https://clancyb00m.github.io/2019/01/17/PHP反序列化漏洞/index.html">
 <meta property="og:site_name" content="T0mmclancy`s Blog">
 <meta property="og:description" content="序列化与反序列化用户数据在$_SESSION中存储，当用户数据过大，内存占用过大，为了节省内存，选择把用户数据存储在文件中，即使用serialize()函数把用户数据存储到文件中，在使用的时候，在通过unserialize()函数调用 漏洞成因漏洞的形成的根本原因是程序没有对用户输入的反序列化字符串进行检测，导致反序列化过程可以被恶意控制，进而造成代码执行、getshell等一系列不可控的后果 s">
@@ -140,9 +141,9 @@
 <meta property="og:image" content="https://clancyb00m.github.io/img/unserialize/unserialize.png">
 <meta property="og:image" content="https://clancyb00m.github.io/img/unserialize//ok.png">
 <meta property="og:image" content="https://clancyb00m.github.io/img/unserialize//shell.png">
-<meta property="og:updated_time" content="2019-01-17T04:57:15.094Z">
+<meta property="og:updated_time" content="2019-03-08T03:26:39.477Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="T0mmclancy`s Blog">
+<meta name="twitter:title" content="浅析PHP反序列化漏洞">
 <meta name="twitter:description" content="序列化与反序列化用户数据在$_SESSION中存储，当用户数据过大，内存占用过大，为了节省内存，选择把用户数据存储在文件中，即使用serialize()函数把用户数据存储到文件中，在使用的时候，在通过unserialize()函数调用 漏洞成因漏洞的形成的根本原因是程序没有对用户输入的反序列化字符串进行检测，导致反序列化过程可以被恶意控制，进而造成代码执行、getshell等一系列不可控的后果 s">
 <meta name="twitter:image" content="https://clancyb00m.github.io/img/unserialize/unserialize.png">
 
@@ -163,7 +164,7 @@
   };
 </script>
 
-  <title> | T0mmclancy`s Blog</title>
+  <title>浅析PHP反序列化漏洞 | T0mmclancy`s Blog</title>
   
 
 
@@ -395,7 +396,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">浅析PHP反序列化漏洞
               
             
           </h1>
@@ -420,12 +421,24 @@
                 
               
 
-              <time title="创建时间：2019-01-17 12:41:59 / 修改时间：12:57:15" itemprop="dateCreated datePublished" datetime="2019-01-17T12:41:59+08:00">2019-01-17</time>
+              <time title="创建时间：2019-01-17 12:30:00" itemprop="dateCreated datePublished" datetime="2019-01-17T12:30:00+08:00">2019-01-17</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-08 11:26:39" itemprop="dateModified" datetime="2019-03-08T11:26:39+08:00">2019-03-08</time>
               
             
           </span>
@@ -438,7 +451,7 @@
 
           
           
-             <span id="/2019/01/17/PHP反序列化漏洞/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2019/01/17/PHP反序列化漏洞/" class="leancloud_visitors" data-flag-title="浅析PHP反序列化漏洞">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -544,6 +557,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/反序列化/" rel="tag"><i class="fa fa-tag"></i> 反序列化</a>
+          
+        </div>
       
 
       
@@ -696,7 +715,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -805,7 +826,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共29.9k字</span>
+  <span class="post-count">博客全站共30k字</span>
 </div>
         
 

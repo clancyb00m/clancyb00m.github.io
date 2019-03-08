@@ -130,13 +130,13 @@
 
 
 
-  <meta name="description" content="说明本次搭建用的是centos6的虚拟机，是大佬直接传给我的虚拟机，所有就存在了一个问题，克隆的虚拟机会出现网卡找不到的情况解决方法就是:    执行命令：   cat /etc/udev/rules.d/70-persistent-net.rules   查看里面最下面的网卡名称和MAC地址    然后打开网卡配置信息并修改   vi /etc/sysconfig/network-scripts">
+  <meta name="description" content="不吹不黑，照着这个流程来，我已经成功搭建了很多遍了  说明本次搭建用的是centos6的虚拟机，是大佬直接传给我的虚拟机，所有就存在了一个问题，克隆的虚拟机会出现网卡找不到的情况解决方法就是:    执行命令：   cat /etc/udev/rules.d/70-persistent-net.rules   查看里面最下面的网卡名称和MAC地址    然后打开网卡配置信息并修改   vi /e">
 <meta name="keywords" content="lamp,搭建">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LAMP环境搭建与配置">
 <meta property="og:url" content="https://clancyb00m.github.io/2018/12/05/LAMP环境搭建与配置/index.html">
 <meta property="og:site_name" content="T0mmclancy`s Blog">
-<meta property="og:description" content="说明本次搭建用的是centos6的虚拟机，是大佬直接传给我的虚拟机，所有就存在了一个问题，克隆的虚拟机会出现网卡找不到的情况解决方法就是:    执行命令：   cat /etc/udev/rules.d/70-persistent-net.rules   查看里面最下面的网卡名称和MAC地址    然后打开网卡配置信息并修改   vi /etc/sysconfig/network-scripts">
+<meta property="og:description" content="不吹不黑，照着这个流程来，我已经成功搭建了很多遍了  说明本次搭建用的是centos6的虚拟机，是大佬直接传给我的虚拟机，所有就存在了一个问题，克隆的虚拟机会出现网卡找不到的情况解决方法就是:    执行命令：   cat /etc/udev/rules.d/70-persistent-net.rules   查看里面最下面的网卡名称和MAC地址    然后打开网卡配置信息并修改   vi /e">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://clancyb00m.github.io/img/181205/noeth001.png">
 <meta property="og:image" content="https://clancyb00m.github.io/img/181205/udev70net01.png">
@@ -159,10 +159,10 @@
 <meta property="og:image" content="https://clancyb00m.github.io/img/181205/mysql06.png">
 <meta property="og:image" content="https://clancyb00m.github.io/img/181205/create01.png">
 <meta property="og:image" content="https://clancyb00m.github.io/img/181205/success01.png">
-<meta property="og:updated_time" content="2018-12-30T10:47:11.399Z">
+<meta property="og:updated_time" content="2019-03-08T02:17:31.546Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LAMP环境搭建与配置">
-<meta name="twitter:description" content="说明本次搭建用的是centos6的虚拟机，是大佬直接传给我的虚拟机，所有就存在了一个问题，克隆的虚拟机会出现网卡找不到的情况解决方法就是:    执行命令：   cat /etc/udev/rules.d/70-persistent-net.rules   查看里面最下面的网卡名称和MAC地址    然后打开网卡配置信息并修改   vi /etc/sysconfig/network-scripts">
+<meta name="twitter:description" content="不吹不黑，照着这个流程来，我已经成功搭建了很多遍了  说明本次搭建用的是centos6的虚拟机，是大佬直接传给我的虚拟机，所有就存在了一个问题，克隆的虚拟机会出现网卡找不到的情况解决方法就是:    执行命令：   cat /etc/udev/rules.d/70-persistent-net.rules   查看里面最下面的网卡名称和MAC地址    然后打开网卡配置信息并修改   vi /e">
 <meta name="twitter:image" content="https://clancyb00m.github.io/img/181205/noeth001.png">
 
 
@@ -456,7 +456,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-30 18:47:11" itemprop="dateModified" datetime="2018-12-30T18:47:11+08:00">2018-12-30</time>
+                <time title="修改时间：2019-03-08 10:17:31" itemprop="dateModified" datetime="2019-03-08T10:17:31+08:00">2019-03-08</time>
               
             
           </span>
@@ -501,7 +501,10 @@
       
 
       
-        <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>本次搭建用的是<code>centos6</code>的虚拟机，是<a href="https://www.cleverbao.blog" target="_blank" rel="noopener">大佬</a>直接传给我的虚拟机，所有就存在了一个问题，克隆的虚拟机会出现网卡找不到的情况<br><img src="/img/181205/noeth001.png" alt="网卡找不到"><br>解决方法就是:  </p>
+        <blockquote>
+<p>不吹不黑，照着这个流程来，我已经成功搭建了很多遍了</p>
+</blockquote>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>本次搭建用的是<code>centos6</code>的虚拟机，是<a href="https://www.cleverbao.blog" target="_blank" rel="noopener">大佬</a>直接传给我的虚拟机，所有就存在了一个问题，克隆的虚拟机会出现网卡找不到的情况<br><img src="/img/181205/noeth001.png" alt="网卡找不到"><br>解决方法就是:  </p>
 <ol>
 <li><p>执行命令：  </p>
 <pre><code>cat /etc/udev/rules.d/70-persistent-net.rules  
@@ -523,12 +526,12 @@
 <li>PHP 是一种编程语言最初设计生产动态网站。PHP 是主要用于服务器端的应用程序软件  </li>
 </ul>
 <p>接下来我们开始安装，为了方便，我们直接使用<code>yum</code>来安装</p>
-<h3 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h3><ol>
+<h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2><ol>
 <li><p>执行命令：  </p>
-<pre><code>yum install httpd httpd-devel httpd-manual mod_ssl mod_perl mod_auth_mysql  
+<pre><code>yum install httpd httpd-devel httpd-manual mod_ssl mod_perl mod_auth_mysql -y
 </code></pre><p><img src="/img/181205/httpd01.png" alt="安装httpd"></p>
 </li>
-<li>装完之后，在启动前，需要解决一个错误：<br><img src="/img/181205/error01.png" alt="servername"><br>首先验证你有没有这个错误，直接执行命令<code>httpd</code>看是否和上面错误一样，如果一样，那我们就来解决它  </li>
+<li>装完之后，在启动前，需要解决一个错误：<br><img src="/img/181205/error01.png" alt="servername"><br>首先验证你有没有这个错误，直接执行命令<code>httpd</code>看是否和上面错误一样，如果一样，那我们就来解决它  （这里可以选择忽略掉这个错误，这个错误是在说找不到域名，并无影响）</li>
 <li><p>我们先停止<code>httpd</code>服务，执行命令<code>service httpd stop</code>,打开<code>httpd.conf</code>配置文件，修改<code>ServcerName</code>，使域名生效，所以我们来执行命令：  </p>
 <pre><code>vi /etc/httpd/conf/httpd.conf  
 /exam   :为了更快速的找到servername
@@ -555,9 +558,9 @@
 <pre><code>service iptables restart  
 </code></pre><p><img src="/img/181205/iptables01.png" alt="重启防火墙"><br>成功访问：<br><img src="/img/181205/apache01.png" alt="访问Apache"><br>设置开机自启：  </p>
 <pre><code>chkconfig httpd on  
-</code></pre><h3 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h3><ol>
+</code></pre><h2 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h2><ol>
 <li><p>执行命令：</p>
-<pre><code>yum install mysql mysql-server mysql-devel  
+<pre><code>yum install mysql mysql-server mysql-devel -y
 </code></pre><p><img src="/img/181205/mysql01.png" alt="安装MySQL"><br>至此MySQL就安装完成  </p>
 </li>
 <li><p>启动<code>MySQL</code>  </p>
@@ -569,18 +572,17 @@
 </code></pre><p>在这里需要设置<code>MySQL</code>数据库密码：<br><img src="/img/181205/mysql04.png" alt="设置MySQL密码"><br>之后一路回车就完事儿了<br><img src="/img/181205/mysql05.png" alt="完成安装MySQL"><br>设置开机自启：  </p>
 <pre><code>chkconfig mysqld on  
 </code></pre><p>至此<code>MySQL</code>就安装完成了！  </p>
-<h3 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h3><pre><code>yum install php php-mysql php-common php-gd php-mbstring php-mcrypt php-devel php-xml  
+<h2 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h2><pre><code>yum install php php-mysql php-common php-gd php-mbstring php-mcrypt php-devel php-xml -y
 </code></pre><p><img src="/img/181205/php01.png" alt="安装php"><br><code>php</code>安装完成<br>由于<code>PHP</code>是<code>Apache</code>的扩展，所以安装完<code>PHP</code>后需要重启<code>Apache</code>服务：  </p>
 <pre><code>service httpd restart  
 </code></pre><p><img src="/img/181205/apache02.png" alt="Apache重启">  </p>
 </li>
 </ol>
+<p>在安装成功后，记得修改文件夹权限，避免出现权限问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R apache:apache /var/www/html</span><br></pre></td></tr></table></figure>
 <p>至此，<code>LAMP</code>环境安装完成</p>
 <h1 id="搭建网站"><a href="#搭建网站" class="headerlink" title="搭建网站"></a>搭建网站</h1><ol>
 <li>我们来导入网站源码测试一下，这次我们搭建一个漏洞环境，通过小黄鸭将文件导入<code>/var/www/html</code>目录中：<br><img src="/img/181205/cyberduck01.png" alt="cyberduck">  </li>
-<li><p>修改文件夹权限，避免出现权限问题：  </p>
-<pre><code>chown -R apache:apache /var/www/html  
-</code></pre></li>
 <li><p>打开配置文件  </p>
 <pre><code>vi /var/www/html/sys/config.php  
 </code></pre><p>修改账户密码为自己数据库的账户密码，保存退出即可<br><img src="/img/181205/change01.png" alt="修改账户密码">  </p>
@@ -793,7 +795,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -843,7 +847,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建LAMP"><span class="nav-number">2.</span> <span class="nav-text">搭建LAMP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Apache"><span class="nav-number">2.0.1.</span> <span class="nav-text">安装Apache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装MySQL"><span class="nav-number">2.0.2.</span> <span class="nav-text">安装MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装PHP"><span class="nav-number">2.0.3.</span> <span class="nav-text">安装PHP</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建网站"><span class="nav-number">3.</span> <span class="nav-text">搭建网站</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建LAMP"><span class="nav-number">2.</span> <span class="nav-text">搭建LAMP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Apache"><span class="nav-number">2.1.</span> <span class="nav-text">安装Apache</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装MySQL"><span class="nav-number">2.2.</span> <span class="nav-text">安装MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装PHP"><span class="nav-number">2.3.</span> <span class="nav-text">安装PHP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建网站"><span class="nav-number">3.</span> <span class="nav-text">搭建网站</span></a></li></ol></div>
             
 
           </div>
@@ -902,7 +906,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共29.9k字</span>
+  <span class="post-count">博客全站共30k字</span>
 </div>
         
 

@@ -130,13 +130,13 @@
 
 
 
-  <meta name="description" content="本文可能有点乱，右边有个目录，看着那个来就行了   本文讲述linux（centos7）使用rpm安装php的过程rpm安装软件的命令是这样的：rpm -ivh 软件名    -i –install,安装 -v –verbose,详细过程 -h –hash,显示进度信息   过程中会遇到依赖包的问题，一个一个解决掉就完事儿了！   开始安装解压php.rat.gz进入packages目录中，有5">
+  <meta name="description" content="引言 本文讲述linux（centos7）使用rpm安装php的过程rpm安装软件的命令是这样的：rpm -ivh 软件名    -i –install,安装 -v –verbose,详细过程 -h –hash,显示进度信息  过程中会遇到依赖包的问题，这些依赖包，必须按照某个顺序来执行 下面的安装过程，是我当时安装的整个思路，所以在右侧的目录中，会出现一个安装包好像安装了两次一样，其实那只是一个">
 <meta name="keywords" content="rpm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="rpm安装php">
 <meta property="og:url" content="https://clancyb00m.github.io/2018/12/07/rpm安装php/index.html">
 <meta property="og:site_name" content="T0mmclancy`s Blog">
-<meta property="og:description" content="本文可能有点乱，右边有个目录，看着那个来就行了   本文讲述linux（centos7）使用rpm安装php的过程rpm安装软件的命令是这样的：rpm -ivh 软件名    -i –install,安装 -v –verbose,详细过程 -h –hash,显示进度信息   过程中会遇到依赖包的问题，一个一个解决掉就完事儿了！   开始安装解压php.rat.gz进入packages目录中，有5">
+<meta property="og:description" content="引言 本文讲述linux（centos7）使用rpm安装php的过程rpm安装软件的命令是这样的：rpm -ivh 软件名    -i –install,安装 -v –verbose,详细过程 -h –hash,显示进度信息  过程中会遇到依赖包的问题，这些依赖包，必须按照某个顺序来执行 下面的安装过程，是我当时安装的整个思路，所以在右侧的目录中，会出现一个安装包好像安装了两次一样，其实那只是一个">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://clancyb00m.github.io/img/rpm/tarphp01.png">
 <meta property="og:image" content="https://clancyb00m.github.io/img/rpm/ls.png">
@@ -166,10 +166,10 @@
 <meta property="og:image" content="https://clancyb00m.github.io/img/rpm/ls.png">
 <meta property="og:image" content="https://clancyb00m.github.io/img/rpm/php06.png">
 <meta property="og:image" content="https://clancyb00m.github.io/img/rpm/php07.png">
-<meta property="og:updated_time" content="2018-12-30T10:47:45.699Z">
+<meta property="og:updated_time" content="2019-03-08T02:40:39.900Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rpm安装php">
-<meta name="twitter:description" content="本文可能有点乱，右边有个目录，看着那个来就行了   本文讲述linux（centos7）使用rpm安装php的过程rpm安装软件的命令是这样的：rpm -ivh 软件名    -i –install,安装 -v –verbose,详细过程 -h –hash,显示进度信息   过程中会遇到依赖包的问题，一个一个解决掉就完事儿了！   开始安装解压php.rat.gz进入packages目录中，有5">
+<meta name="twitter:description" content="引言 本文讲述linux（centos7）使用rpm安装php的过程rpm安装软件的命令是这样的：rpm -ivh 软件名    -i –install,安装 -v –verbose,详细过程 -h –hash,显示进度信息  过程中会遇到依赖包的问题，这些依赖包，必须按照某个顺序来执行 下面的安装过程，是我当时安装的整个思路，所以在右侧的目录中，会出现一个安装包好像安装了两次一样，其实那只是一个">
 <meta name="twitter:image" content="https://clancyb00m.github.io/img/rpm/tarphp01.png">
 
 
@@ -463,7 +463,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-30 18:47:45" itemprop="dateModified" datetime="2018-12-30T18:47:45+08:00">2018-12-30</time>
+                <time title="修改时间：2019-03-08 10:40:39" itemprop="dateModified" datetime="2019-03-08T10:40:39+08:00">2019-03-08</time>
               
             
           </span>
@@ -508,44 +508,40 @@
       
 
       
-        <blockquote>
-<p>本文可能有点乱，右边有个目录，看着那个来就行了</p>
-</blockquote>
-<blockquote>
-<p>本文讲述linux（centos7）使用rpm安装php的过程<br>rpm安装软件的命令是这样的：rpm -ivh 软件名  </p>
+        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p> 本文讲述linux（centos7）使用rpm安装php的过程<br>rpm安装软件的命令是这样的：rpm -ivh 软件名  </p>
 <ol>
 <li>-i –install,安装</li>
 <li>-v –verbose,详细过程</li>
 <li>-h –hash,显示进度信息</li>
 </ol>
-</blockquote>
-<p>过程中会遇到依赖包的问题，一个一个解决掉就完事儿了！  </p>
+<p>过程中会遇到依赖包的问题，这些依赖包，必须按照某个顺序来执行</p>
+<p>下面的安装过程，是我当时安装的整个思路，所以在右侧的目录中，会出现一个安装包好像安装了两次一样，其实那只是一个调试的过程</p>
 <h1 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h1><p>解压<code>php.rat.gz</code><br><img src="/img/rpm/tarphp01.png" alt="解压php"><br>进入<code>packages</code>目录中，有5个文件，都是安装包，这篇文章主线就是安装这五个包，随便执行一个瞅瞅<br><img src="/img/rpm/ls.png" alt="ls">  </p>
-<h1 id="安装httpd…"><a href="#安装httpd…" class="headerlink" title="安装httpd…"></a>安装httpd…</h1><p><img src="/img/rpm/httpd01.png" alt="安装httpd-2.4.6"><br>这个错误中说明安装此程序需要四个依赖，不过其中有一个依赖（<code>http-tools...</code>）在我解压<code>php.tar.gz</code>的时候里面有，所以，可以先安装那个试一试  </p>
-<h1 id="①安装httpd-tools…"><a href="#①安装httpd-tools…" class="headerlink" title="①安装httpd-tools…"></a>①安装httpd-tools…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/httpdtools01.png" alt="httpdtools"><br>缺少这两个依赖包，去镜像站下载，我这里用的华为的镜像站，下载好，传到虚拟机里面来，如下：<br><img src="/img/rpm/apr01.png" alt="安装apr">  </p>
-<h5 id="安装apr…"><a href="#安装apr…" class="headerlink" title="安装apr…"></a>安装apr…</h5><p><img src="/img/rpm/apr02.png" alt="apr"><br>成功！  </p>
-<h5 id="安装apr-util…："><a href="#安装apr-util…：" class="headerlink" title="安装apr-util…："></a>安装apr-util…：</h5><p><img src="/img/rpm/aprutil01.png" alt="apr-util"><br>成功！</p>
+<h2 id="安装httpd-2-4-6···"><a href="#安装httpd-2-4-6···" class="headerlink" title="安装httpd-2.4.6···"></a>安装httpd-2.4.6···</h2><p><img src="/img/rpm/httpd01.png" alt="安装httpd-2.4.6"><br>这个错误中说明安装此程序需要四个依赖，不过其中有一个依赖（<strong>http-tools···</strong>）在我解压<code>php.tar.gz</code>的时候里面有，所以，可以先安装那个试一试  </p>
+<h2 id="安装httpd-tools···"><a href="#安装httpd-tools···" class="headerlink" title="安装httpd-tools···"></a>安装httpd-tools···</h2><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/httpdtools01.png" alt="httpdtools"><br>缺少这两个依赖包，去镜像站下载，我这里用的华为的镜像站，下载好，传到虚拟机里面来，如下：<br><img src="/img/rpm/apr01.png" alt="安装apr">  </p>
+<h3 id="安装apr···"><a href="#安装apr···" class="headerlink" title="安装apr···"></a>安装apr···</h3><p><img src="/img/rpm/apr02.png" alt="apr"><br>成功！  </p>
+<h3 id="安装apr-util···："><a href="#安装apr-util···：" class="headerlink" title="安装apr-util···："></a>安装apr-util···：</h3><p><img src="/img/rpm/aprutil01.png" alt="apr-util"><br>成功！</p>
 <blockquote>
 <p>注：如果安装这两个顺序反了，可能会出错，不过也没啥，可能错误就是<code>apr-util</code>被<code>apr</code>依赖，那你先安装<code>apr</code>就ojbk了  </p>
 </blockquote>
-<h5 id="继续安装httpd-tools…"><a href="#继续安装httpd-tools…" class="headerlink" title="继续安装httpd-tools…"></a>继续安装httpd-tools…</h5><p><img src="/img/rpm/httpdtools02.png" alt="httpdtools"><br>成功！  </p>
-<h1 id="②安装httpd…"><a href="#②安装httpd…" class="headerlink" title="②安装httpd…"></a>②安装httpd…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/httpd02.png" alt="httpd"><br>这里有个坑！在镜像站里面是找不到<code>/etc/mime.types</code>这个货的，像这种错误信息里给出的名字和安装包的名字不一样的恶心情况，有两种解决办法：  </p>
+<h3 id="继续安装httpd-tools···"><a href="#继续安装httpd-tools···" class="headerlink" title="继续安装httpd-tools···"></a>继续安装httpd-tools···</h3><p><img src="/img/rpm/httpdtools02.png" alt="httpdtools"><br>成功！  </p>
+<h2 id="安装httpd-2-4-6···-1"><a href="#安装httpd-2-4-6···-1" class="headerlink" title="安装httpd-2.4.6···"></a>安装httpd-2.4.6···</h2><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/httpd02.png" alt="httpd"><br>这里有个坑！在镜像站里面是找不到<code>/etc/mime.types</code>这个货的，像这种错误信息里给出的名字和安装包的名字不一样的恶心情况，有两种解决办法：  </p>
 <blockquote>
 <ol>
 <li>使用<code>yum</code>安装httpd，然后查看安装过程，找到<code>/etc/mime.types</code>，看紧跟着它下面要安装的包的名字，就是我们要找的玩意儿<br><img src="/img/rpm/mailcap01.png" alt="mailcap">  </li>
 <li>Google一下，你全知道<br>所以我是Google出来看到别的大佬用的第一种方法找到然后分享的，然后我就直接去镜像站找了这个货，传进虚拟机，装它  </li>
 </ol>
 </blockquote>
-<h5 id="安装mailcap…"><a href="#安装mailcap…" class="headerlink" title="安装mailcap…"></a>安装mailcap…</h5><p><img src="/img/rpm/mailcap02.png" alt="mailcap"><br>成功！！  </p>
-<h5 id="继续安装httpd…"><a href="#继续安装httpd…" class="headerlink" title="继续安装httpd…"></a>继续安装httpd…</h5><p><img src="/img/rpm/httpd03.png" alt="httpd"><br>成功！  </p>
-<h3 id="安装php…"><a href="#安装php…" class="headerlink" title="安装php…"></a>安装php…</h3><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php01.png" alt="php"><br>这里说明一点，这三个包是相互依赖的关系，不管你先装哪个，最后出错了，还是要按照这个顺序来，所以我就直接按照这个<code>正确</code>的顺序来装了：  </p>
-<h1 id="③安装php-common…"><a href="#③安装php-common…" class="headerlink" title="③安装php-common…"></a>③安装php-common…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php02.png" alt="php-common"><br>缺少这个玩意儿，去镜像站下载，传过来，装它：  </p>
-<h5 id="安装libzip…"><a href="#安装libzip…" class="headerlink" title="安装libzip…"></a>安装libzip…</h5><p><img src="/img/rpm/libzip01.png" alt="libzip"><br>成功！  </p>
-<h5 id="继续安装php-common…"><a href="#继续安装php-common…" class="headerlink" title="继续安装php-common…"></a>继续安装php-common…</h5><p><img src="/img/rpm/php03.png" alt="php-common"><br>成功！  </p>
-<h1 id="④安装php-cli…"><a href="#④安装php-cli…" class="headerlink" title="④安装php-cli…"></a>④安装php-cli…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php04.png" alt="php-cli"><br>这里！这里！是最恶心的一个地方！首先，找不到<code>libcrypto</code>这个玩意儿，然后发现这个是<code>openssl</code>的扩展还是依赖，就是最后发现是因为<code>openssl</code>的版本过低，然后去更新版本，如果通过rpm来装，好像有三十多个依赖包，我崩溃了。所以我选择用<code>yum</code>来装，<code>yum</code>大法好！！  </p>
-<h5 id="yum安装openssl"><a href="#yum安装openssl" class="headerlink" title="yum安装openssl"></a>yum安装openssl</h5><p><img src="/img/rpm/openssl01.png" alt="yumINSTALLopenssl"><br><img src="/img/rpm/openssl02.png" alt="yumINSTALLopenssl"><br>成功！  </p>
-<h5 id="继续安装php-cli…"><a href="#继续安装php-cli…" class="headerlink" title="继续安装php-cli…"></a>继续安装php-cli…</h5><p><img src="/img/rpm/php05.png" alt="php-cli"><br>成功！  </p>
-<h1 id="⑤安装php…"><a href="#⑤安装php…" class="headerlink" title="⑤安装php…"></a>⑤安装php…</h1><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php06.png" alt="php"><br>大功告成！！！！！！  </p>
+<h3 id="安装mailcap···"><a href="#安装mailcap···" class="headerlink" title="安装mailcap···"></a>安装mailcap···</h3><p><img src="/img/rpm/mailcap02.png" alt="mailcap"><br>成功！！  </p>
+<h3 id="继续安装httpd···"><a href="#继续安装httpd···" class="headerlink" title="继续安装httpd···"></a>继续安装httpd···</h3><p><img src="/img/rpm/httpd03.png" alt="httpd"><br>成功！  </p>
+<h2 id="安装php···"><a href="#安装php···" class="headerlink" title="安装php···"></a>安装php···</h2><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php01.png" alt="php"><br>这里说明一点，这三个包是相互依赖的关系，不管你先装哪个，最后出错了，还是要按照这个顺序来，所以我就直接按照这个<code>正确</code>的顺序来装了：  </p>
+<h2 id="安装php-common···"><a href="#安装php-common···" class="headerlink" title="安装php-common···"></a>安装php-common···</h2><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php02.png" alt="php-common"><br>缺少这个玩意儿，去镜像站下载，传过来，装它：  </p>
+<h3 id="安装libzip···"><a href="#安装libzip···" class="headerlink" title="安装libzip···"></a>安装libzip···</h3><p><img src="/img/rpm/libzip01.png" alt="libzip"><br>成功！  </p>
+<h3 id="继续安装php-common···"><a href="#继续安装php-common···" class="headerlink" title="继续安装php-common···"></a>继续安装php-common···</h3><p><img src="/img/rpm/php03.png" alt="php-common"><br>成功！  </p>
+<h2 id="安装php-cli···"><a href="#安装php-cli···" class="headerlink" title="安装php-cli···"></a>安装php-cli···</h2><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php04.png" alt="php-cli"><br>这里！这里！是最恶心的一个地方！首先，找不到<code>libcrypto</code>这个玩意儿，然后发现这个是<code>openssl</code>的扩展还是依赖，就是最后发现是因为<code>openssl</code>的版本过低，然后去更新版本，如果通过rpm来装，好像有三十多个依赖包，我崩溃了。所以我选择用<code>yum</code>来装，<code>yum</code>大法好！！  </p>
+<h3 id="yum安装openssl"><a href="#yum安装openssl" class="headerlink" title="yum安装openssl"></a>yum安装openssl</h3><p><img src="/img/rpm/openssl01.png" alt="yumINSTALLopenssl"><br><img src="/img/rpm/openssl02.png" alt="yumINSTALLopenssl"><br>成功！  </p>
+<h3 id="继续安装php-cli···"><a href="#继续安装php-cli···" class="headerlink" title="继续安装php-cli···"></a>继续安装php-cli···</h3><p><img src="/img/rpm/php05.png" alt="php-cli"><br>成功！  </p>
+<h2 id="安装php···-1"><a href="#安装php···-1" class="headerlink" title="安装php···"></a>安装php···</h2><p><img src="/img/rpm/ls.png" alt="ls"><br><img src="/img/rpm/php06.png" alt="php"><br>大功告成！！！！！！  </p>
 <h1 id="查看是否安装成功"><a href="#查看是否安装成功" class="headerlink" title="查看是否安装成功"></a>查看是否安装成功</h1><p>查看PHP版本即可：<br><img src="/img/rpm/php07.png" alt="phpversion">  </p>
 <blockquote>
 <p>如果本文有任何错误，欢迎留言给我：<a href="https://github.com/clancyb00m/clancyb00m.github.io/issues" target="_blank" rel="noopener">Contact Me！</a></p>
@@ -620,8 +616,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/13/php(以代码层面出发)/" rel="prev" title="php(以代码层面出发)">
-                php(以代码层面出发) <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/13/php(以代码层面出发)/" rel="prev" title="我的PHP学习笔记(以代码层面出发)">
+                我的PHP学习笔记(以代码层面出发) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -752,7 +748,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -802,7 +800,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开始安装"><span class="nav-number">1.</span> <span class="nav-text">开始安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装httpd…"><span class="nav-number">2.</span> <span class="nav-text">安装httpd…</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#①安装httpd-tools…"><span class="nav-number">3.</span> <span class="nav-text">①安装httpd-tools…</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装apr…"><span class="nav-number">3.0.0.0.1.</span> <span class="nav-text">安装apr…</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#安装apr-util…："><span class="nav-number">3.0.0.0.2.</span> <span class="nav-text">安装apr-util…：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#继续安装httpd-tools…"><span class="nav-number">3.0.0.0.3.</span> <span class="nav-text">继续安装httpd-tools…</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#②安装httpd…"><span class="nav-number">4.</span> <span class="nav-text">②安装httpd…</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装mailcap…"><span class="nav-number">4.0.0.0.1.</span> <span class="nav-text">安装mailcap…</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#继续安装httpd…"><span class="nav-number">4.0.0.0.2.</span> <span class="nav-text">继续安装httpd…</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装php…"><span class="nav-number">4.0.1.</span> <span class="nav-text">安装php…</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#③安装php-common…"><span class="nav-number">5.</span> <span class="nav-text">③安装php-common…</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装libzip…"><span class="nav-number">5.0.0.0.1.</span> <span class="nav-text">安装libzip…</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#继续安装php-common…"><span class="nav-number">5.0.0.0.2.</span> <span class="nav-text">继续安装php-common…</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#④安装php-cli…"><span class="nav-number">6.</span> <span class="nav-text">④安装php-cli…</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#yum安装openssl"><span class="nav-number">6.0.0.0.1.</span> <span class="nav-text">yum安装openssl</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#继续安装php-cli…"><span class="nav-number">6.0.0.0.2.</span> <span class="nav-text">继续安装php-cli…</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⑤安装php…"><span class="nav-number">7.</span> <span class="nav-text">⑤安装php…</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看是否安装成功"><span class="nav-number">8.</span> <span class="nav-text">查看是否安装成功</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始安装"><span class="nav-number">2.</span> <span class="nav-text">开始安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装httpd-2-4-6···"><span class="nav-number">2.1.</span> <span class="nav-text">安装httpd-2.4.6···</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装httpd-tools···"><span class="nav-number">2.2.</span> <span class="nav-text">安装httpd-tools···</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装apr···"><span class="nav-number">2.2.1.</span> <span class="nav-text">安装apr···</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装apr-util···："><span class="nav-number">2.2.2.</span> <span class="nav-text">安装apr-util···：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继续安装httpd-tools···"><span class="nav-number">2.2.3.</span> <span class="nav-text">继续安装httpd-tools···</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装httpd-2-4-6···-1"><span class="nav-number">2.3.</span> <span class="nav-text">安装httpd-2.4.6···</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装mailcap···"><span class="nav-number">2.3.1.</span> <span class="nav-text">安装mailcap···</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继续安装httpd···"><span class="nav-number">2.3.2.</span> <span class="nav-text">继续安装httpd···</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装php···"><span class="nav-number">2.4.</span> <span class="nav-text">安装php···</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装php-common···"><span class="nav-number">2.5.</span> <span class="nav-text">安装php-common···</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装libzip···"><span class="nav-number">2.5.1.</span> <span class="nav-text">安装libzip···</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继续安装php-common···"><span class="nav-number">2.5.2.</span> <span class="nav-text">继续安装php-common···</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装php-cli···"><span class="nav-number">2.6.</span> <span class="nav-text">安装php-cli···</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#yum安装openssl"><span class="nav-number">2.6.1.</span> <span class="nav-text">yum安装openssl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继续安装php-cli···"><span class="nav-number">2.6.2.</span> <span class="nav-text">继续安装php-cli···</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装php···-1"><span class="nav-number">2.7.</span> <span class="nav-text">安装php···</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看是否安装成功"><span class="nav-number">3.</span> <span class="nav-text">查看是否安装成功</span></a></li></ol></div>
             
 
           </div>
@@ -861,7 +859,7 @@
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共29.9k字</span>
+  <span class="post-count">博客全站共30k字</span>
 </div>
         
 

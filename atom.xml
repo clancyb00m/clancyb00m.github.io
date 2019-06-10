@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://clancyb00m.github.io/"/>
-  <updated>2019-05-19T15:29:23.531Z</updated>
+  <updated>2019-06-10T14:45:23.580Z</updated>
   <id>https://clancyb00m.github.io/</id>
   
   <author>
@@ -17,25 +17,25 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>加油加油</title>
-    <link href="https://clancyb00m.github.io/2019/05/19/%E6%B0%B4%E4%B8%80%E8%B4%B4/"/>
-    <id>https://clancyb00m.github.io/2019/05/19/水一贴/</id>
-    <published>2019-05-19T15:29:41.000Z</published>
-    <updated>2019-05-19T15:29:23.531Z</updated>
+    <title>基于Python2编写的子域名搜集小工具</title>
+    <link href="https://clancyb00m.github.io/2019/06/10/%E5%9F%BA%E4%BA%8Epython2%E7%9A%84%E5%AD%90%E5%9F%9F%E5%90%8D%E6%90%9C%E9%9B%86%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
+    <id>https://clancyb00m.github.io/2019/06/10/基于python2的子域名搜集小工具/</id>
+    <published>2019-06-10T11:10:00.000Z</published>
+    <updated>2019-06-10T14:45:23.580Z</updated>
     
-    <content type="html"><![CDATA[<p>从上次更新博客（2019-02-23）到现在，忙于毕业设计和答辩，然后感觉这中间有大概一个多月没搞过，导致我现在感觉有点生疏，其实从4月份开始，就感觉想要写点什么，但是每次选好题材要写的时候感觉自己对这个题材的理解都是皮毛，写不出来什么东西，一直纠结到现在，其实还是不知道写什么，但是我觉得，不管自己懂多少，都要写下来，每次学习一点，慢慢的就能写的很有水平了，同时记录一下自己的成长。</p><p>再加上现在找到了工作，希望可以稳定写一些东西，鼓励自己学下去，即使有很多水文（比如这篇），也要继续写下去。因为一直写，说明我一直在学，给自己加个油吧。</p>]]></content>
+    <content type="html"><![CDATA[<p>python 在渗透测试的过程中，起到了很强大的作用，可以帮助我们完成一些重复的、复杂的工作；最近学习 python 初有成效，但是干学没有意义，边学边用才能进步的更快，本文是我写的基于 百度api 的一个子域名查询小工具，通过一些简单的 python 操作，就可以提取出对我们非常有用的信息。</p><p>首先了解下这个api的作用：</p><p>通过在 <code>site_address</code> 参数后接域名，即可查询该域名下的子域名：</p><blockquote><p><a href="http://ce.baidu.com/index/getRelatedSites?site_address=baidu.com" target="_blank" rel="noopener">http://ce.baidu.com/index/getRelatedSites?site_address=baidu.com</a></p></blockquote><p><img src="/img/190610python/bdapi01.png" alt=""></p><p>其实在浏览器直接访问也就完了，没有什么其他操作了，但为了巩固我所学的 python ，这里对收到的结果进行整理并放入文件中，以便其他工具直接使用。</p><p><strong>获取用户输入</strong></p><p>为了让这个工具更方便，所以构造可以根据用户提供的域名来进行操作</p><blockquote><p>不考虑输入的不是域名的情况</p></blockquote><p>通过 <code>sys</code> 库来获取用户的输入：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line"></span><br><span class="line">value = sys.argv[1]</span><br></pre></td></tr></table></figure><p><strong>构造 web 请求并获取响应内容</strong></p><p>通过 <code>requests</code> 库来进行 web 请求操作：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">payload = &#123;&apos;site_address&apos;: value&#125;</span><br><span class="line">url = &apos;http://ce.baidu.com/index/getRelatedSites&apos;</span><br><span class="line">r = requests.get(url, params=payload)</span><br></pre></td></tr></table></figure><p><strong>通过正则匹配我们想要的结果</strong></p><p>通过上面的图片可以看出，每个域名大致都长这个样子：</p><blockquote><p>{“domain”:”<a href="http://www.baidu.com&quot;,&quot;score&quot;:100}" target="_blank" rel="noopener">www.baidu.com&quot;,&quot;score&quot;:100}</a></p></blockquote><p>所以只需提取出 <code>domain</code> 和 <code>score</code> 中间的内容即可，使用 <code>re</code> 库进行操作：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">res = re.findall(r&apos;&quot;domain&quot;:&quot;(.*?)&quot;,&quot;score&apos;, r.text)</span><br></pre></td></tr></table></figure><p>同时做个判断，如果未查询到子域名，则提示用户这个错误：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if res == []:</span><br><span class="line">    exit(&apos;Error! Unable to query subdomain of %s&apos; % value)</span><br></pre></td></tr></table></figure><p><strong>保存提取到的结果到文件中</strong></p><p>在获取到了所有的域名后，把它们放入文件中，以便其他工具方便使用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">with open(value+ &apos;.txt&apos;,&apos;w&apos;) as f:</span><br><span class="line">    for i in range(len(res)):</span><br><span class="line">        f.write(res[i]+&apos;\n&apos;)</span><br></pre></td></tr></table></figure><p><strong>源代码及效果</strong></p><p>源代码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line">import sys</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">value =sys.argv[1]</span><br><span class="line">payload = &#123;&apos;site_address&apos;: value&#125;</span><br><span class="line">url = &apos;http://ce.baidu.com/index/getRelatedSites&apos;</span><br><span class="line">r = requests.get(url, params=payload)</span><br><span class="line"></span><br><span class="line">res = re.findall(r&apos;&quot;domain&quot;:&quot;(.*?)&quot;,&quot;score&apos;, r.text)</span><br><span class="line">if res == []:</span><br><span class="line">    exit(&apos;Error! Unable to query subdomain of %s&apos; % value)</span><br><span class="line"></span><br><span class="line">with open(value+ &apos;.txt&apos;,&apos;w&apos;) as f:</span><br><span class="line">    for i in range(len(res)):</span><br><span class="line">        f.write(res[i]+&apos;\n&apos;)</span><br></pre></td></tr></table></figure><p>效果：</p><p><img src="/img/190610python/res01.png" alt=""></p><p><img src="/img/190610python/res02.png" alt=""></p><p><strong>总结</strong></p><p>其实工具用处并不大，就是为了学习 python ，希望通过这样的学习，能让我在日后的工作学习中运用的更熟练</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;从上次更新博客（2019-02-23）到现在，忙于毕业设计和答辩，然后感觉这中间有大概一个多月没搞过，导致我现在感觉有点生疏，其实从4月份开始，就感觉想要写点什么，但是每次选好题材要写的时候感觉自己对这个题材的理解都是皮毛，写不出来什么东西，一直纠结到现在，其实还是不知道写
+        &lt;p&gt;python 在渗透测试的过程中，起到了很强大的作用，可以帮助我们完成一些重复的、复杂的工作；最近学习 python 初有成效，但是干学没有意义，边学边用才能进步的更快，本文是我写的基于 百度api 的一个子域名查询小工具，通过一些简单的 python 操作，就可以提取出对
       
     
     </summary>
     
     
-      <category term="水贴" scheme="https://clancyb00m.github.io/tags/%E6%B0%B4%E8%B4%B4/"/>
+      <category term="python" scheme="https://clancyb00m.github.io/tags/python/"/>
     
   </entry>
   

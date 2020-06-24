@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+
+
+<html lang="ZH-CH" >
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="safe" />
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Metinfo6.1.2-CNVD-2018-20024-sql注入 |  clancyb00m`s Blog
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-Metinfo6.1.2-CNVD-2018-20024-sql注入" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Metinfo6.1.2-CNVD-2018-20024-sql注入
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/04/20/Metinfo6.1.2-CNVD-2018-20024-sql%E6%B3%A8%E5%85%A5/" class="article-date">
+  <time datetime="2020-04-20T14:12:56.386Z" itemprop="datePublished">2020-04-20</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.2k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">4分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="Metinfo"><a href="#Metinfo" class="headerlink" title="Metinfo"></a>Metinfo</h1><p>MetInfo是一款企业建站系统，采用PHP+Mysql架构，又称米拓企业建站系统。MetInfo是一款对SEO非常友好、支持多语言、功能全面、安全稳定、支持多终端展示并且支持可视化编辑、使用简单的企业建站软件。用户可以在不需要任何编程的基础上，通过简单的安装和可视化编辑设置就能够在互联网搭建独立的企业网站，能够极大的降低企业建站成本。</p>
+<p>存在SQL注入</p>
+<h1 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Metinfo 6.1.0</span><br><span class="line">Metinfo 6.1.1</span><br><span class="line">Metinfo 6.1.2</span><br></pre></td></tr></table></figure>
+
+<h1 id="挖掘"><a href="#挖掘" class="headerlink" title="挖掘"></a>挖掘</h1><p>fofa:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app&#x3D;&quot;MetInfo&quot;</span><br></pre></td></tr></table></figure>
+
+<h1 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h1><p>漏洞位于 <code>app/system/message/web/message.class.php</code> 文件的 <code>add</code> 函数中：</p>
+<p><img src="/img/metinfo6_1_2_sqli/1.png" alt=""></p>
+<a id="more"></a>
+<p>第43行 <code>$_M[form][id]</code> 直接拼接进sql语句中，无单引号保护，可能存在sql注入，于是向前找关系链</p>
+<p>message类继承自web类，web类位于 <code>app/system/include/class/web.class.php</code> ，web类又继承自common类，并且其构造函数使用了父类的构造函数</p>
+<p><img src="/img/metinfo6_1_2_sqli/2.png" alt=""></p>
+<p> 继续跟进common类，位于 <code>app/system/include/class/common.class.php</code> ，其构造函数使用了 <code>load_form()</code> 进行表单过滤：</p>
+<p><img src="/img/metinfo6_1_2_sqli/3.png" alt=""></p>
+<p><code>load_form()</code> 方法主要获取GET、POST、COOKIE方法传递的参数放在 <code>$_M[&#39;form&#39;]</code> 中，并经daddslashes()方法过滤。</p>
+<p><img src="/img/metinfo6_1_2_sqli/4.png" alt=""></p>
+<p>跟进daddslashes()方法</p>
+<p><img src="/img/metinfo6_1_2_sqli/5.png" alt=""></p>
+<p>当常量 <code>IN_ADMIN</code> 为假时，变量string经过 <code>sqlinsert</code> 函数过滤，可以看到，在该函数中，过滤了sql注入中要使用到的众多函数：</p>
+<p><img src="/img/metinfo6_1_2_sqli/6.png" alt=""></p>
+<p>由于存在漏洞的注入点未经单引号保护，所以可以无视addslashes()函数，现在需要寻找定义了常量 <code>IN_ADMIN</code> 并调用了add方法的利用点即可</p>
+<p>通过全局搜索找到 <code>admin/index.php</code> </p>
+<p><img src="/img/metinfo6_1_2_sqli/7.png" alt=""></p>
+<p>第五行， <code>define(&#39;IN_ADMIN&#39;, true);</code> ，满足条件，可以绕过 <code>sqlinsert</code> 函数，并且在 <code>admin/index.php</code> 中定义了4个常量</p>
+<p>大致关系如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">M_NAME &#x3D; $_GET[&#39;n&#39;]</span><br><span class="line">M_MODULE &#x3D; $_GET[&#39;m&#39;]</span><br><span class="line">M_CLASS &#x3D; $_GET[&#39;c&#39;]</span><br><span class="line">M_ACTION &#x3D; $_GET[&#39;a&#39;]</span><br></pre></td></tr></table></figure>
+
+<p>之后包含了 <code>/app/system/entrance.php</code> 文件，跟进该文件</p>
+<p>第38行， <code>M_TYPE</code> 未被定义，所以进入39行，判断如果 <code>M_NAME</code> 等于 <code>app/app/</code> 目录下的目录名且 <code>M_NAME</code> 存在，则 <code>define(&#39;M_TYPE&#39;, &#39;app&#39;);</code> ，反之 <code>define(&#39;M_TYPE&#39;, &#39;system&#39;);</code> </p>
+<p><img src="/img/metinfo6_1_2_sqli/entrance1.png" alt=""></p>
+<p>第54行，当 <code>M_TYPE == &#39;system&#39;</code> 进入判断， <code>PATH_OWN_FILE</code> 的值由 <code>M_TYPE</code> 、 <code>M_NAME</code> 、 <code>M_MODULE</code> 三个值决定，这三个值均可控</p>
+<p><img src="/img/metinfo6_1_2_sqli/entrance2.png" alt=""></p>
+<p>在第88行，包含了 <code>app/system/include/class/load.class.php</code> </p>
+<p><img src="/img/metinfo6_1_2_sqli/8.png" alt=""></p>
+<p>并调用了module方法，跟进该方法：</p>
+<p><img src="/img/metinfo6_1_2_sqli/9.png" alt=""></p>
+<p>由于调用的module方法使用了缺省参数，所以$path、$modulename、$action得以赋值之前的参数，之后调用了_load_class()方法，_load_class()方法可以引用并实例化一个类，当action为空的时候，只引用文件。当action为new时候，会实例化这个类。当action为do开头时候，会实例化类，并执行这个方法。</p>
+<p><img src="/img/metinfo6_1_2_sqli/10.png" alt=""></p>
+<p>为了包含 <code>app/system/message/web/message.class.php</code> ,则需要满足 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$path &#x3D; &#39;app&#x2F;system&#x2F;message&#x2F;web&#x2F;&#39;</span><br><span class="line">$classname &#x3D; &#39;message&#39;</span><br></pre></td></tr></table></figure>
+<p>所以在module方法中需满足</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PATH_OWN_FILE &#x3D; &#39;app&#x2F;system&#x2F;message&#x2F;web&#x2F;&#39;</span><br><span class="line">M_CLASS &#x3D; &#39;message&#39;</span><br></pre></td></tr></table></figure>
+<p>退回 <code>app/system/entrance.php</code> 文件，则需要满足</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">M_TYPE &#x3D; &#39;system&#39;</span><br><span class="line">M_NAME &#x3D; &#39;message&#39;</span><br><span class="line">M_MODULE &#x3D; &#39;web&#39;</span><br><span class="line">M_CLASS &#x3D; &#39;message&#39;</span><br></pre></td></tr></table></figure>
+<p>则最终在 <code>admin/index.php</code> 中，需满足</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$_GET[&#39;n&#39;] &#x3D; &#39;message&#39;</span><br><span class="line">$_GET[&#39;m&#39;] &#x3D; &#39;web&#39;</span><br><span class="line">$_GET[&#39;c&#39;] &#x3D; &#39;message&#39;</span><br></pre></td></tr></table></figure>
+
+<p>要想调用add()，必须实例化类并执行方法，但这里限定只能实例化并执行do开头的方法。这里找到了 <code>app/system/message/web/message.class.php</code> 中的domessage()，它调用了add()方法。</p>
+<p><img src="/img/metinfo6_1_2_sqli/11.png" alt=""></p>
+<p>在调用add()方法前，需要满足$this-&gt;check_field();，这里发现只要抓取正常的留言参数填充就可以了，验证码的判断是在add()方法中执行完漏洞语句之后。为了实现布尔注入而不是时间盲注，需要正常时$met_fd_ok的值不为空，从而绕过45行判断，弹出”验证码错误”，而异常时$met_fd_ok值为空，弹出”反馈已关闭”。</p>
+<p><img src="/img/metinfo6_1_2_sqli/12.png" alt=""></p>
+<p>执行一下add方法中存在漏洞的sql语句：</p>
+<p><img src="/img/metinfo6_1_2_sqli/13.png" alt=""></p>
+<p>发现满足条件的id有两个，分别是 <code>42</code> 、 <code>44</code> </p>
+<p>至此，漏洞复现完毕，访问 <code>admin/index.php</code> 并传参使得程序调用domessage中的add()方法完成攻击，payload如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin&#x2F;index.php?m&#x3D;web&amp;n&#x3D;message&amp;c&#x3D;message&amp;a&#x3D;domessage&amp;action&#x3D;add&amp;lang&#x3D;cn&amp;para137&#x3D;1&amp;para186&#x3D;1@qq.com&amp;para138&#x3D;1&amp;para139&#x3D;1&amp;para140&#x3D;1&amp;id&#x3D;42 and 1&#x3D;1</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/metinfo6_1_2_sqli/14.png" alt=""></p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://anquan.baidu.com/article/382" target="_blank" rel="noopener">MetInfo 6.1.2 SQL注入漏洞分析 author:百度安全SiemPent Team</a> </p>
+<p><a href="https://bbs.ichunqiu.com/thread-46687-1-1.html" target="_blank" rel="noopener">Metinfo 6.1.2 SQL注入 author:AShe</a> </p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://clancyb00m.github.io/2020/04/20/Metinfo6.1.2-CNVD-2018-20024-sql%E6%B3%A8%E5%85%A5/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/05/28/%E7%88%86%E7%A0%B4%E4%B9%8B%E7%99%BB%E5%BD%95%E5%8A%A0%E5%AF%86/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            爆破之登录加密
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/20/Metinfo5.3.17-sql%E6%B3%A8%E5%85%A5/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Metinfo5.3.17-sql注入</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2018-2020
+        clancyb00m
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="clancyb00m`s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/null">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/null">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/null">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>起飞~起飞~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['歪比歪比，歪比巴卜', '', ''],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

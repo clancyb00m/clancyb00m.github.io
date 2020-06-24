@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+
+
+<html lang="ZH-CH" >
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="safe" />
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    爆破之登录加密 |  clancyb00m`s Blog
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-爆破之登录加密" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  爆破之登录加密
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/28/%E7%88%86%E7%A0%B4%E4%B9%8B%E7%99%BB%E5%BD%95%E5%8A%A0%E5%AF%86/" class="article-date">
+  <time datetime="2020-05-28T03:41:10.000Z" itemprop="datePublished">2020-05-28</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%89%8D%E7%AB%AF/">web前端</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">997字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">3分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="登录加密文件快速定位"><a href="#登录加密文件快速定位" class="headerlink" title="登录加密文件快速定位"></a>登录加密文件快速定位</h1><h2 id="方法1-密码框找id"><a href="#方法1-密码框找id" class="headerlink" title="方法1 密码框找id"></a>方法1 密码框找id</h2><p>通过开发者工具中的小箭头找到密码框，查找是否有 <code>id</code> 属性，如果有，例如 <code>id=password</code>，则通过 <code>ctrl+shift+F</code> 搜索 <code>#password</code> </p>
+<p><img src="/img/jsEncrypter/id.png" alt="密码框找id"></p>
+<h2 id="方法2-登录按钮找绑定的事件"><a href="#方法2-登录按钮找绑定的事件" class="headerlink" title="方法2 登录按钮找绑定的事件"></a>方法2 登录按钮找绑定的事件</h2><p>通过开发者工具中的小箭头点击登录按钮，定位到登录按钮的代码，查看是否有 <code>onclick</code> 事件，例如 <code>onclick=&quot;login()&quot;</code> ， <code>ctrl+shift+F</code> 搜索 <code>function login</code></p>
+<p><img src="/img/jsEncrypter/onclick.png" alt="onclick"></p>
+<h2 id="方法3-burp抓包获取关键词"><a href="#方法3-burp抓包获取关键词" class="headerlink" title="方法3 burp抓包获取关键词"></a>方法3 burp抓包获取关键词</h2><a id="more"></a>
+<p>抓登录包，查看登录包中各个参数，提取关键词， <code>ctrl+shift+F</code> 搜索这些关键词，即可快速定位到加密文件以及函数</p>
+<blockquote>
+<p>eg. mail.163.com<br>登录抓包，发现有以下关键词：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dl.reg.163.com</span><br><span class="line">dl.reg.163.com&#x2F;b&#x2F;dl&#x2F;l</span><br><span class="line">un</span><br><span class="line">pw</span><br><span class="line">pd</span><br><span class="line">pkid</span><br><span class="line">domains</span><br><span class="line">tk</span><br><span class="line">pwdKeyUp</span><br><span class="line">channel</span><br><span class="line">topURL</span><br><span class="line">rtid</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><img src="/img/jsEncrypter/burp.png" alt="burp抓包"></p>
+<p>通过这些关键词进行搜索，即可快速定位加密文件</p>
+<p><img src="/img/jsEncrypter/burp02.png" alt="burp抓包2"></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>其他一些和加密相关的关键词</p>
+<ul>
+<li>encrypt</li>
+<li>rsa</li>
+<li>md5</li>
+<li>sha1</li>
+<li>.val(</li>
+<li>pass</li>
+</ul>
+<p>搜索关键词 <code>encrypt</code><br><img src="/img/jsEncrypter/encrypt01.png" alt="关键词1"></p>
+<p>最终在一个js文件中找到加密位置<br><img src="/img/jsEncrypter/encrypt02.png" alt="关键词2"></p>
+<h1 id="加密爆破"><a href="#加密爆破" class="headerlink" title="加密爆破"></a>加密爆破</h1><p>对参数加密分以下两种情况：</p>
+<ol>
+<li><p>通过上一步搜索加密方法，如果是常规加密如 <code>md5</code>、 <code>base64</code> 、 <code>sha1</code> 等，可以直接使用burp suite Intruder模块中的 <code>Payload Processing</code> 添加加密方法</p>
+</li>
+<li><p>程序的加密方式是自己写的一套逻辑，则可以下载加密js文件，通过 <code>jsEncrypter</code> 插件或 <code>Burpjsencrypter</code> 插件对值进行加密</p>
+</li>
+</ol>
+<h1 id="jsEncrypter插件使用心得"><a href="#jsEncrypter插件使用心得" class="headerlink" title="jsEncrypter插件使用心得"></a>jsEncrypter插件使用心得</h1><p>准备条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">下载插件： https:&#x2F;&#x2F;github.com&#x2F;c0ny1&#x2F;jsEncrypter</span><br><span class="line"></span><br><span class="line">下载phantomjs： https:&#x2F;&#x2F;phantomjs.org&#x2F;download.html</span><br><span class="line"></span><br><span class="line">burp</span><br></pre></td></tr></table></figure>
+<h2 id="寻找加密函数"><a href="#寻找加密函数" class="headerlink" title="寻找加密函数"></a>寻找加密函数</h2><p>利用如上方法，通过查找账号框的id查到加密函数就在登录页 <code>ctrl+shift+F -&gt; #account</code> ，在Sources搜索 <code>.val(</code> 成功找到密码的加密方式 <code>ctrl+F -&gt; .val(</code> ：</p>
+<p><img src="/img/jsEncrypter/jsencrypt01.png" alt="jsencrypt01"></p>
+<p>在源代码中搜索 <code>input#verifyRand</code> 成功找到rand的值：1346728056</p>
+<p><img src="/img/jsEncrypter/jsencrypt08.png" alt="jsencrypt08"></p>
+<h2 id="生成加密值"><a href="#生成加密值" class="headerlink" title="生成加密值"></a>生成加密值</h2><p>从上一步可以看到加密是通过一次MD5加随机值再进行一次MD5完成的，所以直接拿项目里本来就有的MD5的代码，修改jsEncrypter_main.js如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 加载实现加密算法的js脚本</span><br><span class="line">var wasSuccessful &#x3D; phantom.injectJs(&#39;md5.js&#39;);&#x2F;*引入实现加密的js文件*&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 处理函数</span><br><span class="line">function js_encrypt(payload)&#123;</span><br><span class="line">	var newpayload;</span><br><span class="line">	&#x2F;**********在这里编写调用加密函数进行加密的代码************&#x2F;</span><br><span class="line">	var rand &#x3D; &#39;1346728056&#39;;</span><br><span class="line">	newpayload &#x3D; hex_md5(hex_md5(payload) + rand);</span><br><span class="line">	&#x2F;**********************************************************&#x2F;</span><br><span class="line">	return newpayload;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在该js文件所在目录执行phantomjs：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ phantomjs.exe jsEncrypter_main.js</span><br></pre></td></tr></table></figure>
+<p><img src="/img/jsEncrypter/jsencrypt02.png" alt="jsencrypt02"></p>
+<p>打开burp，在插件jsEncrypter中点击connect，提示 <code>True</code> 即表示连接成功，这里使用 <code>123456</code> 测试加密是否正确，点击Test，可以看到成功生成了密文：</p>
+<p><img src="/img/jsEncrypter/jsencrypt03.png" alt="jsencrypt03"></p>
+<p>返回登录，输入密码123456，点击登录，burp抓包，发现与插件中加密的密文一致：</p>
+<p><img src="/img/jsEncrypter/jsencrypt04.png" alt="jsencrypt04"></p>
+<h2 id="爆破"><a href="#爆破" class="headerlink" title="爆破"></a>爆破</h2><p>将包发送至Intruder模块中，配置相关参数如图所示</p>
+<p><img src="/img/jsEncrypter/jsencrypt05.png" alt="jsencrypt05"></p>
+<p>测试结果如图：</p>
+<p><img src="/img/jsEncrypter/jsencrypt06.png" alt="jsencrypt06"></p>
+<p>明文和密文的对应关系可以在窗口中看到：</p>
+<p><img src="/img/jsEncrypter/jsencrypt07.png" alt="jsencrypt07"></p>
+<h1 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h1><p>这些方法其实是自己总结出来的，不过在该插件作者的文章中发现我们查找的方式是差不多的，链接如下 <a href="http://gv7.me/articles/2018/fast-locate-the-front-end-encryption-method/" target="_blank" rel="noopener">快速定位前端加密方法 author: c0ny1</a></p>
+<p>在网上看到还有通过selenium模拟登录过程批量生成密文，而无需寻找加密函数，这种方式可能仅适用如对称加密等加密类型，不过也不失为一种省事儿的办法，链接如下：<a href="https://xz.aliyun.com/t/7706" target="_blank" rel="noopener">登陆爆破之0基础绕过密码加密 anthor: maybewhynot</a></p>
+<p>演示如下：</p>
+<ol>
+<li><p>打开目标网站，通过开发者工具找到账号密码以及登陆框的selector，修改脚本并保存</p>
+</li>
+<li><p>本地运行脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 selenium_Encrypt.py</span><br></pre></td></tr></table></figure>
+<p><img src="/img/jsEncrypter/selenium01.png" alt="jsencrypt07"></p>
+</li>
+<li><p>在新打开的浏览器中输入目标地址</p>
+</li>
+<li><p>在脚本执行窗口输入y，即可在burp中看到加密效果</p>
+</li>
+<li><p>在脚本窗口可看到对应的明文加密顺序<br><img src="/img/jsEncrypter/selenium02.png" alt="jsencrypt07"></p>
+</li>
+</ol>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://clancyb00m.github.io/2020/05/28/%E7%88%86%E7%A0%B4%E4%B9%8B%E7%99%BB%E5%BD%95%E5%8A%A0%E5%AF%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A0%E8%A7%A3%E5%AF%86/" rel="tag">加解密</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/04/20/Metinfo6.1.2-CNVD-2018-20024-sql%E6%B3%A8%E5%85%A5/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Metinfo6.1.2-CNVD-2018-20024-sql注入</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2018-2020
+        clancyb00m
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="clancyb00m`s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/null">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/null">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/null">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>起飞~起飞~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['歪比歪比，歪比巴卜', '', ''],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+  </div>
+</body>
+
+</html>

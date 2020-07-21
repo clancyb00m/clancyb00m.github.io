@@ -11,7 +11,7 @@
    
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    熟练使用BurpSuite之技巧学习 |  clancyb00m`s Blog
+    未授权访问漏洞总结 |  clancyb00m`s Blog
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -35,7 +35,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-熟练使用BurpSuite之技巧学习" class="article article-type-post" itemscope
+  <article id="post-未授权访问漏洞总结" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -43,7 +43,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  熟练使用BurpSuite之技巧学习
+  未授权访问漏洞总结
 </h1>
  
 
@@ -52,8 +52,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/06/29/%E7%86%9F%E7%BB%83%E4%BD%BF%E7%94%A8BurpSuite%E4%B9%8B%E6%8A%80%E5%B7%A7%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time datetime="2020-06-29T08:28:10.000Z" itemprop="datePublished">2020-06-29</time>
+      <a href="/2020/07/15/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-07-15T08:10:10.000Z" itemprop="datePublished">2020-07-15</time>
 </a>
       
   <div class="article-category">
@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">545字</span>
+            <span class="post-count">756字</span>
         </span>
     </span>
 
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2分钟</span>
+            <span class="post-count">3分钟</span>
         </span>
     </span>
 </div>
@@ -101,54 +101,84 @@
       
 
       
-      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>记录一些小技巧，方便日后忘记了查看 </p>
+      <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li>atlassian crowd</li>
+<li>couchdb</li>
+<li>docker</li>
+<li><a href="#Druid未授权访问">druid</a></li>
+<li><a href="#Elasticsearch未授权访问">elasticsearch</a></li>
+<li>hadoop</li>
+<li>jboss</li>
+<li>jenkins</li>
+<li>Jupyter Notebook</li>
+<li><a href="#ldap未授权访问">ldap</a></li>
+<li>memcache</li>
+<li><a href="#MongoDB未授权访问">mongodb</a></li>
+<li><a href="#Redis未授权访问">redis</a></li>
+<li>rsync</li>
+<li>vnc</li>
+<li>zookeeper</li>
+</ul>
 <a id="more"></a>
-<h1 id="BurpSuite-之-Proxy"><a href="#BurpSuite-之-Proxy" class="headerlink" title="BurpSuite 之 Proxy"></a>BurpSuite 之 Proxy</h1><ol>
-<li>Intercept Client Requests</li>
+<h1 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h1><h2 id="Druid未授权访问"><a href="#Druid未授权访问" class="headerlink" title="Druid未授权访问"></a>Druid未授权访问</h2><p>killer大佬的blog: <a href="https://www.cnblogs.com/cwkiller/p/12483223.html" target="_blank" rel="noopener">Druid未授权（弱口令）的一些利用方式</a></p>
+<p>列出了常见Druid未授权的访问路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;druid&#x2F;websession.html</span><br><span class="line">&#x2F;system&#x2F;druid&#x2F;websession.html</span><br><span class="line">&#x2F;webpage&#x2F;system&#x2F;druid&#x2F;websession.html</span><br></pre></td></tr></table></figure>
+
+<p>其中介绍了两点利用</p>
+<ol>
+<li>session</li>
+<li>uri</li>
 </ol>
-<p>在测试中经常会抓到一些不必要的数据包，比如我根本就不测百度，谷歌等，但是它总是会发送一些数据包，通过右键菜单如下设置，即可不再监听该host</p>
-<p><img src="/img/burp/proxy03.png" alt=""></p>
-<p>在 <code>options</code> 菜单中的 <code>Intercept Client Requests</code> 选项中，可保存此次的配置，下次打开burp后直接 <code>Load options</code> ，避免测试时抓到一些不在测试范围内的包，比如临时邮箱平台、短信接码平台、谷歌相关的、shodan的api和53kf等一些请求包</p>
-<p><img src="/img/burp/proxy02.png" alt=""></p>
-<p><img src="/img/burp/proxy01.png" alt=""></p>
-<h1 id="BurpSuite-之-Intruder"><a href="#BurpSuite-之-Intruder" class="headerlink" title="BurpSuite 之 Intruder"></a>BurpSuite 之 Intruder</h1><ol>
-<li><p>四种爆破模式</p>
-<ul>
-<li><p>Sniper</p>
-<ul>
-<li>狙击手模式，逐个爆破，给1个参数，数量100，就爆破100次，给两个参数，数量100，就爆破100+100次</li>
-</ul>
+<p>第一种利用方式：</p>
+<p>通过 <code>/druid/websession.html</code> 获取session，在 <code>/druid/weburi.html</code> 找到需要认证才能访问的uri，通过burp爆破session获取有效session</p>
+<p>第二种利用方式：</p>
+<p>通过 <code>/druid/weburi.html</code> 找未授权和越权，还可以测试注入</p>
+<h3 id="挖掘"><a href="#挖掘" class="headerlink" title="挖掘"></a>挖掘</h3><p>可以写个被动式脚本，当访问一个url时，自动对当前目录测试常见访问路径，并依次对上级、上上级目录直至根目录进行测试，说白了就是下面这些：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;druid&#x2F;websession.html</span><br><span class="line">..&#x2F;druid&#x2F;websession.html</span><br><span class="line">..&#x2F;..&#x2F;druid&#x2F;websession.html</span><br><span class="line">..&#x2F;..&#x2F;..&#x2F;druid&#x2F;websession.html</span><br><span class="line">..&#x2F;..&#x2F;..&#x2F;..&#x2F;druid&#x2F;websession.html</span><br><span class="line">&#x2F;system&#x2F;druid&#x2F;websession.html</span><br><span class="line">..&#x2F;system&#x2F;druid&#x2F;websession.html</span><br><span class="line">..&#x2F;..&#x2F;system&#x2F;druid&#x2F;websession.html</span><br><span class="line">..&#x2F;..&#x2F;..&#x2F;system&#x2F;druid&#x2F;websession.html</span><br><span class="line">..&#x2F;..&#x2F;..&#x2F;..&#x2F;system&#x2F;druid&#x2F;websession.html</span><br><span class="line">&#x2F;webpage&#x2F;system&#x2F;druid&#x2F;websession.html</span><br><span class="line">..&#x2F;webpage&#x2F;system&#x2F;druid&#x2F;websession.html</span><br><span class="line">..&#x2F;..&#x2F;webpage&#x2F;system&#x2F;druid&#x2F;websession.html</span><br><span class="line">..&#x2F;..&#x2F;..&#x2F;webpage&#x2F;system&#x2F;druid&#x2F;websession.html</span><br><span class="line">..&#x2F;..&#x2F;..&#x2F;..&#x2F;webpage&#x2F;system&#x2F;druid&#x2F;websession.html</span><br></pre></td></tr></table></figure>
+
+<h3 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复"></a>漏洞修复</h3><ol>
+<li><p>放入内网</p>
 </li>
-<li><p>Battering ram</p>
-<ul>
-<li>攻城锤模式，选两个参数，只给一个payload位，数量100，就同时爆破，参数值一样，100次</li>
-</ul>
-</li>
-<li><p>Pitchfork</p>
-<ul>
-<li>草叉模式，至少给两个参数，一一对应进行爆破</li>
-</ul>
-</li>
-<li><p>Cluster bomb</p>
-<ul>
-<li>集束炸弹，给两个参数，混合爆破，比如数量均为100，则爆破10000次</li>
-</ul>
-</li>
-</ul>
+<li><p>设置登录口令</p>
 </li>
 </ol>
-<p>平时我用的最多的还是 <code>Sniper模式</code> 和 <code>Cluster bomb模式</code> </p>
-<p>在 <code>Payloads</code> 菜单中，可对参数进行设置，比如爆破带有验证码的数据包或者加密爆破等，详见 <a href="https://clancyb00m.github.io/2020/06/28/验证码识别和爆破脚本分享与演示/">https://clancyb00m.github.io/2020/06/28/验证码识别和爆破脚本分享与演示/</a> </p>
-<h1 id="BurpSuite-之-Project-options"><a href="#BurpSuite-之-Project-options" class="headerlink" title="BurpSuite 之 Project options"></a>BurpSuite 之 Project options</h1><p>关于这个模块了解的不多，在一片文章中看到有关该模块的配置，通过该配置爆破带有不断变换的user_token的数据包</p>
-<p><a href="https://mp.weixin.qq.com/s/xd5hdW3qyk2TT7WVVJDXGA" target="_blank" rel="noopener">如何在渗透测试中爆破刷新token的请求</a></p>
-<h1 id="BurpSuite-之-User-options"><a href="#BurpSuite-之-User-options" class="headerlink" title="BurpSuite 之 User options"></a>BurpSuite 之 User options</h1><ol>
-<li>Upsteam Proxy Servers</li>
+<h2 id="Elasticsearch未授权访问"><a href="#Elasticsearch未授权访问" class="headerlink" title="Elasticsearch未授权访问"></a>Elasticsearch未授权访问</h2><p>ElasticSearch 是一款Java编写的企业级搜索服务，启动此服务默认会开放HTTP-9200端口，可被非法操作数据。</p>
+<h3 id="漏洞产生原因"><a href="#漏洞产生原因" class="headerlink" title="漏洞产生原因"></a>漏洞产生原因</h3><p>默认配置</p>
+<h3 id="挖掘-1"><a href="#挖掘-1" class="headerlink" title="挖掘"></a>挖掘</h3><p>一般默认9200端口，或者9300端口，直接访问该端口，如果存在未授权，就会返回类似如下说明：</p>
+<p><img src="/img/unauth/es01.png" alt=""></p>
+<p>可以通过脚本批量检测，通过以下任一特征，即可判断存在es未授权访问漏洞：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;           You Know, for Search</span><br><span class="line">&#x2F;_stats     </span><br><span class="line">&#x2F;_cat       &#x2F;_cat&#x2F;master</span><br><span class="line">&#x2F;_nodes</span><br><span class="line">&#x2F;任意字符   返回json字符串</span><br></pre></td></tr></table></figure>
+
+<h3 id="漏洞修复-1"><a href="#漏洞修复-1" class="headerlink" title="漏洞修复"></a>漏洞修复</h3><ol>
+<li><p>修改默认端口或者禁止外网访问9200端口</p>
+</li>
+<li><p>限制IP访问</p>
+</li>
+<li><p>配置登录认证</p>
+</li>
+<li><p>架设nginx反向代理服务器，并设置http basic认证来实现elasticsearch的登录认证</p>
+</li>
 </ol>
-<p>情景一：本地无法访问目标网站，挂了代理可以访问，但是挂了代理抓不了包</p>
-<p>情景二：想把burp的所有流量转发到被动式扫描器上，比如xray</p>
-<p>通过在 <code>User options</code> 中的 <code>Connections</code> 中的 <code>Upsteam Proxy Servers</code> 选项卡，添加上游代理实现如上情景</p>
-<p><img src="/img/burp/useroptions01.png" alt=""></p>
-<p>如果情景一和情景二同时出现，或许这款插件能帮上忙 <a href="http://github.com/c0ny1/passive-scan-client" target="_blank" rel="noopener">passive-scan-client</a> </p>
+<h2 id="ldap未授权访问"><a href="#ldap未授权访问" class="headerlink" title="ldap未授权访问"></a>ldap未授权访问</h2><p>LDAP：Light Directory Access Portocol，它是基于X.500标准的轻量级目录访问协议。</p>
+<h3 id="漏洞产生原因-1"><a href="#漏洞产生原因-1" class="headerlink" title="漏洞产生原因"></a>漏洞产生原因</h3><p>默认配置</p>
+<h3 id="挖掘-2"><a href="#挖掘-2" class="headerlink" title="挖掘"></a>挖掘</h3><p>端口：389</p>
+<h3 id="漏洞修复-2"><a href="#漏洞修复-2" class="headerlink" title="漏洞修复"></a>漏洞修复</h3><ol>
+<li><p>删除匿名访问控制指令</p>
+</li>
+<li><p>修改匿名访问控制指令（修改anyone为all）</p>
+</li>
+<li><p>使用 userdn 关键字定义用户访问</p>
+</li>
+<li><p>设置密码</p>
+</li>
+</ol>
+<h2 id="MongoDB未授权访问"><a href="#MongoDB未授权访问" class="headerlink" title="MongoDB未授权访问"></a>MongoDB未授权访问</h2><p>这里已经说的很详细了，连批量脚本都给了 </p>
+<p><a href="https://xz.aliyun.com/t/2320#toc-4" target="_blank" rel="noopener">https://xz.aliyun.com/t/2320#toc-4</a></p>
+<h2 id="Redis未授权访问"><a href="#Redis未授权访问" class="headerlink" title="Redis未授权访问"></a>Redis未授权访问</h2><p><a href="https://clancyb00m.github.io/2020/07/15/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E5%A4%8D%E7%8E%B0%E4%BB%A5%E5%8F%8A%E5%88%A9%E7%94%A8/">https://clancyb00m.github.io/2020/07/15/redis未授权访问复现以及利用/</a></p>
+<h3 id="挖掘-3"><a href="#挖掘-3" class="headerlink" title="挖掘"></a>挖掘</h3><p>端口：6379</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h1 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h1><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://xz.aliyun.com/t/6103#toc-0" target="_blank" rel="noopener">常见未授权访问漏洞总结 author: 小维</a></p>
+<p><a href="https://xz.aliyun.com/t/2320#toc-2" target="_blank" rel="noopener">未授权访问的tips author: evi1ox</a></p>
+<p><a href="https://paper.seebug.org/409/#0x02-redis" target="_blank" rel="noopener">未授权访问漏洞总结 author: w2n1ck@安全脉搏</a></p>
 
       
       <!-- reward -->
@@ -218,14 +248,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://clancyb00m.github.io/2020/06/29/%E7%86%9F%E7%BB%83%E4%BD%BF%E7%94%A8BurpSuite%E4%B9%8B%E6%8A%80%E5%B7%A7%E5%AD%A6%E4%B9%A0/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://clancyb00m.github.io/2020/07/15/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BurpSuite/" rel="tag">BurpSuite</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/" rel="tag">未授权访问</a></li></ul>
 
 
     </footer>
@@ -236,19 +266,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/07/15/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" class="article-nav-link">
+      <a href="/2020/07/15/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E5%A4%8D%E7%8E%B0%E4%BB%A5%E5%8F%8A%E5%88%A9%E7%94%A8/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            未授权访问漏洞总结
+            redis未授权访问复现以及利用
           
         </div>
       </a>
     
     
-      <a href="/2020/06/28/%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB%E5%92%8C%E7%88%86%E7%A0%B4%E8%84%9A%E6%9C%AC%E5%88%86%E4%BA%AB%E4%B8%8E%E6%BC%94%E7%A4%BA/" class="article-nav-link">
+      <a href="/2020/06/29/%E7%86%9F%E7%BB%83%E4%BD%BF%E7%94%A8BurpSuite%E4%B9%8B%E6%8A%80%E5%B7%A7%E5%AD%A6%E4%B9%A0/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">验证码识别和爆破脚本分享与演示</div>
+        <div class="article-nav-title">熟练使用BurpSuite之技巧学习</div>
       </a>
     
   </nav>

